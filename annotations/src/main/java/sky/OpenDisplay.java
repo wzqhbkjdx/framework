@@ -1,4 +1,4 @@
-package cent.news.com.baseframe.annotations;
+package sky;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;

@@ -1,4 +1,4 @@
-package cent.news.com.baseframe.annotations;
+package sky;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

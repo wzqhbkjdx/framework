@@ -1,1 +1,1 @@
-include ':app', ':baseframe', ':cglib'
+include ':app', ':baseframe', ':cglib', ':compiler', ':annotations'

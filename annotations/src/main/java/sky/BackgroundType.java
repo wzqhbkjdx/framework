@@ -1,4 +1,4 @@
-package cent.news.com.baseframe.annotations;
+package sky;
 
 /**
  * @author sky

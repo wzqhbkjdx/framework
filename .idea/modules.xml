@@ -3,9 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NewsCent.iml" filepath="$PROJECT_DIR$/NewsCent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/annotations/annotations.iml" filepath="$PROJECT_DIR$/annotations/annotations.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseframe/baseframe.iml" filepath="$PROJECT_DIR$/baseframe/baseframe.iml" />
       <module fileurl="file://$PROJECT_DIR$/cglib/cglib.iml" filepath="$PROJECT_DIR$/cglib/cglib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/compiler/compiler.iml" filepath="$PROJECT_DIR$/compiler/compiler.iml" />
     </modules>
   </component>
 </project>

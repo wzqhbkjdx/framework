@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+//apply plugin: 'java'
 
 
 buildscript {
@@ -60,20 +61,13 @@ buildscript {
                     'dagger'                 : "com.google.dagger:dagger:${versions.dagger}",
                     'guava'                  : "com.google.guava:guava:${versions.guava}",
             ],
-            'annotation': [
-                    'dagger_compiler': "com.google.dagger:dagger-compiler:${versions.dagger}",
-            ],
 
             // 代码生成
             'auto'      : [
                     'service': 'com.google.auto.service:auto-service:1.0-rc3',
                     'common' : 'com.google.auto:auto-common:0.8',
             ],
-            //插件
-            'kotlin'    : [
-                    'stdLibJre8'  : "org.jetbrains.kotlin:kotlin-stdlib-jre8:${versions.kotlin}",
-                    'gradlePlugin': "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-            ],
+
             javaparser  : 'com.github.javaparser:javaparser-core:3.2.8',
             javapoet    : 'com.squareup:javapoet:1.9.0',
             junit       : 'junit:junit:4.12',
@@ -89,52 +83,43 @@ buildscript {
 
 android {
     compileSdkVersion 26
-
-
-
     defaultConfig {
+        //applicationId "cent.news.com.newscent"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
     }
-
-
-    lintOptions {
-        textReport true
-        textOutput 'stdout'
-        abortOnError false
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
-
 }
 
+
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api deps.library.gson
+    implementation project(':annotations')
 
-    api deps.library.glide
+    provided files ('/Library/Java/JavaVirtualMachines/jdk1.8.0_74.jdk/Contents/Home/jre/lib/rt.jar')
 
-    api deps.library.glide_okhttp3
+    implementation deps.auto.common
+    implementation deps.javapoet
+    implementation deps.library.commons_lang3
+    implementation deps.library.collections4
+    implementation deps.library.butterknife_annotations
+    compileOnly deps.auto.service
+    compileOnly files(org.gradle.internal.jvm.Jvm.current().getToolsJar())
 
-    api group: 'commons-io', name: 'commons-io', version: "${versions.commons_io}"
-
-    implementation project(':cglib')
-
-    api deps.support.recyclerview_v7
-
-    api deps.support.compat_v7
-
-    api deps.library.dagger
-    annotationProcessor deps.annotation.dagger_compiler
-
-    api deps.library.retrofit
-    api deps.library.butterknife
-    api deps.library.commons_lang3
-    api deps.library.guava
-    api deps.library.systembartint
-
+    //implementation 'com.android.support:appcompat-v7:26.1.0'
+    //testImplementation 'junit:junit:4.12'
+    //androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
