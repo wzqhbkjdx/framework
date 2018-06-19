@@ -100,6 +100,8 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+
     }
 
 
@@ -123,6 +125,8 @@ dependencies {
     api group: 'commons-io', name: 'commons-io', version: "${versions.commons_io}"
 
     implementation project(':cglib')
+    implementation project(':compiler')
+    implementation project(':annotations')
 
     api deps.support.recyclerview_v7
 
@@ -137,4 +141,5 @@ dependencies {
     api deps.library.guava
     api deps.library.systembartint
 
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

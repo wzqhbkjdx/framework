@@ -5,4 +5,8 @@ package cent.news.com.baseframe.modules.cache;
  */
 
 public class CacheManager {
+
+
+
+
 }
