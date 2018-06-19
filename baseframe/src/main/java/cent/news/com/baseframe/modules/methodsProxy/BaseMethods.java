@@ -1,12 +1,7 @@
 package cent.news.com.baseframe.modules.methodsProxy;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.core.plugin.BaseActivityInterceptor;
 import cent.news.com.baseframe.core.plugin.BaseBizErrorInterceptor;
 import cent.news.com.baseframe.core.plugin.BaseFragmentInterceptor;
@@ -18,9 +13,6 @@ import cent.news.com.baseframe.core.plugin.DisplayEndInterceptor;
 import cent.news.com.baseframe.core.plugin.DisplayStartInterceptor;
 import cent.news.com.baseframe.core.plugin.ImplEndInterceptor;
 import cent.news.com.baseframe.core.plugin.ImplStartInterceptor;
-import cent.news.com.baseframe.utils.BaseCheckUtils;
-import sky.cglib.proxy.Enhancer;
-import sky.cglib.proxy.MethodInterceptor;
 
 /**
  * Created by bym on 2018/6/18.
@@ -67,75 +59,75 @@ public final class BaseMethods {
         this.skyHttpErrorInterceptors = skyHttpErrorInterceptors;
     }
 
-    public <T> BaseProxy createNotInf(final Class superClazz, Object impl) {
-        final BaseProxy BaseProxy = new BaseProxy();
-        BaseProxy.impl = impl;
-        Enhancer e = new Enhancer(BaseHelper.getInstance());
-        e.setSuperclass(superClazz);
-        e.setInterceptor(new MethodInterceptor() {
+//    public <T> BaseProxy createNotInf(final Class superClazz, Object impl) {
+//        final BaseProxy BaseProxy = new BaseProxy();
+//        BaseProxy.impl = impl;
+//        Enhancer e = new Enhancer(BaseHelper.getInstance());
+//        e.setSuperclass(superClazz);
+//        e.setInterceptor(new MethodInterceptor() {
+//
+//            @Override public Object intercept(String name, Class[] argsType, Object[] args) throws Exception {
+//                Method method = superClazz.getMethod(name, argsType);
+//
+//                // 如果有返回值 - 直接执行
+//                if (!method.getReturnType().equals(void.class)) {
+//                    return method.invoke(BaseProxy.impl, args);
+//                }
 
-            @Override public Object intercept(String name, Class[] argsType, Object[] args) throws Exception {
-                Method method = superClazz.getMethod(name, argsType);
+//                SKYMethod SKYMethod = loadSKYMethod(BaseProxy, method, superClazz);
+//                // 开始
+//                if (!SKYHelper.isLogOpen()) {
+//                    return SKYMethod.invoke(BaseProxy.impl, args);
+//                }
+//                enterMethod(method, args);
+//                long startNanos = System.nanoTime();
+//
+//                Object result = SKYMethod.invoke(BaseProxy.impl, args);
+//
+//                long stopNanos = System.nanoTime();
+//                long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
+//                exitMethod(method, result, lengthMillis);
 
-                // 如果有返回值 - 直接执行
-                if (!method.getReturnType().equals(void.class)) {
-                    return method.invoke(BaseProxy.impl, args);
-                }
+//                return result;
+//            }
+//        });
+//        BaseProxy.proxy = e.create();
+//        return BaseProxy;
+//    }
+//
+//    public <T> BaseProxy create(final Class<T> service, Object impl) {
+//        BaseCheckUtils.validateServiceInterface(service);
+//
+//        final BaseProxy BaseProxy = new BaseProxy();
+//        BaseProxy.impl = impl;
+//        BaseProxy.proxy = Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service }, new BaseInvocationHandler() {
+//
+//            @Override public Object invoke(Object proxy, Method method, Object... args) throws Throwable {
+//                // 如果有返回值 - 直接执行
+//                if (!method.getReturnType().equals(void.class)) {
+//                    return method.invoke(BaseProxy.impl, args);
+//                }
 
-                SKYMethod SKYMethod = loadSKYMethod(BaseProxy, method, superClazz);
-                // 开始
-                if (!SKYHelper.isLogOpen()) {
-                    return SKYMethod.invoke(BaseProxy.impl, args);
-                }
-                enterMethod(method, args);
-                long startNanos = System.nanoTime();
+//                SKYMethod SKYMethod = loadSKYMethod(BaseProxy, method, service);
+//                // 开始
+//                if (!SKYHelper.isLogOpen()) {
+//                    return SKYMethod.invoke(BaseProxy.impl, args);
+//                }
+//                enterMethod(method, args);
+//                long startNanos = System.nanoTime();
+//
+//                Object result = SKYMethod.invoke(BaseProxy.impl, args);
+//
+//                long stopNanos = System.nanoTime();
+//                long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
+//                exitMethod(method, result, lengthMillis);
 
-                Object result = SKYMethod.invoke(BaseProxy.impl, args);
-
-                long stopNanos = System.nanoTime();
-                long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
-                exitMethod(method, result, lengthMillis);
-
-                return result;
-            }
-        });
-        BaseProxy.proxy = e.create();
-        return BaseProxy;
-    }
-
-    public <T> BaseProxy create(final Class<T> service, Object impl) {
-        BaseCheckUtils.validateServiceInterface(service);
-
-        final BaseProxy BaseProxy = new BaseProxy();
-        BaseProxy.impl = impl;
-        BaseProxy.proxy = Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service }, new BaseInvocationHandler() {
-
-            @Override public Object invoke(Object proxy, Method method, Object... args) throws Throwable {
-                // 如果有返回值 - 直接执行
-                if (!method.getReturnType().equals(void.class)) {
-                    return method.invoke(BaseProxy.impl, args);
-                }
-
-                SKYMethod SKYMethod = loadSKYMethod(BaseProxy, method, service);
-                // 开始
-                if (!SKYHelper.isLogOpen()) {
-                    return SKYMethod.invoke(BaseProxy.impl, args);
-                }
-                enterMethod(method, args);
-                long startNanos = System.nanoTime();
-
-                Object result = SKYMethod.invoke(BaseProxy.impl, args);
-
-                long stopNanos = System.nanoTime();
-                long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
-                exitMethod(method, result, lengthMillis);
-
-                return result;
-            }
-        });
-
-        return BaseProxy;
-    }
+//                return result;
+//            }
+//        });
+//
+//        return BaseProxy;
+//    }
 
 }
 
