@@ -2,9 +2,13 @@ package cent.news.com.baseframe;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.os.Looper;
 
+import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.modules.BaseModuleManage;
+import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
+import cent.news.com.baseframe.modules.threadPool.BaseThreadPoolManager;
 import cent.news.com.baseframe.screen.BaseScreenManager;
 
 /**
@@ -41,6 +45,21 @@ public class BaseHelper {
         return mModulesManage.getApplication();
     }
 
+    public static BaseMethods methodsProxy() {
+        return mModulesManage.getBaseMethods();
+    }
+
+    public static boolean isMainLooperThread() {
+        return Looper.getMainLooper().getThread() != Thread.currentThread();
+    }
+
+    public static SynchronousExecutor mainLooper() {
+        return mModulesManage.getSynchronousExecutor();
+    }
+
+    public static BaseThreadPoolManager threadPoolHelper() {
+        return mModulesManage.getBaseThreadPoolManager();
+    }
 }
 
 
