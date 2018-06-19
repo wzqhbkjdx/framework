@@ -1,6 +1,7 @@
 package cent.news.com.baseframe.view;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.support.v7.widget.Toolbar;
 
 import cent.news.com.baseframe.BaseHelper;
@@ -9,16 +10,12 @@ import cent.news.com.baseframe.core.IBaseBiz;
 import cent.news.com.baseframe.display.BaseIDisplay;
 
 /**
- * Created by bym on 2018/6/16.
+ * Created by bym on 2018/6/19.
  */
 
-public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity implements IBaseView {
+public abstract class BaseDialogFragment<B extends IBaseBiz> extends DialogFragment implements IBaseDialogFragment,
+        DialogInterface.OnKeyListener, IBaseView {
 
-    private BaseBuilder baseBuilder;
-
-    public Toolbar toolbar() {
-        return baseBuilder == null ? null : baseBuilder.getToolbar();
-    }
 
     public B biz() {
         return null;
@@ -32,8 +29,13 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
         return BaseHelper.display(eClass);
     }
 
+    private BaseBuilder baseBuilder;
+
+    public Toolbar toolbar() {
+        return baseBuilder == null ? null : baseBuilder.getToolbar();
+    }
+
     public BaseView baseView() {
         return baseBuilder == null ? null : baseBuilder.getBaseView();
     }
-
 }

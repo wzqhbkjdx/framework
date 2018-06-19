@@ -4,6 +4,7 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
+import cent.news.com.baseframe.modules.cache.CacheManager;
 import cent.news.com.baseframe.screen.BaseScreenManager;
 
 /**
@@ -16,6 +17,8 @@ public class BaseModuleManage {
 
     @Inject public BaseScreenManager screenManager;
 
+    @Inject public CacheManager cacheManager;
+
     public boolean isLog;
 
     public boolean isLog() {
@@ -24,5 +27,13 @@ public class BaseModuleManage {
 
     public BaseScreenManager getScreenManager() {
         return screenManager;
+    }
+
+    public CacheManager getCacheManager() {
+        return cacheManager;
+    }
+
+    public Application getApplication() {
+        return application;
     }
 }
