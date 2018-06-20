@@ -118,7 +118,7 @@ public final class BaseMethods {
 
                 SKYMethod SKYMethod = loadSKYMethod(BaseProxy, method, service);
                 // 开始
-                if (!SKYHelper.isLogOpen()) {
+                if (!BaseHelper.isLogOpen()) {
                     return SKYMethod.invoke(BaseProxy.impl, args);
                 }
                 enterMethod(method, args);
