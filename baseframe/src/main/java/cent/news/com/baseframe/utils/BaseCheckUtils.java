@@ -9,7 +9,7 @@ import cent.news.com.baseframe.exception.BaseUINullPointerException;
  * Created by bym on 2018/6/19.
  */
 
-public class BaseCheckUtils {
+public final class BaseCheckUtils {
 
     /**
      * 验证

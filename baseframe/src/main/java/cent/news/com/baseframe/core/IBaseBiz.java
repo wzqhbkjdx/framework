@@ -1,6 +1,6 @@
 package cent.news.com.baseframe.core;
 
-import cent.news.com.baseframe.structure.BaseStructureModel;
+import cent.news.com.baseframe.modules.structure.BaseStructureModel;
 
 /**
  * Created by bym on 2018/6/19.

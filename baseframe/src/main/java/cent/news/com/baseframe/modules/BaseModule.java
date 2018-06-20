@@ -1,13 +1,13 @@
 package cent.news.com.baseframe.modules;
 
 import android.app.Application;
-import android.app.job.JobService;
 
 import javax.inject.Singleton;
 
 import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.modules.cache.CacheManager;
 import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
+import cent.news.com.baseframe.modules.structure.BaseStructureManage;
 import cent.news.com.baseframe.modules.threadPool.BaseThreadPoolManager;
 import cent.news.com.baseframe.screen.BaseScreenManager;
 import dagger.Module;
