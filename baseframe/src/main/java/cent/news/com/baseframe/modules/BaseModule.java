@@ -6,9 +6,11 @@ import javax.inject.Singleton;
 
 import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.modules.cache.CacheManager;
+import cent.news.com.baseframe.modules.download.BaseDownloadManager;
 import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
 import cent.news.com.baseframe.modules.structure.BaseStructureManage;
 import cent.news.com.baseframe.modules.threadPool.BaseThreadPoolManager;
+import cent.news.com.baseframe.modules.toast.BaseToast;
 import cent.news.com.baseframe.screen.BaseScreenManager;
 import dagger.Module;
 import dagger.Provides;

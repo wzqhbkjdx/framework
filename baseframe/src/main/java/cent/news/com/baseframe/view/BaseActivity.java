@@ -1,5 +1,6 @@
 package cent.news.com.baseframe.view;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -34,6 +35,15 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
 
     public BaseView baseView() {
         return baseBuilder == null ? null : baseBuilder.getBaseView();
+    }
+
+    public boolean onKeyBack() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAfterTransition();
+        } else {
+            finish();
+        }
+        return true;
     }
 
 }

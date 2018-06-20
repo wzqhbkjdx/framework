@@ -79,4 +79,9 @@ public abstract class BaseFragment<B extends IBaseBiz> extends Fragment implemen
     public BaseView baseView() {
         return baseBuilder == null ? null : baseBuilder.getBaseView();
     }
+
+    public boolean onKeyBack() {
+        getFragmentManager().popBackStack();
+        return true;
+    }
 }

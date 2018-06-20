@@ -29,7 +29,7 @@ public interface IBaseStructureManage {
 
     <T> T createMainLooper(final Class<T> service, Object ui);
 
-    <T> T createMainLooperNotIntf(final Class<T> service, Object ui);
+    <T> T createMainLooperNotIntf(final Class<T> service);
 
     <U> U createNullService(final Class<U> service);
 
