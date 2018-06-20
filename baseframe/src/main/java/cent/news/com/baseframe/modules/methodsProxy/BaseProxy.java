@@ -12,7 +12,7 @@ public class BaseProxy {
 
     public Object proxy;                                // 代理类
 
-    public ConcurrentHashMap<String, BaseMethods> methodCache = new ConcurrentHashMap();    // 方法缓存
+    public ConcurrentHashMap<String, BaseMethod> methodCache = new ConcurrentHashMap();    // 方法缓存
 
 
     /**
