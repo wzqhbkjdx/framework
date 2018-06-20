@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.Looper;
 
+import cent.news.com.baseframe.core.IBaseBind;
+import cent.news.com.baseframe.core.IBaseViewCommon;
 import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.modules.BaseModuleManage;
@@ -25,8 +27,44 @@ public class BaseHelper {
     }
 
     public static class Bind {
+        IBaseBind iBaseBind;
+
+        public Bind setBaseBind(IBaseBind iBaseBind) {
+            this.iBaseBind = iBaseBind;
+            return this;
+        }
+
+        IBaseViewCommon baseViewCommon;
+
+        public Bind setBaseViewCommon(IBaseViewCommon baseViewCommon) {
+            this.baseViewCommon = baseViewCommon;
+            return this;
+        }
+
+        public void inject(Application application) {
+            if(application == null) {
+                throw new RuntimeException("base framework: Application is not set");
+            }
+
+            if(this.iBaseBind == null) {
+                this.iBaseBind = IBaseBind.DEFAULE_BIND;
+            }
+
+            if(this.baseViewCommon == null) {
+                this.baseViewCommon = IBaseViewCommon.BASE_VIEW_COMMON;
+            }
+
+            mModulesManage = iBaseBind.getModuleManage();
+            if(mModulesManage == null) {
+                throw new RuntimeException("base framework: BaseModuleManage is not set");
+            }
+
+
+        }
 
     }
+
+
 
 
     public static boolean isLogOpen() {

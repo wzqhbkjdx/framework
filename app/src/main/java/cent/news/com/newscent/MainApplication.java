@@ -8,6 +8,7 @@ import android.support.multidex.MultiDex;
  * Created by bym on 2018/6/18.
  */
 
+@SuppressWarnings("ALL")
 public class MainApplication extends Application {
 
     @Override protected void attachBaseContext(Context base) {
