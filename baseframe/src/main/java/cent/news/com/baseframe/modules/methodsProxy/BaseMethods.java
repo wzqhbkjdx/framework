@@ -31,7 +31,7 @@ import sky.cglib.proxy.MethodInterceptor;
 
 public final class BaseMethods {
 
-    final BaseActivityInterceptor skyActivityInterceptor;
+    final BaseActivityInterceptor baseActivityInterceptor;
 
     final BaseLayoutInterceptor skyLayoutInterceptor;
 
@@ -65,7 +65,7 @@ public final class BaseMethods {
         this.skyErrorInterceptor = SKYErrorInterceptor;
         this.implStartInterceptors = implStartInterceptors;
         this.implEndInterceptors = implEndInterceptors;
-        this.skyActivityInterceptor = SKYActivityInterceptor;
+        this.baseActivityInterceptor = SKYActivityInterceptor;
         this.skyFragmentInterceptor = SKYFragmentInterceptor;
         this.skyHttpErrorInterceptors = skyHttpErrorInterceptors;
     }
@@ -271,6 +271,9 @@ public final class BaseMethods {
         }
     }
 
+    public BaseActivityInterceptor baseActivityInterceptor() {
+        return baseActivityInterceptor;
+    }
 
     public static class Builder {
 

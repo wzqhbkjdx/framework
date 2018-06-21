@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/baseframe/baseframe.iml" filepath="$PROJECT_DIR$/baseframe/baseframe.iml" />
       <module fileurl="file://$PROJECT_DIR$/cglib/cglib.iml" filepath="$PROJECT_DIR$/cglib/cglib.iml" />
       <module fileurl="file://$PROJECT_DIR$/compiler/compiler.iml" filepath="$PROJECT_DIR$/compiler/compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework.iml" filepath="$PROJECT_DIR$/framework.iml" />
     </modules>
   </component>
 </project>
