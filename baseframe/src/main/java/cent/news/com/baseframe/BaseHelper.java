@@ -8,8 +8,11 @@ import cent.news.com.baseframe.core.IBaseBind;
 import cent.news.com.baseframe.core.IBaseViewCommon;
 import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.display.BaseIDisplay;
+import cent.news.com.baseframe.modules.BaseModule;
 import cent.news.com.baseframe.modules.BaseModuleManage;
+import cent.news.com.baseframe.modules.DaggerBaseComponent;
 import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
+import cent.news.com.baseframe.modules.structure.BaseStructureManage;
 import cent.news.com.baseframe.modules.threadPool.BaseThreadPoolManager;
 import cent.news.com.baseframe.screen.BaseScreenManager;
 
@@ -47,7 +50,7 @@ public class BaseHelper {
             }
 
             if(this.iBaseBind == null) {
-                this.iBaseBind = IBaseBind.DEFAULE_BIND;
+                this.iBaseBind = IBaseBind.DEFAULT_BIND;
             }
 
             if(this.baseViewCommon == null) {
@@ -59,7 +62,8 @@ public class BaseHelper {
                 throw new RuntimeException("base framework: BaseModuleManage is not set");
             }
 
-
+            DaggerBaseComponent.builder().baseModule(new BaseModule(application)).build().inject(mModulesManage);
+            mModulesManage.init(iBaseBind, baseViewCommon);
         }
 
     }
@@ -97,6 +101,10 @@ public class BaseHelper {
 
     public static BaseThreadPoolManager threadPoolHelper() {
         return mModulesManage.getBaseThreadPoolManager();
+    }
+
+    public static BaseStructureManage structureHelper() {
+        return mModulesManage.getBaseStructureManage();
     }
 }
 

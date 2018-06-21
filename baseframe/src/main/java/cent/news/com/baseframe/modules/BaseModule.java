@@ -7,11 +7,13 @@ import javax.inject.Singleton;
 import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.modules.cache.CacheManager;
 import cent.news.com.baseframe.modules.download.BaseDownloadManager;
+import cent.news.com.baseframe.modules.file.BaseFileCacheManage;
 import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
 import cent.news.com.baseframe.modules.structure.BaseStructureManage;
 import cent.news.com.baseframe.modules.threadPool.BaseThreadPoolManager;
 import cent.news.com.baseframe.modules.toast.BaseToast;
 import cent.news.com.baseframe.screen.BaseScreenManager;
+import cent.news.com.baseframe.service.InnerJobService;
 import dagger.Module;
 import dagger.Provides;
 import retrofit2.Retrofit;
@@ -128,8 +130,8 @@ public class BaseModule {
      *
      * @return 返回值
      */
-    @Provides @Singleton public BaseJobService provideSKYJobServiceManage() {
-        return new BaseJobService();
+    @Provides @Singleton public InnerJobService provideSKYJobServiceManage() {
+        return new InnerJobService();
     }
 
 

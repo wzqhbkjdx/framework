@@ -16,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.R;
 import cent.news.com.baseframe.core.IBaseBiz;
+import cent.news.com.baseframe.modules.log.L;
 import cent.news.com.baseframe.utils.BaseCheckUtils;
 import cent.news.com.baseframe.view.BaseActivity;
 import cent.news.com.baseframe.view.BaseFragment;
@@ -28,41 +29,41 @@ import sky.cglib.proxy.MethodInterceptor;
 
 public class BaseStructureManage implements IBaseStructureManage {
 
-    private final ConcurrentHashMap<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>> statckRepeatBiz;
+    private final ConcurrentHashMap<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>> stackRepeatBiz;
 
     public BaseStructureManage() {
-        statckRepeatBiz = new ConcurrentHashMap<>();
+        stackRepeatBiz = new ConcurrentHashMap<>();
     }
 
     @Override
     public void attach(BaseStructureModel view) {
-        synchronized (statckRepeatBiz) {
+        synchronized (stackRepeatBiz) {
             if (view.getService() == null) {
                 return;
             }
-            SimpleArrayMap<Integer, BaseStructureModel> stack = statckRepeatBiz.get(view.getService());
+            SimpleArrayMap<Integer, BaseStructureModel> stack = stackRepeatBiz.get(view.getService());
             if (stack == null) {
                 stack = new SimpleArrayMap();
             }
             stack.put(view.key, view);
 
-            statckRepeatBiz.put(view.getService(), stack);
+            stackRepeatBiz.put(view.getService(), stack);
 
             if (BaseHelper.isLogOpen()) {
-                //L.tag("SKYStructureManage");
-                //L.i(view.getView().getClass().getSimpleName() + " -- stack:put(" + view.key + ")");
+                L.tag("SKYStructureManage");
+                L.i(view.getView().getClass().getSimpleName() + " -- stack:put(" + view.key + ")");
             }
         }
     }
 
     @Override
     public void detach(BaseStructureModel view) {
-        synchronized (statckRepeatBiz) {
+        synchronized (stackRepeatBiz) {
             if(view.getService() == null) {
                 return;
             }
 
-            SimpleArrayMap<Integer, BaseStructureModel> stack = statckRepeatBiz.get(view.getService());
+            SimpleArrayMap<Integer, BaseStructureModel> stack = stackRepeatBiz.get(view.getService());
 
             if (stack == null) {
                 return;
@@ -73,7 +74,7 @@ public class BaseStructureManage implements IBaseStructureManage {
             stack.remove(view.key);
 
             if (stack.size() < 1) {
-                statckRepeatBiz.remove(view.getService());
+                stackRepeatBiz.remove(view.getService());
             }
 
             if (BaseHelper.isLogOpen()) {
@@ -82,9 +83,9 @@ public class BaseStructureManage implements IBaseStructureManage {
 
                 //L.tag("SKYStructureManage");
                 StringBuilder builder = new StringBuilder("\u21E0 ");
-                builder.append("SKYStructureManage.statckRepeatBiz").append('(');
-                if (statckRepeatBiz != null && statckRepeatBiz.size() > 0) {
-                    for (Class clazz : statckRepeatBiz.keySet()) {
+                builder.append("SKYStructureManage.stackRepeatBiz").append('(');
+                if (stackRepeatBiz != null && stackRepeatBiz.size() > 0) {
+                    for (Class clazz : stackRepeatBiz.keySet()) {
                         builder.append(clazz.getSimpleName());
                         builder.append(", ");
                     }
@@ -109,13 +110,13 @@ public class BaseStructureManage implements IBaseStructureManage {
 
     @Override
     public <B extends IBaseBiz> B biz(Class<B> bizClass, int position) {
-        SimpleArrayMap<Integer, BaseStructureModel> stack = statckRepeatBiz.get(bizClass);
+        SimpleArrayMap<Integer, BaseStructureModel> stack = stackRepeatBiz.get(bizClass);
         if (stack == null) {
-            Set<Map.Entry<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>>> entrySet = statckRepeatBiz.entrySet();
+            Set<Map.Entry<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>>> entrySet = stackRepeatBiz.entrySet();
             for (Map.Entry<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>> entry : entrySet) {
                 SimpleArrayMap<Integer, BaseStructureModel> simpleArrayMap = entry.getValue();
-                if (simpleArrayMap.valueAt(position).isSupterClass(bizClass)) {
-                    return (B) simpleArrayMap.valueAt(position).getSKYProxy().proxy;
+                if (simpleArrayMap.valueAt(position).isSuperClass(bizClass)) {
+                    return (B) simpleArrayMap.valueAt(position).getBaseProxy().proxy;
                 }
             }
 
@@ -125,10 +126,10 @@ public class BaseStructureManage implements IBaseStructureManage {
         if (SKYStructureModel == null) {
             return createNullService(bizClass);
         }
-        if (SKYStructureModel.getSKYProxy() == null || SKYStructureModel.getSKYProxy().proxy == null) {
+        if (SKYStructureModel.getBaseProxy() == null || SKYStructureModel.getBaseProxy().proxy == null) {
             return createNullService(bizClass);
         }
-        return (B) SKYStructureModel.getSKYProxy().proxy;
+        return (B) SKYStructureModel.getBaseProxy().proxy;
     }
 
     @Override
@@ -138,12 +139,12 @@ public class BaseStructureManage implements IBaseStructureManage {
 
     @Override
     public <B extends IBaseBiz> boolean isExist(Class<B> biz, int position) {
-        SimpleArrayMap<Integer, BaseStructureModel> stack = statckRepeatBiz.get(biz);
+        SimpleArrayMap<Integer, BaseStructureModel> stack = stackRepeatBiz.get(biz);
         if (stack == null) {
-            Set<Map.Entry<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>>> entrySet = statckRepeatBiz.entrySet();
+            Set<Map.Entry<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>>> entrySet = stackRepeatBiz.entrySet();
             for (Map.Entry<Class<?>, SimpleArrayMap<Integer, BaseStructureModel>> entry : entrySet) {
                 SimpleArrayMap<Integer, BaseStructureModel> simpleArrayMap = entry.getValue();
-                if (simpleArrayMap.valueAt(position).isSupterClass(biz)) {
+                if (simpleArrayMap.valueAt(position).isSuperClass(biz)) {
                     return true;
                 }
             }
@@ -153,7 +154,7 @@ public class BaseStructureManage implements IBaseStructureManage {
         if (baseStructureModel == null) {
             return false;
         }
-        if (baseStructureModel.getSKYProxy() == null || baseStructureModel.getSKYProxy().proxy == null) {
+        if (baseStructureModel.getBaseProxy() == null || baseStructureModel.getBaseProxy().proxy == null) {
             return false;
         }
         return true;
@@ -161,7 +162,7 @@ public class BaseStructureManage implements IBaseStructureManage {
 
     @Override
     public <B extends IBaseBiz> List<B> bizList(Class<B> service) {
-        SimpleArrayMap<Integer, BaseStructureModel> stack = statckRepeatBiz.get(service);
+        SimpleArrayMap<Integer, BaseStructureModel> stack = stackRepeatBiz.get(service);
         List list = new ArrayList();
         if (stack == null) {
             return list;
@@ -169,10 +170,10 @@ public class BaseStructureManage implements IBaseStructureManage {
         int count = stack.size();
         for (int i = 0; i < count; i++) {
             BaseStructureModel baseStructureModel = stack.valueAt(i);
-            if (baseStructureModel == null || baseStructureModel.getSKYProxy() == null || baseStructureModel.getSKYProxy().proxy == null) {
+            if (baseStructureModel == null || baseStructureModel.getBaseProxy() == null || baseStructureModel.getBaseProxy().proxy == null) {
                 list.add(createNullService(service));
             } else {
-                list.add(baseStructureModel.getSKYProxy().proxy);
+                list.add(baseStructureModel.getBaseProxy().proxy);
             }
         }
         return list;

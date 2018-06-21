@@ -149,11 +149,11 @@ public class BaseStructureModel {
         return service;
     }
 
-    public BaseProxy getSKYProxy() {
+    public BaseProxy getBaseProxy() {
         return baseProxy;
     }
 
-    public boolean isSupterClass(Class clazz) {
+    public boolean isSuperClass(Class clazz) {
         if (supper == null || clazz == null) {
             return false;
         }

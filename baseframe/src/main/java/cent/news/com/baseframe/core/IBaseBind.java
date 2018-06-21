@@ -18,7 +18,7 @@ public interface IBaseBind {
 
     BaseModuleManage getModuleManage();
 
-    IBaseBind DEFAULE_BIND = new IBaseBind() {
+    IBaseBind DEFAULT_BIND = new IBaseBind() {
         @Override
         public boolean isLogOpen() {
             return true;
