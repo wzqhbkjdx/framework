@@ -25,7 +25,7 @@ public class NCBind implements IBaseBind {
 
     @Override
     public BaseModuleManage getModuleManage() {
-        return null;
+        return new NCModuleManage();
     }
 
 }
