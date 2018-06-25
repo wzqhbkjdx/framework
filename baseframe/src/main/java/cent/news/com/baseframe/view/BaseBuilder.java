@@ -1,6 +1,7 @@
 package cent.news.com.baseframe.view;
 
 import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.annotation.ColorRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -25,10 +26,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import butterknife.ButterKnife;
+import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.R;
 import cent.news.com.baseframe.base.IBaseView;
 import cent.news.com.baseframe.utils.BaseCheckUtils;
+import cent.news.com.baseframe.utils.BaseKeyboardUtils;
+import cent.news.com.baseframe.view.adapter.recyclerView.BaseFooterOnScrollListener;
+import cent.news.com.baseframe.view.adapter.recyclerView.BaseOnScrollListener;
 import cent.news.com.baseframe.view.adapter.recyclerView.BaseRVAdapter;
+import cent.news.com.baseframe.view.adapter.recyclerView.BaseStickyHeaders;
+import cent.news.com.baseframe.view.adapter.recyclerView.StickyRecyclerHeadersDecoration;
+import cent.news.com.baseframe.view.adapter.recyclerView.StickyRecyclerHeadersTouchListener;
 import cent.news.com.baseframe.view.common.BaseFooterListener;
 import cent.news.com.baseframe.view.common.BaseRefreshListener;
 
@@ -479,7 +487,7 @@ public final class BaseBuilder {
         this.recyclerviewId = recyclerviewId;
     }
 
-    public void recyclerviewLoadingMore(@NonNull SKYFooterListener SKYFooterListener) {
+    public void recyclerviewLoadingMore(@NonNull BaseFooterListener SKYFooterListener) {
         this.SKYFooterListener = SKYFooterListener;
     }
 
@@ -508,7 +516,7 @@ public final class BaseBuilder {
         if (reverseLayout != null && reverseLayout.length > 0) {
             reverse = reverseLayout[0];
         }
-        this.layoutManager = new LinearLayoutManager(skyView.activity(), direction, reverse);
+        this.layoutManager = new LinearLayoutManager(baseView.activity(), direction, reverse);
         this.itemDecoration = itemDecoration;
         this.itemAnimator = itemAnimator;
     }
@@ -518,7 +526,7 @@ public final class BaseBuilder {
         if (reverseLayout != null && reverseLayout.length > 0) {
             reverse = reverseLayout[0];
         }
-        this.layoutManager = new GridLayoutManager(skyView.activity(), spanCount, direction, reverse);
+        this.layoutManager = new GridLayoutManager(baseView.activity(), spanCount, direction, reverse);
         this.itemDecoration = itemDecoration;
         this.itemAnimator = itemAnimator == null ? new DefaultItemAnimator() : itemAnimator;
     }
@@ -533,7 +541,7 @@ public final class BaseBuilder {
         this.recyclerviewColorResIds = recyclerviewColorResIds;
     }
 
-    public void recyclerviewSwipRefreshId(@IdRes int recyclerviewSwipRefreshId, @NonNull SKYRefreshListener recyclerviewSKYRefreshListener) {
+    public void recyclerviewSwipRefreshId(@IdRes int recyclerviewSwipRefreshId, @NonNull BaseRefreshListener recyclerviewSKYRefreshListener) {
         this.recyclerviewSwipRefreshId = recyclerviewSwipRefreshId;
         this.recyclerviewSKYRefreshListener = recyclerviewSKYRefreshListener;
     }
@@ -573,9 +581,9 @@ public final class BaseBuilder {
      */
     void detach() {
         // 清楚
-        if (skyView != null) {
-            skyView.detach();
-            skyView = null;
+        if (baseView != null) {
+            baseView.detach();
+            baseView = null;
         }
         // 基础清除
         detachLayout();
@@ -591,7 +599,7 @@ public final class BaseBuilder {
      * @return
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH) private void createLayout() {
-        contentRoot = new FrameLayout(skyView.context());
+        contentRoot = new FrameLayout(baseView.context());
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
         // 内容
@@ -601,17 +609,17 @@ public final class BaseBuilder {
                 ViewGroup view = (ViewGroup) layoutContent.findViewById(layoutStateId);
                 layoutStateContent = view.getChildAt(0);
                 if (layoutStateContent == null) {
-                    SKYCheckUtils.checkNotNull(layoutContent, "指定切换状态布局后,内容不能为空");
+                    BaseCheckUtils.checkNotNull(layoutContent, "指定切换状态布局后,内容不能为空");
                 }
             }
-            SKYCheckUtils.checkNotNull(layoutContent, "无法根据布局文件ID,获取layoutContent");
+            BaseCheckUtils.checkNotNull(layoutContent, "无法根据布局文件ID,获取layoutContent");
             contentRoot.addView(layoutContent, layoutParams);
         }
 
         // 进度条
-        layoutLoadingId = layoutLoadingId > 0 ? layoutLoadingId : SKYHelper.getComnonView() == null ? 0 : SKYHelper.getComnonView().layoutLoading();
+        layoutLoadingId = layoutLoadingId > 0 ? layoutLoadingId : BaseHelper.getCommonView() == null ? 0 : BaseHelper.getCommonView().layoutLoading();
         if (layoutLoadingId > 0) {
-            vsLoading = new ViewStub(skyView.activity());
+            vsLoading = new ViewStub(baseView.activity());
             vsLoading.setLayoutResource(layoutLoadingId);
 
             if (layoutStateId > 0) {
@@ -623,10 +631,10 @@ public final class BaseBuilder {
         }
 
         // 空布局
-        layoutEmptyId = layoutEmptyId > 0 ? layoutEmptyId : SKYHelper.getComnonView() == null ? 0 : SKYHelper.getComnonView().layoutEmpty();
+        layoutEmptyId = layoutEmptyId > 0 ? layoutEmptyId : BaseHelper.getCommonView() == null ? 0 : BaseHelper.getCommonView().layoutEmpty();
         if (layoutEmptyId > 0) {
             layoutEmpty = mInflater.inflate(layoutEmptyId, null, false);
-            SKYCheckUtils.checkNotNull(layoutEmpty, "无法根据布局文件ID,获取layoutEmpty");
+            BaseCheckUtils.checkNotNull(layoutEmpty, "无法根据布局文件ID,获取layoutEmpty");
 
             if (layoutStateId > 0) {
                 ViewGroup view = (ViewGroup) layoutContent.findViewById(layoutStateId);
@@ -638,10 +646,10 @@ public final class BaseBuilder {
         }
 
         // 业务错误布局
-        layoutBizErrorId = layoutBizErrorId > 0 ? layoutBizErrorId : SKYHelper.getComnonView() == null ? 0 : SKYHelper.getComnonView().layoutBizError();
+        layoutBizErrorId = layoutBizErrorId > 0 ? layoutBizErrorId : BaseHelper.getCommonView() == null ? 0 : BaseHelper.getCommonView().layoutBizError();
         if (layoutBizErrorId > 0) {
             layoutBizError = mInflater.inflate(layoutBizErrorId, null, false);
-            SKYCheckUtils.checkNotNull(layoutBizError, "无法根据布局文件ID,获取layoutBizError");
+            BaseCheckUtils.checkNotNull(layoutBizError, "无法根据布局文件ID,获取layoutBizError");
             if (layoutStateId > 0) {
                 ViewGroup view = (ViewGroup) layoutContent.findViewById(layoutStateId);
                 view.addView(layoutBizError, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -652,11 +660,11 @@ public final class BaseBuilder {
         }
 
         // 网络错误布局
-        layoutHttpErrorId = layoutHttpErrorId > 0 ? layoutHttpErrorId : SKYHelper.getComnonView() == null ? 0 : SKYHelper.getComnonView().layoutHttpError();
+        layoutHttpErrorId = layoutHttpErrorId > 0 ? layoutHttpErrorId : BaseHelper.getCommonView() == null ? 0 : BaseHelper.getCommonView().layoutHttpError();
         if (layoutHttpErrorId > 0) {
-            SKYCheckUtils.checkArgument(layoutHttpErrorId > 0, "网络错误布局Id不能为空,重写公共布局Application.layoutBizError 或者 在Buider.layout里设置");
+            BaseCheckUtils.checkArgument(layoutHttpErrorId > 0, "网络错误布局Id不能为空,重写公共布局Application.layoutBizError 或者 在Buider.layout里设置");
             layoutHttpError = mInflater.inflate(layoutHttpErrorId, null, false);
-            SKYCheckUtils.checkNotNull(layoutHttpError, "无法根据布局文件ID,获取layoutHttpError");
+            BaseCheckUtils.checkNotNull(layoutHttpError, "无法根据布局文件ID,获取layoutHttpError");
             if (layoutStateId > 0) {
                 ViewGroup view = (ViewGroup) layoutContent.findViewById(layoutStateId);
                 view.addView(layoutHttpError, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -686,7 +694,7 @@ public final class BaseBuilder {
      */
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH) private View createActionbar(View view) {
         if (isOpenToolbar()) {
-            final RelativeLayout toolbarRoot = new RelativeLayout(skyView.context());
+            final RelativeLayout toolbarRoot = new RelativeLayout(baseView.context());
             toolbarRoot.setId(R.id.sky_home);
             toolbarRoot.setFitsSystemWindows(fitsSystem);
             // 添加toolbar布局
@@ -697,7 +705,7 @@ public final class BaseBuilder {
             toolbarRoot.addView(view, contentLayoutParams);
             toolbar = ButterKnife.findById(toolbarRoot, getToolbarId());
 
-            SKYCheckUtils.checkNotNull(toolbar, "无法根据布局文件ID,获取Toolbar");
+            BaseCheckUtils.checkNotNull(toolbar, "无法根据布局文件ID,获取Toolbar");
 
             // 添加点击事件
             if (getMenuListener() != null) {
@@ -710,16 +718,16 @@ public final class BaseBuilder {
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
                     @Override public void onClick(View v) {
-                        SKYKeyboardUtils.hideSoftInput(skyView.activity());
-                        switch (skyView.getState()) {
-                            case SKYView.STATE_ACTIVITY:
-                                skyView.activity().onKeyBack();
+                        BaseKeyboardUtils.hideSoftInput(baseView.activity());
+                        switch (baseView.getState()) {
+                            case BaseView.STATE_ACTIVITY:
+                                baseView.activity().onKeyBack();
                                 break;
-                            case SKYView.STATE_FRAGMENT:
-                                skyView.fragment().onKeyBack();
+                            case BaseView.STATE_FRAGMENT:
+                                baseView.fragment().onKeyBack();
                                 break;
-                            case SKYView.STATE_DIALOGFRAGMENT:
-                                skyView.dialogFragment().onKeyBack();
+                            case BaseView.STATE_DIALOGFRAGMENT:
+                                baseView.dialogFragment().onKeyBack();
                                 break;
                         }
                     }
@@ -735,22 +743,22 @@ public final class BaseBuilder {
             view.setFitsSystemWindows(fitsSystem);
             toolbar = ButterKnife.findById(view, getToolbarId());
 
-            SKYCheckUtils.checkNotNull(toolbar, "无法根据布局文件ID,获取Toolbar");
+            BaseCheckUtils.checkNotNull(toolbar, "无法根据布局文件ID,获取Toolbar");
 
             if (isOpenToolbarBack()) {
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
                     @Override public void onClick(View v) {
-                        SKYKeyboardUtils.hideSoftInput(skyView.activity());
-                        switch (skyView.getState()) {
-                            case SKYView.STATE_ACTIVITY:
-                                skyView.activity().onKeyBack();
+                        BaseKeyboardUtils.hideSoftInput(baseView.activity());
+                        switch (baseView.getState()) {
+                            case BaseView.STATE_ACTIVITY:
+                                baseView.activity().onKeyBack();
                                 break;
-                            case SKYView.STATE_FRAGMENT:
-                                skyView.fragment().onKeyBack();
+                            case BaseView.STATE_FRAGMENT:
+                                baseView.fragment().onKeyBack();
                                 break;
-                            case SKYView.STATE_DIALOGFRAGMENT:
-                                skyView.dialogFragment().onKeyBack();
+                            case BaseView.STATE_DIALOGFRAGMENT:
+                                baseView.dialogFragment().onKeyBack();
                                 break;
                         }
                     }
@@ -786,13 +794,13 @@ public final class BaseBuilder {
     private void createRecyclerView(View view) {
         if (getRecyclerViewId() > 0) {
             recyclerView = ButterKnife.findById(view, getRecyclerViewId());
-            SKYCheckUtils.checkNotNull(recyclerView, "无法根据布局文件ID,获取recyclerView");
-            SKYCheckUtils.checkNotNull(layoutManager, "LayoutManger不能为空");
+            BaseCheckUtils.checkNotNull(recyclerView, "无法根据布局文件ID,获取recyclerView");
+            BaseCheckUtils.checkNotNull(layoutManager, "LayoutManger不能为空");
             recyclerView.setLayoutManager(layoutManager);
             if (BaseRVAdapter != null) {
                 // 扩展适配器
-                if (BaseRVAdapter instanceof SKYStickyHeaders) {
-                    SKYStickyHeaders SKYStickyHeaders = (SKYStickyHeaders) BaseRVAdapter;
+                if (BaseRVAdapter instanceof BaseStickyHeaders) {
+                    BaseStickyHeaders SKYStickyHeaders = (BaseStickyHeaders) BaseRVAdapter;
                     final StickyRecyclerHeadersDecoration headersDecor = new StickyRecyclerHeadersDecoration(SKYStickyHeaders);
                     recyclerView.addItemDecoration(headersDecor);
 
@@ -812,7 +820,7 @@ public final class BaseBuilder {
                 recyclerView.setAdapter(BaseRVAdapter);
                 if (isHeaderFooter) {
                     final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
-                    SKYCheckUtils.checkNotNull(gridLayoutManager, "LayoutManger，不是GridLayoutManager");
+                    BaseCheckUtils.checkNotNull(gridLayoutManager, "LayoutManger，不是GridLayoutManager");
                     gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 
                         @Override public int getSpanSize(int position) {
@@ -831,27 +839,27 @@ public final class BaseBuilder {
                 // 设置上拉和下拉事件
                 if (getRecyclerviewSwipRefreshId() != 0) {
                     recyclerviewSwipeContainer = ButterKnife.findById(view, getRecyclerviewSwipRefreshId());
-                    SKYCheckUtils.checkNotNull(recyclerviewSwipeContainer, "无法根据布局文件ID,获取recyclerview的SwipRefresh下载刷新布局");
+                    BaseCheckUtils.checkNotNull(recyclerviewSwipeContainer, "无法根据布局文件ID,获取recyclerview的SwipRefresh下载刷新布局");
 
                     if (onRefreshListener != null) {
                         recyclerviewSwipeContainer.setOnRefreshListener(onRefreshListener);
                     } else if (recyclerviewSKYRefreshListener != null) {
-                        recyclerView.addOnScrollListener(new SKYOnScrollListener(recyclerviewSKYRefreshListener));// 加载更多
+                        recyclerView.addOnScrollListener(new BaseOnScrollListener(recyclerviewSKYRefreshListener));// 加载更多
                         recyclerviewSwipeContainer.setOnRefreshListener(recyclerviewSKYRefreshListener);// 下载刷新
                     }
                 } else {
                     if (SKYFooterListener != null) {
-                        recyclerView.addOnScrollListener(new SKYFooterOnScrollListener(SKYFooterListener));// 加载更多
+                        recyclerView.addOnScrollListener(new BaseFooterOnScrollListener(SKYFooterListener));// 加载更多
 
                     }
                 }
             } else {
-                SKYCheckUtils.checkNotNull(null, "SKYRVAdapter适配器不能为空");
+                BaseCheckUtils.checkNotNull(null, "SKYRVAdapter适配器不能为空");
             }
 
             // 设置进度颜色
             if (getRecyclerviewColorResIds() != null) {
-                SKYCheckUtils.checkNotNull(recyclerviewSwipeContainer, "无法根据布局文件ID,获取recyclerview的SwipRefresh下载刷新布局");
+                BaseCheckUtils.checkNotNull(recyclerviewSwipeContainer, "无法根据布局文件ID,获取recyclerview的SwipRefresh下载刷新布局");
                 recyclerviewSwipeContainer.setColorSchemeResources(getRecyclerviewColorResIds());
             }
         }

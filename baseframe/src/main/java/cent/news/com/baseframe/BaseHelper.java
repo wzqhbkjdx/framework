@@ -106,6 +106,10 @@ public class BaseHelper {
     public static BaseStructureManage structureHelper() {
         return mModulesManage.getBaseStructureManage();
     }
+
+    public static IBaseViewCommon getCommonView() {
+        return mModulesManage.getBaseViewCommon();
+    }
 }
 
 

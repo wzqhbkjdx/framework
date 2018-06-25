@@ -38,4 +38,11 @@ public abstract class BaseDialogFragment<B extends IBaseBiz> extends DialogFragm
     public BaseView baseView() {
         return baseBuilder == null ? null : baseBuilder.getBaseView();
     }
+
+
+    public boolean onKeyBack() {
+        dismissAllowingStateLoss();
+        return true;
+    }
+
 }

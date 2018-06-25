@@ -95,6 +95,10 @@ public class BaseModuleManage {
     public BaseStructureManage getBaseStructureManage() {
         return baseStructureManage;
     }
+
+    public IBaseViewCommon getBaseViewCommon() {
+        return baseViewCommon;
+    }
 }
 
 
