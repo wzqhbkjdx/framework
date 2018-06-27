@@ -5,6 +5,7 @@ import android.app.Application;
 import android.os.Looper;
 
 import cent.news.com.baseframe.core.IBaseBind;
+import cent.news.com.baseframe.core.IBaseBiz;
 import cent.news.com.baseframe.core.IBaseViewCommon;
 import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.display.BaseIDisplay;
@@ -109,6 +110,10 @@ public class BaseHelper {
 
     public static IBaseViewCommon getCommonView() {
         return mModulesManage.getBaseViewCommon();
+    }
+
+    public static <B extends IBaseBiz> B biz(Class<B> clazz) {
+        return structureHelper().biz(clazz);
     }
 }
 

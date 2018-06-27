@@ -1,21 +1,33 @@
 package cent.news.com.baseframe.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
+import butterknife.ButterKnife;
 import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.base.IBaseView;
 import cent.news.com.baseframe.common.BaseSwipeWindowHelper;
 import cent.news.com.baseframe.core.IBaseBiz;
 import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.modules.structure.BaseStructureModel;
+import cent.news.com.baseframe.utils.BaseAppUtil;
+import cent.news.com.baseframe.utils.BaseCheckUtils;
+import cent.news.com.baseframe.utils.BaseKeyboardUtils;
 
 /**
  * Created by bym on 2018/6/16.
@@ -69,7 +81,48 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
 
         baseBuilder = new BaseBuilder(this, inflater);
 
+        //Builder拦截
+        BaseHelper.methodsProxy().baseActivityInterceptor().build(this, baseBuilder);
+        setContentView(build(baseBuilder).create());
+
+        //状态栏高度
+        if(baseBuilder.isFitsSystem()) {
+            ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
+            View parentView = contentFrameLayout.getChildAt(0);
+            if (parentView != null && Build.VERSION.SDK_INT >= 14) {
+                parentView.setFitsSystemWindows(true);
+            }
+        }
+
+        //状态栏颜色
+        if(baseBuilder.isTint()) {
+            systemBarTintManager = new SystemBarTintManager(this);
+            // enable status bar tint
+            systemBarTintManager.setStatusBarTintEnabled(baseBuilder.getStatusBarTintEnabled());
+            // enable navigation bar tint
+            systemBarTintManager.setNavigationBarTintEnabled(baseBuilder.getNavigationBarTintEnabled());
+            systemBarTintManager.setStatusBarTintResource(baseBuilder.getTintColor());
+        }
+
+        //初始化所有组件
+        ButterKnife.bind(this);
+
+        //初始化业务数据
+        if(baseStructureModel != null) {
+            baseStructureModel.initBizBundle();
+        }
+
+        initDagger();
+
+        createData(savedInstanceState);
+
+        initData(getIntent().getExtras());
     }
+
+    public Object model() {
+        return baseStructureModel.getBaseProxy().impl;
+    }
+
 
     private void initCore() {
         baseStructureModel = new BaseStructureModel(this, getIntent() == null ? null : getIntent().getExtras());
@@ -81,19 +134,25 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
     }
 
     public B biz() {
-        return null;
+        if(baseStructureModel == null || baseStructureModel.getBaseProxy() == null || baseStructureModel.getBaseProxy().proxy == null) {
+            Class service = BaseAppUtil.getSuperClassGenricType(getClass(), 0);
+            return (B) BaseHelper.structureHelper().createNullService(service);
+        }
+        return (B) baseStructureModel.getBaseProxy().proxy;
     }
 
     public <C extends IBaseBiz> C biz(Class<C> service) {
-        return null;
+        if(baseStructureModel != null && service.equals(baseStructureModel.getService())) {
+            if(baseStructureModel == null || baseStructureModel.getBaseProxy() == null || baseStructureModel.getBaseProxy().proxy == null) {
+                return BaseHelper.structureHelper().createNullService(service);
+            }
+            return (C) baseStructureModel.getBaseProxy().proxy;
+        }
+        return BaseHelper.biz(service);
     }
 
     public <D extends BaseIDisplay> D display(Class<D> eClass) {
         return BaseHelper.display(eClass);
-    }
-
-    public BaseView baseView() {
-        return baseBuilder == null ? null : baseBuilder.getBaseView();
     }
 
     public boolean onKeyBack() {
@@ -108,4 +167,168 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
     public boolean canBeSlideBack() {
         return true;
     }
+
+    public void setSoftInputMode(int mode) {
+        getWindow().setSoftInputMode(mode);
+    }
+
+    public void recyclerRefreshing(boolean bool) {
+        if(baseBuilder != null) {
+            baseBuilder.recyclerRefreshing(bool);
+        }
+    }
+
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+        BaseHelper.methodsProxy().baseActivityInterceptor().onPostCreate(this, savedInstanceState);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        BaseHelper.methodsProxy().baseActivityInterceptor().onPostResume(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BaseHelper.methodsProxy().baseActivityInterceptor().onStart(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BaseHelper.screenHelper().onResume(this);
+        BaseHelper.methodsProxy().baseActivityInterceptor().onResume(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        BaseHelper.screenHelper().onActivityResult(this);
+        BaseHelper.methodsProxy().baseActivityInterceptor().onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        BaseHelper.screenHelper().onPause(this);
+        BaseHelper.methodsProxy().baseActivityInterceptor().onPause(this);
+
+        //恢复初始化
+        recyclerRefreshing(false);
+
+        if(isFinishing()) {
+            isFinish = true;
+
+            detach();
+
+            //移除builder
+            if(baseBuilder != null) {
+                baseBuilder.detach();
+                baseBuilder = null;
+            }
+
+            if(baseStructureModel != null) {
+                BaseHelper.structureHelper().detach(baseStructureModel);
+            }
+
+            BaseHelper.screenHelper().onDestroy(this);
+            BaseHelper.methodsProxy().baseActivityInterceptor().onDestroy(this);
+            BaseKeyboardUtils.hideSoftInput(this);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!isFinish) {
+            detach();
+
+            //移除builder
+            if(baseBuilder != null) {
+                baseBuilder.detach();
+                baseBuilder = null;
+            }
+
+            if(baseStructureModel != null) {
+                BaseHelper.structureHelper().detach(baseStructureModel);
+            }
+
+            BaseHelper.screenHelper().onDestroy(this);
+            BaseHelper.methodsProxy().baseActivityInterceptor().onDestroy(this);
+            BaseKeyboardUtils.hideSoftInput(this);
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        BaseHelper.methodsProxy().baseActivityInterceptor().onRestart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BaseHelper.methodsProxy().baseActivityInterceptor().onStop(this);
+    }
+
+    protected void detach() {
+
+    }
+
+    public void setLanding() {
+        BaseHelper.screenHelper().setAsLanding(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(baseBuilder != null && baseBuilder.getToolbarMenuId() > 0) {
+            getMenuInflater().inflate(baseBuilder.getToolbarMenuId(), menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(BaseHelper.structureHelper().onKeyBack(keyCode, getSupportFragmentManager(), this)) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * View业务代码
+     */
+    public <T> T findFragment(Class<T> clazz) {
+        BaseCheckUtils.checkNotNull(clazz, "class不能为空");
+        return (T) getSupportFragmentManager().findFragmentByTag(clazz.getName());
+    }
+
+    public BaseView baseView() {
+        return baseBuilder == null ? null : baseBuilder.getBaseView();
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
