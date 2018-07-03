@@ -99,6 +99,10 @@ public class BaseModuleManage {
     public IBaseViewCommon getBaseViewCommon() {
         return baseViewCommon;
     }
+
+    public Retrofit getRestAdapter() {
+        return restAdapter;
+    }
 }
 
 

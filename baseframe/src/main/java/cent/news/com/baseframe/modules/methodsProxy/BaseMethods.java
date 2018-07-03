@@ -53,10 +53,14 @@ public final class BaseMethods {
 
     final ArrayList<BaseHttpErrorInterceptor>	skyHttpErrorInterceptors;	// 网络错误拦截器
 
+    public BaseLayoutInterceptor getSkyLayoutInterceptor() {
+        return skyLayoutInterceptor;
+    }
+
     public BaseMethods(BaseLayoutInterceptor skyLayoutInterceptor, BaseActivityInterceptor SKYActivityInterceptor, BaseFragmentInterceptor SKYFragmentInterceptor,
-                      ArrayList<BizStartInterceptor> bizStartInterceptor, DisplayStartInterceptor displayStartInterceptor, ArrayList<BizEndInterceptor> bizEndInterceptor,
-                      DisplayEndInterceptor displayEndInterceptor, ArrayList<ImplStartInterceptor> implStartInterceptors, ArrayList<ImplEndInterceptor> implEndInterceptors,
-                      ArrayList<BaseBizErrorInterceptor> SKYErrorInterceptor, ArrayList<BaseHttpErrorInterceptor> skyHttpErrorInterceptors) {
+                       ArrayList<BizStartInterceptor> bizStartInterceptor, DisplayStartInterceptor displayStartInterceptor, ArrayList<BizEndInterceptor> bizEndInterceptor,
+                       DisplayEndInterceptor displayEndInterceptor, ArrayList<ImplStartInterceptor> implStartInterceptors, ArrayList<ImplEndInterceptor> implEndInterceptors,
+                       ArrayList<BaseBizErrorInterceptor> SKYErrorInterceptor, ArrayList<BaseHttpErrorInterceptor> skyHttpErrorInterceptors) {
         this.skyLayoutInterceptor = skyLayoutInterceptor;
         this.bizEndInterceptor = bizEndInterceptor;
         this.displayEndInterceptor = displayEndInterceptor;

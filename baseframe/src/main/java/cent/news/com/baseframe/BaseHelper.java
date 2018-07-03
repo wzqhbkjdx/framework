@@ -16,6 +16,7 @@ import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
 import cent.news.com.baseframe.modules.structure.BaseStructureManage;
 import cent.news.com.baseframe.modules.threadPool.BaseThreadPoolManager;
 import cent.news.com.baseframe.screen.BaseScreenManager;
+import retrofit2.Retrofit;
 
 /**
  * Created by bym on 2018/6/18.
@@ -115,6 +116,19 @@ public class BaseHelper {
     public static <B extends IBaseBiz> B biz(Class<B> clazz) {
         return structureHelper().biz(clazz);
     }
+
+    public static <H> H http(Class<H> httpClazz) {
+        return mModulesManage.getCacheManager().http(httpClazz);
+    }
+
+    public static <I> I interfaces(Class<I> clazz) {
+        return mModulesManage.getCacheManager().interfaces(clazz);
+    }
+
+    public static Retrofit httpAdapter() {
+        return mModulesManage.getRestAdapter();
+    }
+
 }
 
 

@@ -450,7 +450,7 @@ public final class BaseBuilder {
         return recyclerView;
     }
 
-    @Nullable BaseRVAdapter getSKYRVAdapterItem() {
+    @Nullable BaseRVAdapter getBaseRVAdapterItem() {
         return BaseRVAdapter;
     }
 

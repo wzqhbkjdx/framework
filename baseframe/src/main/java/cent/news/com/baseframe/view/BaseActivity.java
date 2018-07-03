@@ -5,13 +5,17 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -28,6 +32,7 @@ import cent.news.com.baseframe.modules.structure.BaseStructureModel;
 import cent.news.com.baseframe.utils.BaseAppUtil;
 import cent.news.com.baseframe.utils.BaseCheckUtils;
 import cent.news.com.baseframe.utils.BaseKeyboardUtils;
+import cent.news.com.baseframe.view.adapter.recyclerView.BaseRVAdapter;
 
 /**
  * Created by bym on 2018/6/16.
@@ -319,7 +324,138 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
         return baseBuilder == null ? null : baseBuilder.getBaseView();
     }
 
+    @Override
+    public void showContent() {
+        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
+            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showContent(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutContent();
+        }
+    }
 
+    @Override
+    public void showLoading() {
+        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
+            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showLoading(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutLoading();
+        }
+    }
+
+    @Override
+    public void showBizError() {
+        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
+            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showBizError(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutBizError();
+        }
+    }
+
+    @Override
+    public void showEmpty() {
+        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
+            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showEmpty(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutEmpty();
+        }
+    }
+
+    @Override
+    public void showHttpError() {
+        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
+            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showHttpError(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutHttpError();
+        }
+    }
+
+    @Override
+    public int showState() {
+        if(baseBuilder != null) {
+            return baseBuilder.getLayoutState();
+        } else {
+            return IBaseView.STATE_CONTENT;
+        }
+    }
+
+    @Override
+    public <T extends BaseRVAdapter> T adapter() {
+        return baseBuilder == null ? null : (T) baseBuilder.getBaseRVAdapterItem();
+    }
+
+    public RecyclerView.LayoutManager layoutManager() {
+        return baseBuilder == null ? null : baseBuilder.getLayoutManager();
+    }
+
+    public <R extends RecyclerView> R recyclerView() {
+        return baseBuilder == null ? null : (R) baseBuilder.getRecyclerView();
+    }
+
+    public SwipeRefreshLayout swipeRefresh() {
+        if(baseBuilder == null) {
+            return null;
+        }
+        return baseBuilder.getSwipeContainer();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        BaseHelper.methodsProxy().baseActivityInterceptor().onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(!supportSlideBack()) {
+            return super.dispatchTouchEvent(ev);
+        }
+
+        if(baseSwipeWindowHelper == null) {
+            baseSwipeWindowHelper = new BaseSwipeWindowHelper(getWindow());
+        }
+
+        return baseSwipeWindowHelper.processTouchEvent(ev) || super.dispatchTouchEvent(ev);
+
+    }
+
+    protected boolean supportSlideBack() {
+        if(baseBuilder == null) {
+            return false;
+        }
+        return baseBuilder.isOpenSwipBackLayout();
+    }
+
+    protected void swipeWindowEdge(int edge) {
+        if(baseSwipeWindowHelper == null) {
+            return;
+        }
+
+        baseSwipeWindowHelper.setEdgeSize(edge);
+    }
+
+    protected int swipeEdgeDefaultSize() {
+        if(baseSwipeWindowHelper == null) {
+            return 0;
+        }
+
+        return baseSwipeWindowHelper.getEdgeDefalutSize();
+    }
+
+    /**
+     * 能否滑动返回至当前activity
+     */
+    public boolean canSlideBack() {
+        return true;
+    }
+
+    protected View contentView() {
+        return baseBuilder.getContentRootView();
+    }
 }
 
 
