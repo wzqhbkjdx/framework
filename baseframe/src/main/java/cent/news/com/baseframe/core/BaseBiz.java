@@ -124,6 +124,81 @@ public abstract class BaseBiz<U> implements IBaseBiz, IBaseIntercept, IBaseView 
 
         callVector.removeAllElements();
     }
+
+    @Override
+    public void showEmpty() {
+        final IBaseView baseView = (IBaseView) this.baseStructureModel.getView();
+
+        if(baseView == null) {
+            return;
+        }
+
+        if(!BaseHelper.isMainLooperThread()) {
+            baseView.showEmpty();
+            return;
+        }
+
+        BaseHelper.mainLooper().execute(new Runnable() {
+            @Override
+            public void run() {
+                if(baseView == null) {
+                    return;
+                }
+                baseView.showEmpty();
+            }
+        });
+
+    }
+
+    @Override
+    public void showContent() {
+        final IBaseView baseView = (IBaseView) this.baseStructureModel.getView();
+
+        if(baseView == null) {
+            return;
+        }
+
+        if(!BaseHelper.isMainLooperThread()) {
+            baseView.showContent();
+            return;
+        }
+
+        BaseHelper.mainLooper().execute(new Runnable() {
+            @Override
+            public void run() {
+                if(baseView == null) {
+                    return;
+                }
+                baseView.showContent();
+            }
+        });
+    }
+
+    @Override
+    public void showHttpError() {
+        final IBaseView baseView = (IBaseView) this.baseStructureModel.getView();
+
+        if(baseView == null) {
+            return;
+        }
+
+        if(!BaseHelper.isMainLooperThread()) {
+            baseView.showHttpError();
+            return;
+        }
+
+        BaseHelper.mainLooper().execute(new Runnable() {
+            @Override
+            public void run() {
+                if(baseView == null) {
+                    return;
+                }
+                baseView.showHttpError();
+            }
+        });
+    }
+
+
 }
 
 
