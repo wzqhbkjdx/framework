@@ -4,18 +4,24 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.Looper;
 
+import java.io.IOException;
+
 import cent.news.com.baseframe.core.IBaseBind;
 import cent.news.com.baseframe.core.IBaseBiz;
 import cent.news.com.baseframe.core.IBaseViewCommon;
 import cent.news.com.baseframe.core.SynchronousExecutor;
 import cent.news.com.baseframe.display.BaseIDisplay;
+import cent.news.com.baseframe.exception.BaseHttpException;
 import cent.news.com.baseframe.modules.BaseModule;
 import cent.news.com.baseframe.modules.BaseModuleManage;
 import cent.news.com.baseframe.modules.DaggerBaseComponent;
+import cent.news.com.baseframe.modules.log.L;
 import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
-import cent.news.com.baseframe.modules.structure.BaseStructureManage;
+import cent.news.com.baseframe.modules.structure.IBaseStructureManage;
 import cent.news.com.baseframe.modules.threadPool.BaseThreadPoolManager;
 import cent.news.com.baseframe.screen.BaseScreenManager;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 /**
@@ -105,7 +111,7 @@ public class BaseHelper {
         return mModulesManage.getBaseThreadPoolManager();
     }
 
-    public static BaseStructureManage structureHelper() {
+    public static IBaseStructureManage structureHelper() {
         return mModulesManage.getBaseStructureManage();
     }
 
@@ -127,6 +133,52 @@ public class BaseHelper {
 
     public static Retrofit httpAdapter() {
         return mModulesManage.getRestAdapter();
+    }
+
+    public static <D> D httpBody(Call<D> call) {
+        if(call == null) {
+            throw new BaseHttpException("Call 不能为null");
+        }
+        Call<D> baseCall;
+        if(call.isExecuted()) {
+            baseCall = call.clone();
+        } else {
+            baseCall = call;
+        }
+
+        try {
+            Response<D> response = baseCall.execute();
+            if (!response.isSuccessful()) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("code:");
+                stringBuilder.append(response.code());
+                stringBuilder.append(" ");
+                stringBuilder.append("message:");
+                stringBuilder.append(response.message());
+                stringBuilder.append(" ");
+                stringBuilder.append("errorBody:");
+                stringBuilder.append(response.errorBody().string());
+                throw new BaseHttpException(stringBuilder.toString());
+            }
+
+            return response.body();
+        } catch (IOException e) {
+            if (BaseHelper.isLogOpen() && e != null) {
+                e.printStackTrace();
+                L.i(e.getMessage());
+            }
+            throw new BaseHttpException("网络异常", e.getCause());
+        }
+    }
+
+    public static void httpCancel(Call call) {
+        if(call == null) {
+            return;
+        }
+
+        if(call.isExecuted()) {
+            call.cancel();
+        }
     }
 
 }

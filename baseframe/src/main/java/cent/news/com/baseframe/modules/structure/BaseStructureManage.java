@@ -222,38 +222,46 @@ public class BaseStructureManage implements IBaseStructureManage {
         });
     }
 
-    @Override
-    public <T> T createMainLooperNotIntf(final Class<T> service) {
+    @Override public <T> T createMainLooperNotIntf(final Class<T> service, final Object ui) {
         Enhancer e = new Enhancer(BaseHelper.getInstance());
         e.setSuperclass(service);
         e.setInterceptor(new MethodInterceptor() {
 
             @Override public Object intercept(String name, Class[] argsType, final Object[] args) throws Exception {
                 final Method method = service.getMethod(name, argsType);
-                if (BaseHelper.isLogOpen()) {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("UI被销毁,回调接口继续执行");
-                    stringBuilder.append("方法[");
-                    stringBuilder.append(method.getName());
-                    stringBuilder.append("]");
-                    //L.tag(service.getSimpleName());
-                    //L.i(stringBuilder.toString());
+
+                // 如果有返回值 - 直接执行
+                if (!method.getReturnType().equals(void.class)) {
+                    if (ui == null) {
+                        return null;
+                    }
+                    return method.invoke(ui, args);
                 }
 
-                if (method.getReturnType().equals(int.class) || method.getReturnType().equals(long.class) || method.getReturnType().equals(float.class) || method.getReturnType().equals(double.class)
-                        || method.getReturnType().equals(short.class)) {
-                    return 0;
+                // 如果是主线程 - 直接执行
+                if (!BaseHelper.isMainLooperThread()) {// 子线程
+                    if (ui == null) {
+                        return null;
+                    }
+                    return method.invoke(ui, args);
                 }
+                Runnable runnable = new Runnable() {
 
-                if (method.getReturnType().equals(boolean.class)) {
-                    return false;
-                }
-                if (method.getReturnType().equals(byte.class)) {
-                    return Byte.parseByte(null);
-                }
-                if (method.getReturnType().equals(char.class)) {
-                    return ' ';
-                }
+                    @Override public void run() {
+                        try {
+                            if (ui == null) {
+                                return;
+                            }
+                            method.invoke(ui, args);
+                        } catch (Exception throwable) {
+                            if (BaseHelper.isLogOpen()) {
+                                throwable.printStackTrace();
+                            }
+                            return;
+                        }
+                    }
+                };
+                BaseHelper.mainLooper().execute(runnable);
                 return null;
             }
         });
@@ -263,7 +271,7 @@ public class BaseStructureManage implements IBaseStructureManage {
     @Override
     public <U> U createNullService(final Class<U> service) {
         if (!service.isInterface()) {
-            return createMainLooperNotIntf(service);
+            return createNullServiceNotInf(service);
         }
 
         return (U) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service }, new InvocationHandler() {
@@ -298,6 +306,45 @@ public class BaseStructureManage implements IBaseStructureManage {
             }
         });
     }
+
+
+    public <U> U createNullServiceNotInf(final Class<U> service) {
+        Enhancer e = new Enhancer(BaseHelper.getInstance());
+        e.setSuperclass(service);
+        e.setInterceptor(new MethodInterceptor() {
+
+            @Override public Object intercept(String name, Class[] argsType, final Object[] args) throws Exception {
+                final Method method = service.getMethod(name, argsType);
+                if (BaseHelper.isLogOpen()) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("UI被销毁,回调接口继续执行");
+                    stringBuilder.append("方法[");
+                    stringBuilder.append(method.getName());
+                    stringBuilder.append("]");
+                    L.tag(service.getSimpleName());
+                    L.i(stringBuilder.toString());
+                }
+
+                if (method.getReturnType().equals(int.class) || method.getReturnType().equals(long.class) || method.getReturnType().equals(float.class) || method.getReturnType().equals(double.class)
+                        || method.getReturnType().equals(short.class)) {
+                    return 0;
+                }
+
+                if (method.getReturnType().equals(boolean.class)) {
+                    return false;
+                }
+                if (method.getReturnType().equals(byte.class)) {
+                    return Byte.parseByte(null);
+                }
+                if (method.getReturnType().equals(char.class)) {
+                    return ' ';
+                }
+                return null;
+            }
+        });
+        return (U) e.create();
+    }
+
 
     @Override
     public boolean onKeyBack(int keyCode, FragmentManager fragmentManager, BaseActivity baseActivity) {
