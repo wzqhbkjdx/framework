@@ -7,8 +7,13 @@ import java.util.Vector;
 import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.base.IBaseView;
 import cent.news.com.baseframe.display.BaseIDisplay;
+import cent.news.com.baseframe.exception.BaseHttpException;
+import cent.news.com.baseframe.exception.BaseNotUIPointerException;
+import cent.news.com.baseframe.modules.log.L;
 import cent.news.com.baseframe.modules.structure.BaseStructureModel;
 import cent.news.com.baseframe.utils.BaseAppUtil;
+import cent.news.com.baseframe.view.adapter.recyclerView.BaseIRefresh;
+import cent.news.com.baseframe.view.adapter.recyclerView.BaseRVAdapter;
 import retrofit2.Call;
 
 /**
@@ -198,7 +203,122 @@ public abstract class BaseBiz<U> implements IBaseBiz, IBaseIntercept, IBaseView 
         });
     }
 
+    @Override
+    public int showState() {
+        final IBaseView baseView = (IBaseView) this.baseStructureModel.getView();
 
+        if(baseView == null) {
+            return IBaseView.STATE_CONTENT;
+        }
+
+        return baseView.showState();
+    }
+
+    @Override
+    public void showLoading() {
+        final IBaseView baseView = (IBaseView) this.baseStructureModel.getView();
+
+        if(baseView == null) {
+            return;
+        }
+
+        if(!BaseHelper.isMainLooperThread()) {
+            baseView.showLoading();
+            return;
+        }
+
+        BaseHelper.mainLooper().execute(new Runnable() {
+            @Override
+            public void run() {
+                if(baseView == null) {
+                    return;
+                }
+                baseView.showLoading();
+            }
+        });
+    }
+
+    @Override
+    public void showBizError() {
+        final IBaseView baseView = (IBaseView) this.baseStructureModel.getView();
+
+        if(baseView == null) {
+            return;
+        }
+
+        if(!BaseHelper.isMainLooperThread()) {
+            baseView.showBizError();
+            return;
+        }
+
+        BaseHelper.mainLooper().execute(new Runnable() {
+            @Override
+            public void run() {
+                if(baseView == null) {
+                    return;
+                }
+                baseView.showBizError();
+            }
+        });
+    }
+
+    @Override
+    public <T extends BaseRVAdapter> T adapter() {
+        final IBaseView baseView = (IBaseView) this.baseStructureModel.getView();
+        if(baseView == null) {
+            return null;
+        }
+        return baseView.adapter();
+    }
+
+    @Override
+    public <T> void refreshAdapter(final T t) {
+        BaseRVAdapter adapter = adapter();
+        if(adapter == null) {
+            if(BaseHelper.isLogOpen()) {
+                L.i("适配器不存在");
+            }
+            return;
+        }
+
+        final BaseIRefresh refresh = adapter;
+
+        if(refresh == null) {
+            if(BaseHelper.isLogOpen()) {
+                L.i("适配器没有实现BaseIRefresh接口");
+            }
+            return;
+        }
+
+        if(!BaseHelper.isMainLooperThread()) {
+            refresh.notify(t);
+        }
+
+        BaseHelper.mainLooper().execute(new Runnable() {
+            @Override
+            public void run() {
+                if(refresh == null) {
+                    return;
+                }
+                refresh.notify(t);
+            }
+        });
+    }
+
+    @Override
+    public boolean interceptBizError(Throwable throwable) {
+        return false;
+    }
+
+    @Override
+    public boolean interceptHttpError(BaseHttpException sKYHttpException) {
+        return false;
+    }
+
+    @Override
+    public boolean interceptUIError(BaseNotUIPointerException sKYNotUIPointerException) {
+        return false;
+    }
 }
 
 

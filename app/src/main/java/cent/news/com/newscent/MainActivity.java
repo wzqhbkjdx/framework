@@ -1,16 +1,25 @@
 package cent.news.com.newscent;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import sky.cglib.dx.MethodId;
+import cent.news.com.baseframe.view.BaseActivity;
+import cent.news.com.baseframe.view.BaseBuilder;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity<MainBiz> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected BaseBuilder build(BaseBuilder builder) {
+        builder.layoutId(R.layout.activity_main);
+        builder.tintIs(true);
+        builder.tintColor(R.color.transparent);
+        builder.tintFitsSystem(false);
+        return builder;
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
 
     }
+
+
 }
