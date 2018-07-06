@@ -20,7 +20,9 @@ public class NCBind implements IBaseBind {
 
     @Override
     public BaseMethods getMethodInterceptor(BaseMethods.Builder builder) {
-        return null;
+
+
+        return builder.build();
     }
 
     @Override

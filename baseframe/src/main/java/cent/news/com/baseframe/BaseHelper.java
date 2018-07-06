@@ -87,6 +87,12 @@ public class BaseHelper {
         return mModulesManage.screenManager;
     }
 
+    /**
+     * 页面之间的跳转调度
+     * @param eClass
+     * @param <D>
+     * @return
+     */
     public static <D extends BaseIDisplay> D display(Class<D> eClass) {
         return mModulesManage.getCacheManager().display(eClass);
     }

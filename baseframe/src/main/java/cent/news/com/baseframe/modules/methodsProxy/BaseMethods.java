@@ -149,25 +149,25 @@ public final class BaseMethods {
     public <T> BaseProxy createDisplay(final Class<T> service, Object impl) {
         BaseCheckUtils.validateServiceInterface(service);
 
-        final BaseProxy SKYProxy = new BaseProxy();
-        SKYProxy.impl = impl;
-        SKYProxy.proxy = Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service }, new BaseInvocationHandler() {
+        final BaseProxy baseProxy = new BaseProxy();
+        baseProxy.impl = impl;
+        baseProxy.proxy = Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service }, new BaseInvocationHandler() {
 
             @Override public Object invoke(Object proxy, Method method, Object... args) throws Throwable {
                 // 如果有返回值 - 直接执行
                 if (!method.getReturnType().equals(void.class)) {
-                    return method.invoke(SKYProxy.impl, args);
+                    return method.invoke(baseProxy.impl, args);
 
                 }
-                BaseMethod BaseMethod = loadDisplayBaseMethod(SKYProxy, method, service);
+                BaseMethod BaseMethod = loadDisplayBaseMethod(baseProxy, method, service);
                 // 开始
                 if (!BaseHelper.isLogOpen()) {
-                    return BaseMethod.invoke(SKYProxy.impl, args);
+                    return BaseMethod.invoke(baseProxy.impl, args);
                 }
                 enterMethod(method, args);
                 long startNanos = System.nanoTime();
 
-                Object result = BaseMethod.invoke(SKYProxy.impl, args);
+                Object result = BaseMethod.invoke(baseProxy.impl, args);
 
                 long stopNanos = System.nanoTime();
                 long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
@@ -177,7 +177,7 @@ public final class BaseMethods {
             }
         });
 
-        return SKYProxy;
+        return baseProxy;
     }
 
 
@@ -273,6 +273,10 @@ public final class BaseMethods {
             }
             return baseMethod;
         }
+    }
+
+    public BaseFragmentInterceptor getBaseFragmentInterceptor() {
+        return skyFragmentInterceptor;
     }
 
     public BaseActivityInterceptor baseActivityInterceptor() {

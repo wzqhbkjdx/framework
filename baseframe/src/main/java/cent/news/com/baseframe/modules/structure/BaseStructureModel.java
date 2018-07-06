@@ -11,6 +11,9 @@ import cent.news.com.baseframe.utils.BaseAppUtil;
 
 /**
  * Created by bym on 2018/6/19.
+ *
+ * View和Biz的核心类，连接View和Biz，通过cglib对View和Biz在字节码层面进行修改和代理。
+ *
  */
 
 public class BaseStructureModel {
@@ -52,7 +55,7 @@ public class BaseStructureModel {
         if(!service.isInterface()) {
             impl = BaseAppUtil.getImplClassNotInf(service);
 
-            //找父类
+            //找非BaseBiz的父类
             supper = new Stack<>();
             Class tempClass = impl.getClass().getSuperclass();
 
