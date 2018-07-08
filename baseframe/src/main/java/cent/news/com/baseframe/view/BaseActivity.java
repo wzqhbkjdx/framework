@@ -326,8 +326,8 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
 
     @Override
     public void showContent() {
-        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
-            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showContent(this);
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showContent(this);
         }
         if(baseBuilder != null) {
             baseBuilder.layoutContent();
@@ -336,8 +336,8 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
 
     @Override
     public void showLoading() {
-        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
-            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showLoading(this);
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showLoading(this);
         }
         if(baseBuilder != null) {
             baseBuilder.layoutLoading();
@@ -346,8 +346,8 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
 
     @Override
     public void showBizError() {
-        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
-            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showBizError(this);
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showBizError(this);
         }
         if(baseBuilder != null) {
             baseBuilder.layoutBizError();
@@ -356,8 +356,8 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
 
     @Override
     public void showEmpty() {
-        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
-            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showEmpty(this);
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showEmpty(this);
         }
         if(baseBuilder != null) {
             baseBuilder.layoutEmpty();
@@ -366,8 +366,8 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
 
     @Override
     public void showHttpError() {
-        if(BaseHelper.methodsProxy().getSkyLayoutInterceptor() != null) {
-            BaseHelper.methodsProxy().getSkyLayoutInterceptor().showHttpError(this);
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showHttpError(this);
         }
         if(baseBuilder != null) {
             baseBuilder.layoutHttpError();

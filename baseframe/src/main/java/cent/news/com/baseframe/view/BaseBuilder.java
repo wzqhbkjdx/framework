@@ -589,7 +589,7 @@ public final class BaseBuilder {
         detachLayout();
         // actionbar清除
         detachActionbar();
-        // recyclerview清楚
+        // recyclerView清除
         detachRecyclerView();
     }
 

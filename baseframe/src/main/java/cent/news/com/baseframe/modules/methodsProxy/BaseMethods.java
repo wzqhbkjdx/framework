@@ -53,7 +53,7 @@ public final class BaseMethods {
 
     final ArrayList<BaseHttpErrorInterceptor>	skyHttpErrorInterceptors;	// 网络错误拦截器
 
-    public BaseLayoutInterceptor getSkyLayoutInterceptor() {
+    public BaseLayoutInterceptor interceptor() {
         return skyLayoutInterceptor;
     }
 

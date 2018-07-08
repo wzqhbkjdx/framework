@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -210,6 +212,12 @@ public abstract class BaseFragment<B extends IBaseBiz> extends Fragment implemen
     }
 
 
+    /**
+     * 拦截事件
+     * @param v
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         return true;
@@ -234,17 +242,32 @@ public abstract class BaseFragment<B extends IBaseBiz> extends Fragment implemen
 
     @Override
     public void showContent() {
-
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showContent(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutContent();
+        }
     }
 
     @Override
     public void showEmpty() {
-
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showEmpty(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutEmpty();
+        }
     }
 
     @Override
     public void showBizError() {
-
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showBizError(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutBizError();
+        }
     }
 
     @Override
@@ -254,17 +277,25 @@ public abstract class BaseFragment<B extends IBaseBiz> extends Fragment implemen
 
     @Override
     public void showHttpError() {
-
+        if(BaseHelper.methodsProxy().interceptor() != null) {
+            BaseHelper.methodsProxy().interceptor().showHttpError(this);
+        }
+        if(baseBuilder != null) {
+            baseBuilder.layoutHttpError();
+        }
     }
 
     @Override
     public int showState() {
-        return 0;
+        if(baseBuilder != null) {
+            baseBuilder.getLayoutState();
+        }
+        return IBaseView.STATE_CONTENT;
     }
 
     @Override
     public <T extends BaseRVAdapter> T adapter() {
-        return null;
+        return baseBuilder == null ? null : (T) baseBuilder.getBaseRVAdapterItem();
     }
 
     public Toolbar toolbar() {
@@ -275,4 +306,40 @@ public abstract class BaseFragment<B extends IBaseBiz> extends Fragment implemen
         getFragmentManager().popBackStack();
         return true;
     }
+
+    public RecyclerView.LayoutManager layoutManager() {
+        return baseBuilder == null ? null : baseBuilder.getLayoutManager();
+    }
+
+    public RecyclerView recyclerView() {
+        return baseBuilder == null ? null : baseBuilder.getRecyclerView();
+    }
+
+    public SwipeRefreshLayout swipeRefreshLayout() {
+        if(baseBuilder != null) {
+            baseBuilder.getSwipeContainer();
+        }
+        return null;
+    }
+
+    /****************** ViewPager 业务代码******************/
+    public void onVisible() {}
+
+    public void inVisible() {}
+
+    protected View contentView() {
+        return baseBuilder.getContentRootView();
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
