@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/AppBarOverlay"
+        android:layout_height="@dimen/title_height"
+        android:layout_alignParentTop="true"
+        tools:ignore="ObsoleteLayoutParam">
+        <!--    android:background="@drawable/shape_bg_hi_title">  -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/rl_title_back"
+                android:layout_width="@dimen/title_height"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:background="?selectableItemBackgroundBorderless"
+                tools:ignore="RtlHardcoded">
+
+
+                <!--android:src="@mipmap/ic_search_back"-->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+
+                    tools:ignore="ContentDescription" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/v_line_back"
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/rl_title_back"
+                android:background="@color/alpha_10_black"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_close"
+                android:layout_width="@dimen/title_height"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_toRightOf="@+id/rl_title_back"
+                android:background="?selectableItemBackground"
+                android:gravity="center"
+                android:text="@string/close"
+                android:textColor="@color/black"
+                android:textSize="@dimen/number_18" />
+
+            <View
+                android:id="@+id/v_line"
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/tv_close"
+                android:background="@color/color_0a000000" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/ll_right"
+                android:layout_toRightOf="@+id/v_line"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/number_18"
+                tools:text="@string/toolbar_title" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:id="@+id/ll_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="0.5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="invisible"
+                tools:ignore="RelativeOverlap,RtlHardcoded">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_market"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?selectableItemBackground">
+
+
+                        <!--android:src="@mipmap/market_stars_default" -->
+                        <ImageView
+                            android:id="@+id/iv_collection"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/share_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="?selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="19dp"
+                            android:src="@mipmap/share"
+                            tools:ignore="ContentDescription,RtlHardcoded" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_vr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <!-- app:srcCompat="@mipmap/like_24" -->
+
+                <ImageView
+                    android:id="@+id/iv_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_toRightOf="@id/iv_like"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textColor="@color/rad"
+                    android:textSize="@dimen/number_12" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+</merge>

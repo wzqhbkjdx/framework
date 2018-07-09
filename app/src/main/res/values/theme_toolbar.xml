@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- app toolbar 白色颜色背景-->
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:layout_height">@dimen/title_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/white</item>
+        <!--<item name="android:textColorPrimaryInverse">@color/font</item>-->
+        <item name="titleTextAppearance">@style/ToolBarTitleText</item>
+    </style>
+
+    <!-- app toolbar 颜色背景-->
+    <style name="AppBarOverlayTransparent" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:layout_height">@dimen/title_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/transparent</item>
+        <!--<item name="android:textColorPrimaryInverse">@color/font</item>-->
+        <item name="titleTextAppearance">@style/ToolBarTitleText</item>
+    </style>
+
+    <!-- app toolbar 系统颜色背景-->
+    <style name="AppBarOverlay.Home">
+        <!-- 设置该属性解决空白部分 默认 16dp-->
+        <item name="contentInsetStartWithNavigation">10dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">@color/yellow</item>
+    </style>
+
+    <!-- app toolbar 系统颜色背景-->
+    <style name="AppBarOverlay.Message">
+        <!-- 设置该属性解决空白部分 默认 16dp-->
+        <item name="contentInsetStartWithNavigation">10dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+</resources>

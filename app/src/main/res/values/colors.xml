@@ -1,11 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- 颜色 -->
+    <color name="yellow">#FFD500</color>
+    <color name="orange">#FF9A00</color>
+    <color name="search_orange">#feba09</color>
+    <color name="purple">#6A00FF</color>
+    <color name="rad">#FF001F</color>
+    <color name="blue">#005dff</color>
+    <color name="green">#0ED14F</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey_light">#EBEBEB</color>
+    <color name="grey_medium">#B2B2B2</color>
+    <color name="black">#272727</color>
+    <color name="color_4a">#4a4a4a</color>
+    <!-- 组件颜色 -->
 
+    <color name="component_black">#000000</color>
+    <color name="component_white">#F8F8FA</color>
+    <color name="color_bg">#F8F8F8</color>
+    <color name="line">#E9E9E9</color>
+    <color name="common_stroke">#e9e9e9</color>
+
+    <!-- 字体颜色 -->
+    <color name="alpha_75_black">#BF000000</color>
+    <color name="font_black_8">#DD000000</color>
+    <color name="font_black_7">#CC000000</color>
+    <color name="font_black_6">#ad000000</color>
+    <color name="font_black_5">#89000000</color>
+    <color name="font_black_4">#72000000</color>
+    <color name="font_black_3">#60000000</color>
+    <color name="font_black_2">#35000000</color>
+    <color name="font_black_1">#26000000</color>
+    <color name="font_black_0">#0a000000</color>
+    <color name="font_white_7">#b2ffffff</color>
+    <color name="font_white_5">#7fffffff</color>
+    <color name="font_white_2">#35000000</color>
+    <color name="font_white_video">#ddffffff</color>
+    <color name="cover_bg">#33000000</color>
+
+
+    <color name="font_yellow_4">#0afaba00</color>
+    <color name="font_line">#0a000000</color>
+    <color name="tag_unselect">#cccccc</color>
+    <color name="subscribe_circle_bg">#e1e3e6</color>
+    <color name="subscribe_point">#0c2fe0</color>
+
+    <color name="status_bar">#fafafa</color>
+    <color name="head_outside">#f1f1f1</color>
+    <color name="color_red">#ff492b</color>
+    <color name="alpha_15_black">#D8000000</color>
+    <color name="switch_yellow_light">#FFCC7F</color>
+    <color name="color_line">#e9e9e9</color>
+    <color name="font_red">#ff5b54</color>
+    <color name="font">#444444</color>
+    <color name="alpha_50_black">#7F000000</color>
+    <color name="alpha_80_black">#BF000000</color>
+    <color name="alpha_font">#60000000</color>
+    <color name="font_yellow">#faba00</color>
+    <color name="font_light">#a7a7a7</color>
+    <color name="black_bottom">#0c0c0c</color>
+    <color name="font_dark">#747474</color>
+    <color name="gray_light">#efefef</color>
+    <color name="font_medium">#8e8e8e</color>
+    <color name="yellow_dark">#f2d100</color>
+    <color name="font_extra_light">#d9d9d9</color>
+    <color name="gray">#c4c4c4</color>
+    <color name="alpha_10_black">#19000000</color>
+    <color name="replay_bg">#b0b0b0</color>
+    <color name="send_yellow">#e68a00</color>
+    <color name="edit_color">#aaaaaa</color>
+    <color name="status_bar_black">#14000000</color>
+
+
+    <!-- Hi App 新的colors -->
+
+    <color name="my_bg_up">#fb9432</color>
+    <color name="my_bg_down">#f47824</color>
+    <color name="text_yellow">#f67808</color>
+    <color name="bg_white">#28000000</color>
+    <color name="font_color">#8d8d8d</color>
+    <color name="font_black">#191919</color>
+    <color name="black_333333">#333333</color>
+    <color name="black_999999">#999999</color>
+    <color name="black_8d8d8d">#8d8d8d</color>
+    <color name="color_f2f2f2">#f2f2f2</color>
+    <color name="color_626262">#626262</color>
+    <color name="color_139eff">#139eff</color>
+    <color name="color_e9e9e9">#e9e9e9</color>
+    <color name="color_fd951e">#fd951e</color>
+    <color name="color_dd000000">#dd000000</color>
+    <color name="color_f9f9f9">#f9f9f9</color>
+    <color name="color_d8d8d8">#d8d8d8</color>
+    <color name="color_8d8d8d">#8d8d8d</color>
+    <color name="color_4e4e4e">#4e4e4e</color>
+    <color name="color_afafaf">#afafaf</color>
+    <color name="color_dd333333">#dd333333</color>
+    <color name="error">#ff756d</color>
+    <color name="color_f5f7f7">#f5f7f7</color>
+    <color name="color_0a000000">#0a000000</color>
+    <color name="color_fc3339">#fc3339</color>
+    <color name="color_939393">#939393</color>
+    <color name="color_222222">#222222</color>
+    <color name="color_ff4800">#ff4800</color>
+    <color name="color_9eacca">#9eacca</color>
+    <color name="color_ffba58">#ffba58</color>
+    <color name="color_383869">#383869</color>
+    <color name="color_303ff1">#303ff1</color>
+    <color name="color_eaeaea">#eaeaea</color>
+    <color name="color_ff9f00">#ff9f00</color>
+    <color name="color_fa9415">#fa9415</color>
+    <color name="color_f59800">#f59800</color>
+    <color name="color_fff0c4">#fff0c4</color>
+    <color name="color_ececec">#ececec</color>
+    <color name="color_ee5027">#ee5027</color>
+    <color name="color_bbbbbb">#bbbbbb</color>
+    <color name="color_34cfff">#34cfff</color>
+    <color name="color_0488e8">#0488e8</color>
+    <color name="color_498ff5">#498ff5</color>
+    <color name="color_f0f0f0">#f0f0f0</color>
+    <color name="color_245eef">#245eef</color>
+    <color name="color_2d2d55">#2d2d55</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_e0e0e0">#e0e0e0</color>
+    <color name="color_121212">#121212</color>
+    <color name="color_fff8d9">#fff8d9</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+    <color name="color_b2b2b2">#b2b2b2</color>
+    <color name="color_ff7500">#ff7500</color>
+
+    <!-- Hi App 新的colors -->
+    <color name="bg_dialog">#99000000</color>
+
+    <!-- 日历颜色 -->
+    <color name="normal_day">#ff999999</color>
+    <color name="selected_day_background">#E75F49</color>
+    <color name="selected_day_text">#fff2f2f2</color>
+    <color name="selected_day_bg">#ffefd9</color>
+
+
+    <color name="color_circle">#fec26d</color>
+
+    <color name="color_circle_training">#f6983d</color>
+
+    <!-- 百分之66透明度 - 灰色-->
+    <color name="line_gray_tran">#668d8d8d</color>
+    <!-- 百分之66透明度 - 黑色 -->
+    <color name="line_black_tran">#66000000</color>
+    <!-- 百分之50透明度 - 黑色 -->
+    <color name="line_black_tran_50">#80000000</color>
+    <!-- 百分之5透明度 - 黑色 -->
+    <color name="line_black_tran_5">#0D000000</color>
+    <!-- 百分之13透明度 - 白色 -->
+    <color name="line_white_tran">#19ffffff</color>
+
+    <color name="line_black_tran70">#4c000000</color>
+    <!-- 透明-->
     <color name="transparent">#00000000</color>
+    <color name="line_marker">#cc139eff</color>
+    <color name="select_text_search">#fd951e</color>
+    <color name="line_F8F8F8">#F8F8F8</color>
+    <color name="aphar_background">#30000000</color>
 
+    <!--航班信息-->
+    <!--<color name="color_fd951e">#fd951e</color>-->
+    <color name="color_f8f8f8">#f8f8f8</color>
+    <color name="color_ffefd9">#ffefd9</color>
+    <color name="color_fb9432">#fb9432</color>
+    <color name="color_ff5b54">#ff5b54</color>
+    <color name="color_f47824">#f47824</color>
+
+    <color name="color_ff9a00">#ff9a00</color>
+    <color name="color_f93640">#f93640</color>
+    <color name="color_ffefda">#ffefda</color>
+    <color name="color_00C343">#00C343</color>
+    <color name="color_fdc174">#fdc174</color>
+    <color name="color_f4f4f4">#f4f4f4</color>
+
+
+    <!--国家区域选择-->
+    <color name="item_decoration_title_background">#23282E</color>
+    <color name="item_decoration_title_fontcolor">#74869C</color>
+    <color name="background_recyclerview">#2E363C</color>
+    <color name="listitem_title_text">#D8DFE7</color>
+    <color name="listitem_subtitle_text">#74869C</color>
+    <color name="dialog_hint">#74869C</color>
+    <color name="indexbar_letter_color">#7FFFFFFF</color>
+
+    <color name="color_24a0fc">#24a0fc</color>
+
+    <!-- 聊天时间颜色-->
+    <color name="time_color">#7390A0</color>
+    <color name="list_divider">#e9e9e9</color>
+    <color name="poi_text">#666666</color>
+    <color name="poi_tejia">#999999</color>
+    <color name="poi_hotel">#222222</color>
+    <color name="poi_red">#ff4800</color>
+
+    <!--酒店-->
+    <color name="common_bg">#F8F8F8</color>
+    <color name="common_line">#e8e8e8</color>
+
+    <!--酒店字体色值-->
+    <color name="color_hotel_font_black_common">#222222</color>
+    <color name="color_hotel_font_gray_dark">#666666</color>
+    <color name="color_hotel_font_gray">#999999</color>
+
+    <!--酒店其他色值-->
+    <color name="color_hotel_font_orange">#ff4800</color>
+    <color name="color_hotel_bg_btn_orange">#ff4800</color>
+    <color name="poi_label">#ff6c00</color>
+    <color name="color_hotel_no_book_bg">#e9e9e9</color>
+    <color name="color_hotel_no_book_top_bg">#afafaf</color>
+    <color name="color_hotel_order_room_info_bg">#f9f9f9</color>
+
+    <!-- 2.0登录 -->
+    <color name="login_title_no_select">#dddddd</color>
+    <color name="btn_not_clickable">#cfcfcf</color>
+    <color name="btn_clickable">#ff4800</color>
+    <color name="black_e8e8e8">#e8e8e8</color>
+    <color name="orange_ff8e00">#ff8e00</color>
+    <color name="blue_22aeff">#22aeff</color>
+    <color name="orange_ddff4800">#ddff4800</color>
+    <color name="orange_ff4700">#ff4700</color>
+
+
+    <!--AI-->
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_6c13fe">#6c13fe</color>
+    <color name="color_04c3ee">#04c3ee</color>
 
 
 </resources>
