@@ -37,4 +37,19 @@ dependencies {
     implementation project(':cglib')
     //implementation project(':annotations')
     implementation project(path: ':annotations')
+
+    implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
