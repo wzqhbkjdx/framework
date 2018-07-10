@@ -16,13 +16,36 @@ android {
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
 
     }
+
+    //recommend
+    dexOptions {
+        jumboMode = true
+        javaMaxHeapSize "4g"
+    }
+
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        disable "ResourceType"
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    compileOptions {
+    }
 }
+
+//数据库
+apply from: 'greendao.gradle'
 
 dependencies {
     compile 'com.android.support:multidex:1.0.1'
@@ -40,6 +63,122 @@ dependencies {
 
     implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
 
+    // 控件注册
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+
+    //recyclerview头布局
+    implementation 'com.bartoszlipinski:recyclerviewheader2:2.0.1'
+
+    // 输入框
+    implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    // greenDao
+    implementation 'org.greenrobot:greendao:3.2.0'
+
+    // retrofit2 - gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+    //android design 好用的控件, 部分已抽出共用
+    implementation 'com.github.rey5137:material:1.2.1'
+
+    // 涟漪效果
+    compile 'com.github.traex.rippleeffect:library:1.3'
+
+    // 状态栏
+    implementation 'com.jaeger.statusbaruitl:library:1.1.1'
+
+    // bitmap转换
+    implementation 'jp.wasabeef:glide-transformations:2.0.1'
+
+    //首页底部菜单
+    implementation 'com.aurelhubert:ahbottomnavigation:1.2.0'
+
+    // 收藏,点赞,关注动画
+    implementation 'com.wx.goodview:goodview:1.0.0'
+
+    // 轮播图
+    implementation 'com.bigkoo:convenientbanner:2.0.5'
+
+    // 手势图片
+    implementation 'com.github.chrisbanes.photoview:library:1.2.4'
+
+    //标签
+    implementation 'me.gujun.android.taggroup:library:1.4@aar'
+
+    // 下拉刷新
+    implementation 'in.srain.cube:ultra-ptr:1.0.11'
+
+    // progressbar
+    implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
+
+    // 压缩
+    implementation 'org.zeroturnaround:zt-zip:1.10'
+
+    // 下载器
+    implementation 'com.liulishuo.filedownloader:library:1.3.0'
+
+
+    // 文字滚动
+    implementation 'com.oushangfeng:MarqueeLayout:1.0.1'
+
+    // 弹性布局
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // 圆角
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    //滑动
+    implementation 'com.jude:swipebackhelper:3.1.2'
+
+    //点赞动画
+    implementation 'com.ufreedom.uikit:FloatingViewLib:1.0.2'
+    implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+
+    // 音频视频
+    implementation 'com.google.android.exoplayer:exoplayer:r2.4.3'
+    implementation 'com.google.android.exoplayer:extension-okhttp:r2.4.3'
+
+    //列表动画
+    implementation 'com.twotoasters.jazzylistview:library-recyclerview:1.2.1'
+
+    // 类似SVG动画
+    implementation 'com.airbnb.android:lottie:2.0.0'
+
+    // 类似SVG动画
+    implementation 'com.airbnb.android:lottie:2.0.0'
+
+    // ratingBar
+    implementation 'com.hedgehog.ratingbar:app:1.1.2'
+
+    // 标签
+    implementation 'co.lujun:androidtagview:1.1.4'
+
+    //上划加载控件
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+
+    //banner
+    implementation 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:3.8.0'
+
+    //添加 Sensors Analytics SDK 依赖
+    implementation 'com.sensorsdata.analytics.android:SensorsAnalyticsSDK:1.8.11'
+
+    // recyclerViewPager
+    implementation 'com.github.rubensousa:gravitysnaphelper:1.4'
+
+    //阴影
+    implementation 'com.github.devlight.shadowlayout:library:1.0.2'
+
+    // 回弹效果
+    implementation 'me.everything:overscroll-decor-android:1.0.4'
+
+    // support
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:percent:27.1.1'
+    implementation 'com.android.support:mediarouter-v7:27.1.1'
 
 }
 
