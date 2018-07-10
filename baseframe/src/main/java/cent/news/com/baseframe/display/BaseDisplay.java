@@ -10,15 +10,20 @@ import android.view.View;
 
 import org.jetbrains.annotations.NotNull;
 
+import cent.news.com.baseframe.BaseHelper;
+
 /**
  * Created by bym on 2018/6/18.
+ *
+ * 用于界面之间的来回跳转
+ *
  */
 
 public class BaseDisplay implements BaseIDisplay {
 
     @Override
     public Context context() {
-        return null;
+        return BaseHelper.screenHelper().getCurrentActivity();
     }
 
     @Override
