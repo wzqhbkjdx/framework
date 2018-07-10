@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AbstractWheelView">
+        <attr name="visibleItems" format="integer" />
+        <attr name="isAllVisible" format="boolean" />
+        <attr name="itemOffsetPercent" format="integer" />
+        <attr name="itemsPadding" format="dimension" />
+        <attr name="selectionDividerDimmedAlpha" format="integer" />
+        <attr name="selectionDividerActiveAlpha" format="integer" />
+        <attr name="selectionDivider" format="reference" />
+        <attr name="itemsDimmedAlpha" format="integer" />
+        <attr name="isCyclic" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="WheelVerticalView">
+        <attr name="selectionDividerHeight" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="WheelHorizontalView">
+        <attr name="selectionDividerWidth" format="dimension" />
+    </declare-styleable>
+    <attr name="abstractWheelViewStyle" format="reference" />
+
+
+    <declare-styleable name="ScaleImageView">
+        <attr name="scale" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="HNADefaultImageView">
+        <attr name="g_scale" format="float" />
+        <attr name="logoSize" format="dimension" />
+        <attr name="isOval" format="integer" />
+        <attr name="h_radius" format="dimension" />
+        <attr name="h_radius_top_left" format="dimension" />
+        <attr name="h_radius_top_right" format="dimension" />
+        <attr name="h_radius_bottom_left" format="dimension" />
+        <attr name="h_radius_bottom_right" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="HNAShadowLayout">
+        <attr name="hna_shadow_distance" format="dimension" />
+        <attr name="hna_shadow_angle" format="integer" />
+        <attr name="hna_shadow_dx" format="dimension" />
+        <attr name="hna_shadow_dy" format="dimension" />
+        <attr name="hna_shadow_radius" format="dimension" />
+        <attr name="hna_shadow_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="ExpandableLayout">
+        <attr name="el_duration" format="integer" />
+        <attr name="el_expanded" format="boolean" />
+        <attr name="el_parallax" format="float" />
+        <attr name="layout_expandable" format="boolean" />
+        <attr name="android:orientation" />
+    </declare-styleable>
+
+    <declare-styleable name="DayPickerView">
+        <attr name="colorCurrentDay" format="color" />
+        <attr name="colorSelectedDayBackground" format="color" />
+        <attr name="colorSelectedDaysBackground" format="color" />
+        <attr name="colorDialogText" format="color" />
+        <attr name="colorSelectedDayText" format="color" />
+        <attr name="colorPreviousDay" format="color" />
+        <attr name="colorNormalDay" format="color" />
+        <attr name="colorMonthName" format="color" />
+        <attr name="colorDialogName" format="color" />
+        <attr name="colorDayName" format="color" />
+        <attr name="textSizeDay" format="dimension" />
+        <attr name="calendarPadding" format="dimension" />
+        <attr name="textSizeMonth" format="dimension" />
+        <attr name="textSizeDayName" format="dimension" />
+        <attr name="headerMonthHeight" format="dimension" />
+        <attr name="selectedDayRadius" format="dimension" />
+        <attr name="calendarHeight" format="dimension" />
+        <attr name="enablePreviousDay" format="boolean" />
+        <attr name="currentDaySelected" format="boolean" />
+        <attr name="drawRoundRect" format="boolean" />
+        <attr name="firstMonth" format="enum">
+            <enum name="january" value="0" />
+            <enum name="february" value="1" />
+            <enum name="march" value="2" />
+            <enum name="april" value="3" />
+            <enum name="may" value="4" />
+            <enum name="june" value="5" />
+            <enum name="july" value="6" />
+            <enum name="august" value="7" />
+            <enum name="september" value="8" />
+            <enum name="october" value="9" />
+            <enum name="november" value="10" />
+            <enum name="december" value="11" />
+        </attr>
+        <attr name="lastMonth" format="enum">
+            <enum name="january" value="0" />
+            <enum name="february" value="1" />
+            <enum name="march" value="2" />
+            <enum name="april" value="3" />
+            <enum name="may" value="4" />
+            <enum name="june" value="5" />
+            <enum name="july" value="6" />
+            <enum name="august" value="7" />
+            <enum name="september" value="8" />
+            <enum name="october" value="9" />
+            <enum name="november" value="10" />
+            <enum name="december" value="11" />
+        </attr>
+    </declare-styleable>
+
+    <!-- zb -->
+    <attr name="weekHeight" format="dimension" />
+    <attr name="weekTextSize" format="dimension" />
+    <attr name="weekBackgroundColor" format="color" />
+    <attr name="weekTextColor" format="color" />
+    <attr name="calendarTextSize" format="dimension" />
+    <attr name="calendarTextColor" format="color" />
+    <attr name="notCalendarTextColor" format="color" />
+    <attr name="nowCalendarTextColor" format="color" />
+    <attr name="todayTextColor" format="color" />
+    <attr name="signTextColor" format="color" />
+    <attr name="limitFutureMonth" format="boolean" />
+
+    <declare-styleable name="IntegralCalendarSignView">
+        <attr name="weekHeight" />
+        <attr name="weekTextSize" />
+        <attr name="weekBackgroundColor" />
+        <attr name="weekTextColor" />
+        <attr name="calendarTextSize" />
+        <attr name="calendarTextColor" />
+        <attr name="notCalendarTextColor" />
+        <attr name="nowCalendarTextColor" />
+        <attr name="todayTextColor" />
+        <attr name="signColor" format="color" />
+        <attr name="notSignColor" format="color" />
+        <attr name="signSize" format="dimension" />
+        <attr name="signTextColor" />
+        <attr name="limitFutureMonth" />
+    </declare-styleable>
+    <!--星星评分 -->
+    <declare-styleable name="RatingBar">
+        <!--星星间距-->
+        <attr name="starDistance" format="dimension" />
+        <!--星星大小-->
+        <attr name="starSize" format="dimension" />
+        <!--星星个数-->
+        <attr name="starCount" format="integer" />
+        <!--星星空图-->
+        <attr name="starEmpty" format="reference" />
+        <!--星星满图-->
+        <attr name="starFill" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="RatingBarView">
+        <attr name="starImageSize" format="dimension" />
+        <attr name="starDistances" format="dimension" />
+        <attr name="starCounts" format="integer" />
+        <attr name="starEmptys" format="reference" />
+        <attr name="starFills" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="SpringView">
+        <attr name="type">
+            <enum name="overlap" value="0" />
+            <enum name="follow" value="1" />
+        </attr>
+        <attr name="give">
+            <enum name="both" value="0" />
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="none" value="3" />
+        </attr>
+        <attr name="header" format="reference" />
+        <attr name="footer" format="reference" />
+    </declare-styleable>
+    <!-- 单行输入控件封装 -->
+    <declare-styleable name="MenuInputItem">
+        <attr name="menuItemText" format="string" />
+        <attr name="menuItemInfo" format="string" />
+        <attr name="menuItemMark" format="string" />
+        <attr name="menuItemInfoHint" format="string" />
+        <attr name="menuItemTextStyle" format="reference" />
+        <attr name="menuItemInfoStyle" format="reference" />
+        <attr name="menuItemArrIcon" format="reference" />
+        <attr name="menuItemShowArr" format="boolean" />
+        <attr name="menuItemShowBottomLine" format="boolean" />
+        <attr name="menuItemEnableInput" format="boolean" />
+        <attr name="menuItemEnableMark" format="boolean" />
+    </declare-styleable>
+
+    <!--国家区域选择-->
+    <declare-styleable name="IndexBar">
+        <attr name="letterSize" format="dimension" />
+        <attr name="letterColor" format="color" />
+        <attr name="focusLetterColor" format="color" />
+        <attr name="letterSpacingExtra" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="ImagePointLayout">
+        <attr name="point_src" format="reference" />
+        <attr name="point_num" format="integer" />
+        <attr name="point_visbility" format="boolean" />
+        <attr name="point_num_size" format="dimension" />
+
+        <attr name="point_height" format="dimension"></attr>
+        <attr name="point_width" format="dimension" />
+
+        <attr name="point_src_height" format="dimension"></attr>
+        <attr name="point_src_width" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="level_menu_item">
+        <attr name="menu_src" format="reference" />
+        <attr name="menu_content" format="string" />
+
+        <attr name="menu_tvcolor" format="color" />
+        <attr name="menu_tvSize" format="dimension" />
+
+        <attr name="menu_image_height" format="dimension"></attr>
+        <attr name="menu_image_width" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="SearchEditText">
+        <attr name="edit_clean_icon" format="reference"></attr>
+        <attr name="edit_left_icon" format="reference"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="TimelineLayout">
+        <!--时间轴左偏移值-->
+        <attr name="line_margin_left" format="dimension" />
+        <!--时间轴上偏移值-->
+        <attr name="line_margin_top" format="dimension" />
+        <!--线宽-->
+        <attr name="line_stroke_width" format="dimension" />
+        <!--线的颜色-->
+        <attr name="line_color" format="color" />
+        <!--点的大小-->
+        <attr name="point_size" format="dimension" />
+        <!--点的颜色-->
+        <attr name="point_color" format="color" />
+        <!--图标-->
+        <attr name="icon_src" format="reference" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ShadowFragment">
+        <attr name="sl_cornerRadius" format="dimension" />
+        <attr name="sl_shadowRadius" format="dimension" />
+        <attr name="sl_shadowColor" format="color" />
+        <attr name="sl_dx" format="dimension" />
+        <attr name="sl_dy" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="EasyPullLayoutJ">
+        <attr name="trigger_offset_left" format="dimension" />
+        <attr name="trigger_offset_top" format="dimension" />
+        <attr name="trigger_offset_right" format="dimension" />
+        <attr name="trigger_offset_bottom" format="dimension" />
+        <attr name="max_offset_left" format="dimension" />
+        <attr name="max_offset_top" format="dimension" />
+        <attr name="max_offset_right" format="dimension" />
+        <attr name="max_offset_bottom" format="dimension" />
+        <attr name="fixed_content_left" format="boolean" />
+        <attr name="fixed_content_top" format="boolean" />
+        <attr name="fixed_content_right" format="boolean" />
+        <attr name="fixed_content_bottom" format="boolean" />
+        <attr name="roll_back_duration" format="integer" />
+        <attr name="sticky_factor" format="float" />
+    </declare-styleable>
+    <declare-styleable name="EasyPullLayout_LayoutParams">
+        <attr name="layout_type" format="enum">
+            <enum name="edge_left" value="0" />
+            <enum name="edge_top" value="1" />
+            <enum name="edge_right" value="2" />
+            <enum name="edge_bottom" value="3" />
+            <enum name="content" value="4" />
+        </attr>
+        <attr name="layout_content_fixed" format="boolean" />
+    </declare-styleable>
+    
+    <declare-styleable name="BoldTextView">
+        <attr name="isBold" format="boolean"/>
+
+    </declare-styleable>
+
+    <!-- 图片验证码 -->
+    <declare-styleable name="VerificationCodeView">
+        <!-- 验证码文本 -->
+        <attr name="verificationText" format="string" />
+        <!-- 字符数量 -->
+        <attr name="codeCount" format="integer"/>
+        <!-- 设置验证码文本的颜色 -->
+        <attr name="textColor" format="color" />
+        <!-- 设置验证码文本尺寸 -->
+        <attr name="textSize" format="dimension" />
+        <!-- 设置验证码是否有下划线 -->
+        <attr name="isUnderLine" format="boolean" />
+        <!-- 验证码字体是否为粗体-->
+        <attr name="isTextBold" format="boolean" />
+        <!-- 设置文本的倾斜度，默认为0 ,正数左斜，负数右斜-->
+        <attr name="textSkewX" format="float" />
+        <!-- 设置验证码文字宽度-->
+        <attr name="textStrokeWidth" format="float" />
+        <!-- 是否显示干扰线条,默认为true -->
+        <attr name="isShowInterferenceLines" format="boolean" />
+        <!-- 设置干扰线条的数量，默认10条 -->
+        <attr name="interferenceLinesCount" format="integer" />
+        <!-- 设置干扰线条的颜色，如果不设置，默认为随机生成的颜色-->
+        <attr name="interferenceLinesColor" format="color" />
+        <!--设置干扰线条的宽度，默认为3-->
+        <attr name="interferenceLinesWidth" format="float" />
+        <!-- 设置是否显示干扰圆点，默认为true -->
+        <attr name="isShowInterferenceCircles" format="boolean" />
+        <!-- 设置干扰圆点的数量，默认100个-->
+        <attr name="interferenceCirclesCount" format="integer" />
+        <!-- 设置干扰圆点的颜色，如果不设置，默认为随机生成的颜色-->
+        <attr name="interferenceCirclesColor" format="color" />
+        <!--设置干扰圆点的半径，默认为5-->
+        <attr name="interferenceCirclesRadius" format="float" />
+        <!-- 设置验证码背景色，默认为灰色-->
+        <attr name="verificationCodeBackground" format="color" />
+    </declare-styleable>
+
+</resources>
