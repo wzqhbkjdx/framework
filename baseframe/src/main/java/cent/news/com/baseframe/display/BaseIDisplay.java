@@ -59,9 +59,23 @@ public interface BaseIDisplay {
     /**
      *
      */
+    void popBackStack();
+
+    /**
+     * @param clazz
+     *            参数
+     */
     void popBackStack(@NotNull Class clazz);
 
+    /**
+     * @param clazzName
+     *            参数
+     */
+    void popBackStack(@NotNull String clazzName);
 
+    /**
+     *
+     */
     void popBackStackAll();
 
 
