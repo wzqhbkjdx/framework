@@ -12,7 +12,6 @@ import cent.news.com.baseframe.core.IBaseBind;
 import cent.news.com.baseframe.modules.BaseModuleManage;
 import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
 import cent.news.com.newscent.BuildConfig;
-import cent.news.com.newscent.NCConstants;
 import cent.news.com.newscent.helper.interceptor.CommonParamsInterceptor;
 import cent.news.com.newscent.helper.interceptor.LogggingInterceptor;
 import okhttp3.OkHttpClient;
@@ -39,8 +38,8 @@ public class NCBind implements IBaseBind {
         @SuppressLint("HardwareIds")
         CommonParamsInterceptor commonParamsInterceptor = new CommonParamsInterceptor.Builder()// 创建
                 .addHeaderParam("Accept-Encoding", "gzip, deflate")// 头信息
-                .addQueryParam(NCConstants.KEY_BRAND, android.os.Build.BRAND)
-                .addQueryParam(NCConstants.KEY_MODEL, android.os.Build.MODEL)// 设备模型
+                //.addQueryParam(NCConstants.KEY_BRAND, android.os.Build.BRAND)
+                //.addQueryParam(NCConstants.KEY_MODEL, android.os.Build.MODEL)// 设备模型
                 .setOnHeaderParams(new CommonParamsInterceptor.IParams() {
                     @Override
                     public void addParamsMap(Map<String, String> paramsMap) {

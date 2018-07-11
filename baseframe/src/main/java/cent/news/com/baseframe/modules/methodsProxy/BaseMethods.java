@@ -275,6 +275,36 @@ public final class BaseMethods {
         }
     }
 
+    public <T> T createImpl(final Class<T> service, final Object impl) {
+        BaseCheckUtils.validateServiceInterface(service);
+        return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[] { service }, new BaseInvocationHandler() {
+
+            @Override public Object invoke(Object proxy, Method method, Object... args) throws Throwable {
+                // 业务拦截器 - 前
+                for (ImplStartInterceptor item : BaseHelper.methodsProxy().implStartInterceptors) {
+                    item.interceptStart(impl.getClass().getName(), service, method, args);
+                }
+                Object backgroundResult;
+                if (!BaseHelper.isLogOpen()) {
+                    backgroundResult = method.invoke(impl, args);// 执行
+                } else {
+                    enterMethod(method, args);
+                    long startNanos = System.nanoTime();
+                    backgroundResult = method.invoke(impl, args);// 执行
+                    long stopNanos = System.nanoTime();
+                    long lengthMillis = TimeUnit.NANOSECONDS.toMillis(stopNanos - startNanos);
+                    exitMethod(method, backgroundResult, lengthMillis);
+                }
+
+                // 业务拦截器 - 后
+                for (ImplEndInterceptor item : BaseHelper.methodsProxy().implEndInterceptors) {
+                    item.interceptEnd(impl.getClass().getName(), service, method, args, backgroundResult);
+                }
+                return backgroundResult;
+            }
+        });
+    }
+
     public BaseFragmentInterceptor getBaseFragmentInterceptor() {
         return skyFragmentInterceptor;
     }

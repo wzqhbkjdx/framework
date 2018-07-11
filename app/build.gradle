@@ -76,7 +76,8 @@ android {
 
 //Release包地址
 def getReleaseUrl() {
-    String url = "\"http://testapi.520igo.cn/\""
+    //String url = "\"http://testapi.520igo.cn/\""
+    String url = "\"http://api.520igo.cn/\""
 //    if (project.hasProperty("HNA_BUILD_URL")) {
 //        url = project.property("HNA_BUILD_URL")
 //    }
@@ -84,7 +85,8 @@ def getReleaseUrl() {
 }
 //Debug包地址
 def getDebugUrl() {
-    String url = "\"http://testapi.520igo.cn/\""
+    //String url = "\"http://testapi.520igo.cn/\""
+    String url = "\"http://api.520igo.cn/\""
 //    if (project.hasProperty("HNA_BUILD_URL")) {
 //        url = project.property("HNA_BUILD_URL")
 //    }

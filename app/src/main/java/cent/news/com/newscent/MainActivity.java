@@ -19,6 +19,7 @@ public class MainActivity extends BaseActivity<MainBiz> {
     @Override
     protected void initData(Bundle savedInstanceState) {
 
+        biz().getUrl();
     }
 
 
