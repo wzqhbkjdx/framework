@@ -1,4 +1,4 @@
-package cent.news.com.newscent.helper;
+package cent.news.com.newscent.helper.interceptor;
 
 import android.text.TextUtils;
 

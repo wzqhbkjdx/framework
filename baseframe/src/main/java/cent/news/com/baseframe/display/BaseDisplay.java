@@ -159,7 +159,14 @@ public class BaseDisplay implements BaseIDisplay {
 
     @Override
     public void commitDetachAndBackStack(@NotNull Fragment srcFragment, @NotNull Fragment fragment) {
-
+        BaseCheckUtils.checkNotNull(fragment, "fragment不能为空~");
+        if (activity() == null) {
+            return;
+        }
+        FragmentTransaction transaction = activity().getSupportFragmentManager().beginTransaction();
+        transaction.detach(srcFragment);
+        transaction.add(R.id.sky_home, fragment, fragment.getClass().getName()).addToBackStack(fragment.getClass().getName()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commitAllowingStateLoss();
     }
 
     @Override

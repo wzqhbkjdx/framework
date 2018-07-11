@@ -2,15 +2,22 @@ package cent.news.com.newscent.helper;
 
 import android.annotation.SuppressLint;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cent.news.com.baseframe.core.IBaseBind;
 import cent.news.com.baseframe.modules.BaseModuleManage;
 import cent.news.com.baseframe.modules.methodsProxy.BaseMethods;
+import cent.news.com.newscent.BuildConfig;
 import cent.news.com.newscent.NCConstants;
+import cent.news.com.newscent.helper.interceptor.CommonParamsInterceptor;
+import cent.news.com.newscent.helper.interceptor.LogggingInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NCBind implements IBaseBind {
 
@@ -33,6 +40,7 @@ public class NCBind implements IBaseBind {
         CommonParamsInterceptor commonParamsInterceptor = new CommonParamsInterceptor.Builder()// 创建
                 .addHeaderParam("Accept-Encoding", "gzip, deflate")// 头信息
                 .addQueryParam(NCConstants.KEY_BRAND, android.os.Build.BRAND)
+                .addQueryParam(NCConstants.KEY_MODEL, android.os.Build.MODEL)// 设备模型
                 .setOnHeaderParams(new CommonParamsInterceptor.IParams() {
                     @Override
                     public void addParamsMap(Map<String, String> paramsMap) {
@@ -40,9 +48,26 @@ public class NCBind implements IBaseBind {
                     }
                 }).build();
 
+        okhttpBuilder.addInterceptor(commonParamsInterceptor);
 
+        switch (BuildConfig.NCBuild) {
+            case 0: //测试环境
+                LogggingInterceptor interceptor = new LogggingInterceptor();
+                interceptor.setLevel(LogggingInterceptor.Level.BODY);
+                okhttpBuilder.addInterceptor(interceptor);
+                builder.client(okhttpBuilder.build());
+                break;
+            case 1: //线上环境
+                builder.client(okhttpBuilder.build());
+                break;
+        }
 
-        return null;
+        builder.baseUrl(BuildConfig.NCBuildUrl);
+
+        Gson gson = new GsonBuilder().setLenient().create();
+        builder.addConverterFactory(GsonConverterFactory.create(gson));
+
+        return builder.build();
     }
 
     @Override
@@ -58,3 +83,17 @@ public class NCBind implements IBaseBind {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

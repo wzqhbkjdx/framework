@@ -23,12 +23,42 @@ android {
         javaMaxHeapSize "4g"
     }
 
+    signingConfigs {
+        debug {
+            storeFile file("keystore/hna_hi_test.jks")
+            storePassword "123456"
+            keyAlias "hi"
+            keyPassword "123456"
+        }
+        release {
+            storeFile file("keystore/hna_hi.jks")
+            storePassword "123456"
+            keyAlias "hi"
+            keyPassword "123456"
+        }
+    }
+
 
     buildTypes {
-        release {
+
+        debug {
+            signingConfig signingConfigs.debug
+            debuggable true
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("int", "NCBuild", "0")
+            buildConfigField("String", "NCBuildUrl", getDebugUrl())
+
         }
+
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            buildConfigField("int", "NCBuild", "1")
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "NCBuildUrl", getReleaseUrl())
+        }
+
+
     }
 
     lintOptions {
@@ -43,6 +73,24 @@ android {
     compileOptions {
     }
 }
+
+//Release包地址
+def getReleaseUrl() {
+    String url = "\"http://testapi.520igo.cn/\""
+//    if (project.hasProperty("HNA_BUILD_URL")) {
+//        url = project.property("HNA_BUILD_URL")
+//    }
+    return url
+}
+//Debug包地址
+def getDebugUrl() {
+    String url = "\"http://testapi.520igo.cn/\""
+//    if (project.hasProperty("HNA_BUILD_URL")) {
+//        url = project.property("HNA_BUILD_URL")
+//    }
+    return url
+}
+
 
 //数据库
 apply from: 'greendao.gradle'
