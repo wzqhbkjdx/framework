@@ -20,7 +20,13 @@ import sky.BackgroundType;
 
 public class MainBiz extends BaseBiz<MainActivity> {
 
+    private int	initIndex;
+
     private String TAG = this.getClass().getSimpleName();
+
+    public int getInitIndex() {
+        return initIndex;
+    }
 
     @Override
     protected void initBiz(Bundle bundle) {

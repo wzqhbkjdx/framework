@@ -1,4 +1,4 @@
-package cent.news.com.newscent.view;
+package cent.news.com.newscent.webview;
 
 import android.os.Bundle;
 
