@@ -23,6 +23,11 @@ public class NCBind implements IBaseBind {
 
     @Override
     public boolean isLogOpen() {
+        if(BuildConfig.NCBuild == 0) { //测试环境
+            return true;
+        } else if(BuildConfig.NCBuild == 1) { //线上环境
+            return false;
+        }
         return false;
     }
 
@@ -48,6 +53,7 @@ public class NCBind implements IBaseBind {
                 }).build();
 
         okhttpBuilder.addInterceptor(commonParamsInterceptor);
+
 
         switch (BuildConfig.NCBuild) {
             case 0: //测试环境

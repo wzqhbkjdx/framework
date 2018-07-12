@@ -126,7 +126,7 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.0'
 
     // retrofit2 - gson
-    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     //android design 好用的控件, 部分已抽出共用
     implementation 'com.github.rey5137:material:1.2.1'
@@ -229,6 +229,10 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:percent:27.1.1'
     implementation 'com.android.support:mediarouter-v7:27.1.1'
+
+    //XLog
+    implementation 'com.elvishew:xlog:1.4.0'
+
 
 }
 
