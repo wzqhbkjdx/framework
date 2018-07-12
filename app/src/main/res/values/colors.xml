@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="main">#FE7700</color>
+
     <!-- 颜色 -->
     <color name="yellow">#FFD500</color>
     <color name="orange">#FF9A00</color>

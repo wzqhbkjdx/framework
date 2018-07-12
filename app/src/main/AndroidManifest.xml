@@ -99,7 +99,7 @@
         android:supportsRtl="true">
 
         <activity android:name=".MainActivity"
-            android:theme="@style/Base.Theme.AppCompat.Light">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -107,7 +107,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.WebViewActivity"/>
+        <activity android:name=".webview.WebViewActivity"/>
 
 
     </application>

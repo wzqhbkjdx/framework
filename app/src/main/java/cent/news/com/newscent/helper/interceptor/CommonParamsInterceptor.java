@@ -85,7 +85,8 @@ public class CommonParamsInterceptor implements Interceptor {
                 RequestBody formBody = formBodyBuilder.build();
                 String postBodyString = bodyToString(request.body());
                 postBodyString += ((postBodyString.length() > 0) ? "&" : "") + bodyToString(formBody);
-                requestBuilder.post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded;charset=UTF-8"), postBodyString));
+                //requestBuilder.post(RequestBody.create(MediaType.parse("application/x-www-form-urlencoded;charset=UTF-8"), postBodyString));
+                requestBuilder.post(RequestBody.create(MediaType.parse("application/json"), postBodyString));
             }
         }
         request = requestBuilder.build();
@@ -104,7 +105,8 @@ public class CommonParamsInterceptor implements Interceptor {
             return false;
         }
         MediaType mediaType = body.contentType();
-        return mediaType != null && TextUtils.equals(mediaType.subtype(), "x-www-form-urlencoded");
+        //return mediaType != null && TextUtils.equals(mediaType.subtype(), "x-www-form-urlencoded");
+        return mediaType != null && TextUtils.equals(mediaType.subtype(), "application/json");
     }
 
     // func to inject params into url

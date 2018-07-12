@@ -3,10 +3,14 @@ package cent.news.com.newscent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.JsonObject;
+
 import cent.news.com.baseframe.core.BaseBiz;
 import cent.news.com.newscent.channel.ChannelHttp;
 import cent.news.com.newscent.channel.ChannelModel;
-import cent.news.com.newscent.helper.utils.ToolUtils;
+import cent.news.com.newscent.helper.utils.XLogUtil;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import sky.Background;
 import sky.BackgroundType;
@@ -16,6 +20,14 @@ import sky.BackgroundType;
  */
 
 public class MainBiz extends BaseBiz<MainActivity> {
+
+    private int	initIndex;
+
+    private String TAG = this.getClass().getSimpleName();
+
+    public int getInitIndex() {
+        return initIndex;
+    }
 
     @Override
     protected void initBiz(Bundle bundle) {
@@ -27,16 +39,16 @@ public class MainBiz extends BaseBiz<MainActivity> {
     @Background(BackgroundType.HTTP)
     public void getUrl() {
 
-        //L.tag("bob_test").d("getUrl");
 
-        Log.d("bob_test","getUrl");
+        XLogUtil.getInstance().d(TAG,"getUrl");
 
-        Call<ChannelModel> call = http(ChannelHttp.class).getChannels(ToolUtils.generateSecretKey(ChannelHttp.CHANNEL_URL));
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), new JsonObject().toString());
+
+        Call<ChannelModel> call = http(ChannelHttp.class).getChannels(body);
 
         ChannelModel model = httpBody(call);
 
-
-
+        XLogUtil.getInstance().d(TAG, "result size :" + model.result.channels.size());
 
     }
 
