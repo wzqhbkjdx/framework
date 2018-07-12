@@ -23,7 +23,7 @@ public class NCBind implements IBaseBind {
 
     @Override
     public boolean isLogOpen() {
-        return false;
+        return true;
     }
 
     @Override
