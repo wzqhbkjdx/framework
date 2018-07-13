@@ -4,4 +4,8 @@
     <string name="close">关闭</string>
     <string name="toolbar_title">标题栏</string>
     <string name="title">知天下</string>
+    <string name="tab_home">首页</string>
+    <string name="tab_video">视频</string>
+    <string name="tab_cents">积分</string>
+    <string name="tab_my">我的</string>
 </resources>
