@@ -6,24 +6,30 @@
     android:orientation="vertical">
 
     <LinearLayout
-
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tab_layout"
-            android:layout_width="0dp"
-            android:layout_height="44dp"
-            android:layout_marginLeft="10dp"
+        <cent.news.com.newscent.view.tab.SmartTabLayout
+            android:id="@+id/smart_tab"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/include_title"
+            android:layout_toLeftOf="@+id/top_layout"
             android:layout_weight="80"
-            app:tabIndicatorColor="@color/yellow"
-            app:tabIndicatorHeight="2dp"
-            app:tabMode="fixed"
-            app:tabPaddingEnd="0dp"
-            app:tabPaddingStart="0dp"
-            app:tabSelectedTextColor="@color/main"
-            app:tabTextAppearance="@style/TabStyle"
-            app:tabTextColor="@android:color/black" />
+            android:background="@color/common_bg"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            app:stl_customTabTextLayoutId="@layout/custom_tab_discover"
+            app:stl_customTabTextViewId="@+id/custom_text"
+            app:stl_dividerColor="@android:color/transparent"
+            app:stl_indicatorColor="@color/orange"
+            app:stl_indicatorCornerRadius="0.5dp"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorThickness="2dp"
+            app:stl_indicatorWidth="30dp"
+            app:stl_underlineColor="@color/line"
+            app:stl_underlineThickness="0dp" />
 
         <ImageView
             android:id="@+id/channelManager"
@@ -36,6 +42,18 @@
             android:src="@mipmap/channel_manager" />
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
 
 
 </LinearLayout>
