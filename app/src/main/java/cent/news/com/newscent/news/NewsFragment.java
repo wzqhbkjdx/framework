@@ -10,7 +10,6 @@ import cent.news.com.newscent.R;
 
 public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnPageChangeListener {
 
-
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
         builder.layoutId(R.layout.fragment_news_layout);

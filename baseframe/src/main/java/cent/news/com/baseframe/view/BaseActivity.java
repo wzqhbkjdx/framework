@@ -456,6 +456,10 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
     protected View contentView() {
         return baseBuilder.getContentRootView();
     }
+
+    protected SystemBarTintManager tintManager() {
+        return systemBarTintManager;
+    }
 }
 
 

@@ -135,9 +135,9 @@ public class FragmentTabManage {
         mTabs.clear();
     }
 
-    public void onTabChanged(int postion) {
+    public void onTabChanged(int position) {
         if (mAttached) {
-            String tabId = getCurrentTabTag(postion);
+            String tabId = getCurrentTabTag(position);
             if (StringUtils.isBlank(tabId)) {
                 return;
             }
