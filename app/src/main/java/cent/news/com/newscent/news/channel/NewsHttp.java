@@ -1,5 +1,6 @@
-package cent.news.com.newscent.channel;
+package cent.news.com.newscent.news.channel;
 
+import cent.news.com.newscent.news.NewsListModel;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -8,9 +9,11 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
-public interface ChannelHttp {
+public interface NewsHttp {
 
     public static final String CHANNEL_URL = "api/article/channel";
+
+    public static final String NEWS_LIST_URL = "api/article";
 
     @FormUrlEncoded
     @POST(CHANNEL_URL)
@@ -28,5 +31,13 @@ public interface ChannelHttp {
     @Headers("Content-Type:application/json; charset=UTF-8") //修改retrofit的header参数，因为okHttp的拦截器不起作用 application/json; charset=UTF-8"
     Call<ChannelModel>
     getChannels(@Body RequestBody secret);
+
+
+    @POST(NEWS_LIST_URL)
+    @Headers("Content-Type:application/json; charset=UTF-8") //修改retrofit的header参数，因为okHttp的拦截器不起作用 application/json; charset=UTF-8"
+    Call<NewsListModel>
+    getNewsList(@Body RequestBody secret);
+
+
 
 }

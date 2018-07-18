@@ -1,4 +1,4 @@
-package cent.news.com.newscent.channel;
+package cent.news.com.newscent.news.channel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -30,7 +30,31 @@ public class ChannelModel {
             @SerializedName("type") @Expose private int type;
             @SerializedName("alias") @Expose private String alias;
 
-
+            @Override
+            public String toString() {
+                return "ChannelsBean{" +
+                        "channelID=" + channelID +
+                        ", title='" + title + '\'' +
+                        ", attval=" + attval +
+                        ", type=" + type +
+                        ", alias='" + alias + '\'' +
+                        '}';
+            }
         }
+
+        @Override
+        public String toString() {
+            return "Result{" +
+                    "channels=" + channels +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ChannelModel{" +
+                "code='" + code + '\'' +
+                ", result=" + result +
+                '}';
     }
 }

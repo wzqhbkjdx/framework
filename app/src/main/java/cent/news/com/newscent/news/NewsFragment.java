@@ -4,11 +4,23 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import butterknife.BindView;
 import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.newscent.R;
+import cent.news.com.newscent.view.tab.SmartTabLayout;
 
 public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnPageChangeListener {
+
+    @BindView(R.id.smart_tab)
+    SmartTabLayout smartTab;
+
+
+    @BindView(R.id.pager)
+    ViewPager viewPager;
+
+
+
 
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
@@ -19,7 +31,7 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
+        biz().getNewsList();
     }
 
     @Override

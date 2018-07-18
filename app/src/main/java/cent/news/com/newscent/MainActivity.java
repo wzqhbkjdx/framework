@@ -58,8 +58,6 @@ public class MainActivity extends BaseActivity<MainBiz> implements Navigation.On
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        biz().getUrl();
-
         initTab();
     }
 

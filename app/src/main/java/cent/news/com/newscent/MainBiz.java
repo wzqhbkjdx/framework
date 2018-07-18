@@ -1,13 +1,12 @@
 package cent.news.com.newscent;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.gson.JsonObject;
 
 import cent.news.com.baseframe.core.BaseBiz;
-import cent.news.com.newscent.channel.ChannelHttp;
-import cent.news.com.newscent.channel.ChannelModel;
+import cent.news.com.newscent.news.channel.NewsHttp;
+import cent.news.com.newscent.news.channel.ChannelModel;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -39,12 +38,11 @@ public class MainBiz extends BaseBiz<MainActivity> {
     @Background(BackgroundType.HTTP)
     public void getUrl() {
 
-
         XLogUtil.getInstance().d(TAG,"getUrl");
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), new JsonObject().toString());
 
-        Call<ChannelModel> call = http(ChannelHttp.class).getChannels(body);
+        Call<ChannelModel> call = http(NewsHttp.class).getChannels(body);
 
         ChannelModel model = httpBody(call);
 
