@@ -2,7 +2,7 @@ apply plugin: 'org.greenrobot.greendao'
 
 greendao {
     //数据库schema版本，也可以理解为数据库版本号
-    schemaVersion 8
+    schemaVersion 1
     //设置DaoMaster 、DaoSession、Dao包名
     daoPackage 'cent.news.com.newscent.db.graeendao'
     //设置DaoMaster 、DaoSession、Dao目录

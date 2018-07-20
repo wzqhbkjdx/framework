@@ -69,7 +69,7 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
 
         if(model.code == 200) {
             //保存到数据库中
-
+            //DaoSession daoSession =
 
 
         } else {
