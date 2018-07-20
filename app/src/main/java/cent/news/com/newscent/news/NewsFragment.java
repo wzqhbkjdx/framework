@@ -21,17 +21,32 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
 
 
 
-
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
         builder.layoutId(R.layout.fragment_news_layout);
         builder.tintFitsSystem(false);
+
+        //设置返回为null的界面
+
+        //设置loading的界面
+
+
+
         return builder;
     }
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        biz().getNewsList();
+        //获取新的频道列表
+        biz().getTitles();
+
+        //读取缓存中的频道列表，如果存在直接加载，如果不存在就再次获取，重试次数要合理，如果多次获取不到，则展示空页面
+
+
+        //对比缓存的频道和新获取的频道，如果有不同则进行更新，增或者删除，这样Server端可以完全控制
+
+        //
+
     }
 
     @Override
@@ -56,3 +71,16 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,7 +42,7 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
         requestModel.dt = 3;
         requestModel.version = "1.0.1";
 
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), new Gson().toJson(requestModel));
+        RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new Gson().toJson(requestModel));
 
         Call<NewsListModel> call = http(NewsHttp.class).getNewsList(body);
 
@@ -54,18 +54,35 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
 
     //在线程池里执行网络请求
     @Background(BackgroundType.HTTP)
-    public void getUrl() {
+    public void getTitles() {
 
         XLogUtil.getInstance().d(TAG,"getUrl");
 
         //因为该接口不需要传递请求参数，所以传了一个空JSON字符串
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), new JsonObject().toString());
+        RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new JsonObject().toString());
 
         Call<ChannelModel> call = http(NewsHttp.class).getChannels(body);
 
         ChannelModel model = httpBody(call);
 
         XLogUtil.getInstance().d(TAG, "result size :" + model.result.channels.size());
+
+        if(model.code == 200) {
+            //保存到数据库中
+
+
+
+        } else {
+
+
+
+        }
+
+    }
+
+    @Background(BackgroundType.WORK)
+    public void initTitles() {
+        //从数据库中读取缓存的titles
 
     }
 }

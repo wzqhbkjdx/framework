@@ -4,14 +4,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.ArrayList;
+
+import cent.news.com.newscent.news.channel.ChannelModel;
+
 public class NewsListAdapter extends FragmentStatePagerAdapter {
 
-
+    private ArrayList<ChannelModel> newsList = new ArrayList<>();
 
 
     public NewsListAdapter(FragmentManager fm) {
         super(fm);
     }
+
+    public void setTitleList(ArrayList<ChannelModel> titleList) {
+        newsList = titleList;
+        notifyDataSetChanged();
+    }
+
+
 
     @Override
     public Fragment getItem(int position) {
@@ -20,7 +31,7 @@ public class NewsListAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return newsList.size();
     }
 
 
