@@ -3,11 +3,13 @@ package cent.news.com.newscent.news;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+
+import java.util.List;
 
 import cent.news.com.baseframe.core.BaseBiz;
+import cent.news.com.newscent.db.GreenDAOManager;
 import cent.news.com.newscent.helper.utils.XLogUtil;
-import cent.news.com.newscent.news.channel.ChannelModel;
+import cent.news.com.newscent.news.channel.ChannelDBBean;
 import cent.news.com.newscent.news.channel.NewsHttp;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -56,27 +58,43 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
     @Background(BackgroundType.HTTP)
     public void getTitles() {
 
-        XLogUtil.getInstance().d(TAG,"getUrl");
+        XLogUtil.getInstance().d(TAG,"getTitles");
+
+        List<ChannelDBBean> queryList = GreenDAOManager.instance().getChannelDBDao().queryBuilder().list();
+
+        if(queryList != null) {
+            for(ChannelDBBean bean : queryList) {
+                XLogUtil.getInstance().d(TAG,"channel id: " + bean.getChannelID());
+            }
+        }
 
         //因为该接口不需要传递请求参数，所以传了一个空JSON字符串
-        RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new JsonObject().toString());
+        //RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new JsonObject().toString());
 
-        Call<ChannelModel> call = http(NewsHttp.class).getChannels(body);
+        //Call<ChannelModel> call = http(NewsHttp.class).getChannels(body);
 
-        ChannelModel model = httpBody(call);
+        //ChannelModel model = httpBody(call);
 
-        XLogUtil.getInstance().d(TAG, "result size :" + model.result.channels.size());
+        XLogUtil.getInstance().d(TAG,"insert begin");
 
-        if(model.code == 200) {
-            //保存到数据库中
-            //DaoSession daoSession =
+        ChannelDBBean channelDBBean = new ChannelDBBean();
+        channelDBBean.setChannelID(15);
 
+        GreenDAOManager.instance().getChannelDBDao().insert(channelDBBean);
 
-        } else {
+        XLogUtil.getInstance().d(TAG,"green dao insert channel "
+                + 15);
 
-
-
-        }
+//        if(model.code == 200) {
+//            //保存到数据库中
+//            //DaoSession daoSession =
+//
+//
+//        } else {
+//
+//
+//
+//        }
 
     }
 

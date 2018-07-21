@@ -58,6 +58,7 @@ public class BaseModuleManage {
         isLog = baseBind.isLogOpen();
         this.restAdapter = baseBind.getRestAdapter(retrofitBuilder);
         this.baseMethods = baseBind.getMethodInterceptor(baseMethodsBuilder);
+        initDatabase();
     }
 
     public BaseMethods baseMethods;
@@ -102,6 +103,13 @@ public class BaseModuleManage {
 
     public Retrofit getRestAdapter() {
         return restAdapter;
+    }
+
+    /**
+     * 覆盖这个方法，初始化数据库
+     */
+    public void initDatabase() {
+
     }
 }
 

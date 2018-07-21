@@ -24,4 +24,6 @@ public class MainApplication extends Application {
         super.onCreate();
         NCHelper.newBind().setBaseBind(new NCBind()).inject(this);
     }
+
+
 }

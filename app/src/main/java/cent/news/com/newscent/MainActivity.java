@@ -66,8 +66,8 @@ public class MainActivity extends BaseActivity<MainBiz> implements Navigation.On
         fragmentTabManage = new FragmentTabManage(this, getSupportFragmentManager());
         fragmentTabManage.addTab(getResources().getString(R.string.tab_home), NewsFragment.class, null, 0);
         fragmentTabManage.addTab(getResources().getString(R.string.tab_video), VideoFragment.class, null, 1);
-        fragmentTabManage.addTab(getResources().getString(R.string.tab_cents), NewsFragment.class, null, 2);
-        fragmentTabManage.addTab(getResources().getString(R.string.tab_my), NewsFragment.class, null, 3);
+        fragmentTabManage.addTab(getResources().getString(R.string.tab_cents), VideoFragment.class, null, 2);
+        fragmentTabManage.addTab(getResources().getString(R.string.tab_my), VideoFragment.class, null, 3);
 
         // Tab 管理器
         AHBottomNavigationItem hi = new AHBottomNavigationItem(R.string.tab_home, R.mipmap.tab1_off, android.R.color.transparent);

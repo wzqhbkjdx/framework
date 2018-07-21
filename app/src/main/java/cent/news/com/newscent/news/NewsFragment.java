@@ -40,6 +40,8 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
         //获取新的频道列表
         biz().getTitles();
 
+        //biz().getNewsList();
+
         //读取缓存中的频道列表，如果存在直接加载，如果不存在就再次获取，重试次数要合理，如果多次获取不到，则展示空页面
 
 
