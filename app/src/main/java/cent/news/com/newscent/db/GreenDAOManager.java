@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.newscent.db.graeendao.ChannelDBBeanDao;
+import cent.news.com.newscent.db.graeendao.ChannelDBOne2NDao;
 import cent.news.com.newscent.db.graeendao.DaoMaster;
 import cent.news.com.newscent.db.graeendao.DaoSession;
 
@@ -40,4 +41,8 @@ public final class GreenDAOManager {
         return daoSession.getChannelDBBeanDao();
     }
 
+    //返回一对多关系Session
+    public ChannelDBOne2NDao getChannelDBOne2NDao() {
+        return daoSession.getChannelDBOne2NDao();
+    }
 }

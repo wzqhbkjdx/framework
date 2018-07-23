@@ -3,13 +3,12 @@ package cent.news.com.newscent.news;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
-
-import java.util.List;
+import com.google.gson.JsonObject;
 
 import cent.news.com.baseframe.core.BaseBiz;
-import cent.news.com.newscent.db.GreenDAOManager;
 import cent.news.com.newscent.helper.utils.XLogUtil;
-import cent.news.com.newscent.news.channel.ChannelDBBean;
+import cent.news.com.newscent.news.channel.ChannelDBOne2N;
+import cent.news.com.newscent.news.channel.ChannelModel;
 import cent.news.com.newscent.news.channel.NewsHttp;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -60,43 +59,45 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
 
         XLogUtil.getInstance().d(TAG,"getTitles");
 
-        List<ChannelDBBean> queryList = GreenDAOManager.instance().getChannelDBDao().queryBuilder().list();
+        //因为该接口不需要传递请求参数，所以传了一个空JSON字符串
+        RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new JsonObject().toString());
 
-        if(queryList != null) {
-            for(ChannelDBBean bean : queryList) {
-                XLogUtil.getInstance().d(TAG,"channel id: " + bean.getChannelID());
+        Call<ChannelModel> call = http(NewsHttp.class).getChannels(body);
+
+        ChannelModel model = httpBody(call);
+
+        if(model.code == 200) {
+            //保存到数据库中
+            XLogUtil.getInstance().d(TAG,"insert begin");
+
+            //ChannelDBBean channelDBBean = new ChannelDBBean();
+            //channelDBBean.setChannelID(15);
+            //GreenDAOManager.instance().getChannelDBDao().insert(channelDBBean);
+
+            ChannelDBOne2N dbOne2N = new ChannelDBOne2N();
+
+            if(model.result.channels != null && model.result.channels.size() > 0) {
+                for(ChannelModel.Result.ChannelsBean bean : model.result.channels) {
+
+                }
             }
+
+            XLogUtil.getInstance().d(TAG,"green dao insert channel " + 15);
+
+        } else {
+
+
+
         }
 
-        //因为该接口不需要传递请求参数，所以传了一个空JSON字符串
-        //RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new JsonObject().toString());
+    }
 
-        //Call<ChannelModel> call = http(NewsHttp.class).getChannels(body);
-
-        //ChannelModel model = httpBody(call);
-
-        XLogUtil.getInstance().d(TAG,"insert begin");
-
-        ChannelDBBean channelDBBean = new ChannelDBBean();
-        channelDBBean.setChannelID(15);
-
-        GreenDAOManager.instance().getChannelDBDao().insert(channelDBBean);
-
-        XLogUtil.getInstance().d(TAG,"green dao insert channel "
-                + 15);
-
-//        if(model.code == 200) {
-//            //保存到数据库中
-//            //DaoSession daoSession =
-//
-//
-//        } else {
-//
-//
-//
-//        }
+    //greenDao 一对多 多对一的关系
+    @Background(BackgroundType.WORK)
+    public void loadTitles() {
 
     }
+
 
     @Background(BackgroundType.WORK)
     public void initTitles() {

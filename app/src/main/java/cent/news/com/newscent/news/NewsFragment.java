@@ -20,6 +20,9 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     ViewPager viewPager;
 
 
+    private NewsListAdapter newsListAdapter;
+
+    private int currentPage = -1;
 
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
@@ -38,16 +41,13 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     @Override
     protected void initData(Bundle savedInstanceState) {
         //获取新的频道列表
+        newsListAdapter = new NewsListAdapter(getChildFragmentManager());
+        viewPager.setAdapter(newsListAdapter);
+        viewPager.addOnPageChangeListener(this);
+        smartTab.setViewPager(viewPager);
         biz().getTitles();
 
-        //biz().getNewsList();
 
-        //读取缓存中的频道列表，如果存在直接加载，如果不存在就再次获取，重试次数要合理，如果多次获取不到，则展示空页面
-
-
-        //对比缓存的频道和新获取的频道，如果有不同则进行更新，增或者删除，这样Server端可以完全控制
-
-        //
 
     }
 
