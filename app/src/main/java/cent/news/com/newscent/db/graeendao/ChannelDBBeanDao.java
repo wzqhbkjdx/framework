@@ -1,6 +1,5 @@
 package cent.news.com.newscent.db.graeendao;
 
-import java.util.List;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;
 
@@ -9,8 +8,6 @@ import org.greenrobot.greendao.Property;
 import org.greenrobot.greendao.internal.DaoConfig;
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.database.DatabaseStatement;
-import org.greenrobot.greendao.query.Query;
-import org.greenrobot.greendao.query.QueryBuilder;
 
 import cent.news.com.newscent.news.channel.ChannelDBBean;
 
@@ -35,7 +32,6 @@ public class ChannelDBBeanDao extends AbstractDao<ChannelDBBean, Long> {
         public final static Property Alias = new Property(5, String.class, "alias", false, "ALIAS");
     }
 
-    private Query<ChannelDBBean> channelDBOne2N_ChannelsQuery;
 
     public ChannelDBBeanDao(DaoConfig config) {
         super(config);
@@ -165,18 +161,4 @@ public class ChannelDBBeanDao extends AbstractDao<ChannelDBBean, Long> {
         return true;
     }
     
-    /** Internal query to resolve the "channels" to-many relationship of ChannelDBOne2N. */
-    public List<ChannelDBBean> _queryChannelDBOne2N_Channels(int channelID) {
-        synchronized (this) {
-            if (channelDBOne2N_ChannelsQuery == null) {
-                QueryBuilder<ChannelDBBean> queryBuilder = queryBuilder();
-                queryBuilder.where(Properties.ChannelID.eq(null));
-                channelDBOne2N_ChannelsQuery = queryBuilder.build();
-            }
-        }
-        Query<ChannelDBBean> query = channelDBOne2N_ChannelsQuery.forCurrentThread();
-        query.setParameter(0, channelID);
-        return query.list();
-    }
-
 }

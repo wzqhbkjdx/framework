@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.newscent.R;
+import cent.news.com.newscent.news.channel.ChannelDBBean;
 import cent.news.com.newscent.view.tab.SmartTabLayout;
 
 public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnPageChangeListener {
@@ -34,7 +37,6 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
         //设置loading的界面
 
 
-
         return builder;
     }
 
@@ -46,9 +48,12 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
         viewPager.addOnPageChangeListener(this);
         smartTab.setViewPager(viewPager);
         biz().getTitles();
+        biz().loadTitles();
+    }
 
-
-
+    public void setTab(ArrayList<ChannelDBBean> list) {
+        newsListAdapter.setTitleList(list);
+        smartTab.setViewPager(viewPager);
     }
 
     @Override

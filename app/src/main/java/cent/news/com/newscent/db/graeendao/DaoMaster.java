@@ -22,13 +22,11 @@ public class DaoMaster extends AbstractDaoMaster {
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
         ChannelDBBeanDao.createTable(db, ifNotExists);
-        ChannelDBOne2NDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
         ChannelDBBeanDao.dropTable(db, ifExists);
-        ChannelDBOne2NDao.dropTable(db, ifExists);
     }
 
     /**
@@ -48,7 +46,6 @@ public class DaoMaster extends AbstractDaoMaster {
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
         registerDaoClass(ChannelDBBeanDao.class);
-        registerDaoClass(ChannelDBOne2NDao.class);
     }
 
     public DaoSession newSession() {

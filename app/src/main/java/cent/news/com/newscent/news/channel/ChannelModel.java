@@ -3,7 +3,6 @@ package cent.news.com.newscent.news.channel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-// FIXME generate failure  field _$Result238
 public class ChannelModel {
 
     /**
@@ -25,10 +24,10 @@ public class ChannelModel {
              * title : 推荐
              */
             @SerializedName("ID") @Expose public int channelID;
-            @SerializedName("title") @Expose private String title;
-            @SerializedName("attval") @Expose private int attval;
-            @SerializedName("type") @Expose private int type;
-            @SerializedName("alias") @Expose private String alias;
+            @SerializedName("title") @Expose public String title;
+            @SerializedName("attval") @Expose public int attval;
+            @SerializedName("type") @Expose public int type;
+            @SerializedName("alias") @Expose public String alias;
 
             @Override
             public String toString() {

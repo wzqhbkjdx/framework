@@ -6,18 +6,18 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
-import cent.news.com.newscent.news.channel.ChannelModel;
+import cent.news.com.newscent.news.channel.ChannelDBBean;
 
 public class NewsListAdapter extends FragmentStatePagerAdapter {
 
-    private ArrayList<ChannelModel> newsList = new ArrayList<>();
+    private ArrayList<ChannelDBBean> newsList = new ArrayList<>();
 
 
     public NewsListAdapter(FragmentManager fm) {
         super(fm);
     }
 
-    public void setTitleList(ArrayList<ChannelModel> titleList) {
+    public void setTitleList(ArrayList<ChannelDBBean> titleList) {
         newsList = titleList;
         notifyDataSetChanged();
     }
@@ -26,6 +26,7 @@ public class NewsListAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        // TODO: 2018/7/24
         return null;
     }
 

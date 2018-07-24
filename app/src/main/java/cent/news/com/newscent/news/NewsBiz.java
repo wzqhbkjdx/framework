@@ -5,9 +5,15 @@ import android.os.Bundle;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import cent.news.com.baseframe.core.BaseBiz;
+import cent.news.com.newscent.db.GreenDAOManager;
 import cent.news.com.newscent.helper.utils.XLogUtil;
-import cent.news.com.newscent.news.channel.ChannelDBOne2N;
+import cent.news.com.newscent.news.channel.ChannelDBBean;
 import cent.news.com.newscent.news.channel.ChannelModel;
 import cent.news.com.newscent.news.channel.NewsHttp;
 import okhttp3.MediaType;
@@ -68,42 +74,41 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
 
         if(model.code == 200) {
             //保存到数据库中
-            XLogUtil.getInstance().d(TAG,"insert begin");
-
-            //ChannelDBBean channelDBBean = new ChannelDBBean();
-            //channelDBBean.setChannelID(15);
-            //GreenDAOManager.instance().getChannelDBDao().insert(channelDBBean);
-
-            ChannelDBOne2N dbOne2N = new ChannelDBOne2N();
-
             if(model.result.channels != null && model.result.channels.size() > 0) {
                 for(ChannelModel.Result.ChannelsBean bean : model.result.channels) {
-
+                    ChannelDBBean dbBean = new ChannelDBBean();
+                    dbBean.setChannelID(bean.channelID);
+                    dbBean.setAlias(bean.alias);
+                    dbBean.setAttval(bean.attval);
+                    dbBean.setTitle(bean.title);
+                    dbBean.setType(bean.type);
+                    GreenDAOManager.instance().getDaoSession().insertOrReplace(dbBean);
                 }
             }
 
-            XLogUtil.getInstance().d(TAG,"green dao insert channel " + 15);
+            XLogUtil.getInstance().d(TAG,"green dao insert channel " + model.result.channels.size());
 
         } else {
-
-
-
+            //展示从服务器返回的toast
+            // TODO: 2018/7/24
         }
 
     }
 
-    //greenDao 一对多 多对一的关系
+    //从数据库里查询title，如果第一次查不到，就再查一次，如果多次查不到，就展示空白页面
     @Background(BackgroundType.WORK)
     public void loadTitles() {
 
+        //从数据库中查询出来
+        QueryBuilder<ChannelDBBean> query = GreenDAOManager.instance().getChannelDBDao().queryBuilder();
+        List<ChannelDBBean> queryResult = query.list();
+
+        ArrayList<ChannelDBBean> list = new ArrayList<>(queryResult);
+        ui().setTab(list);
     }
 
 
-    @Background(BackgroundType.WORK)
-    public void initTitles() {
-        //从数据库中读取缓存的titles
 
-    }
 }
 
 
