@@ -26,8 +26,11 @@ public class NewsListAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // TODO: 2018/7/24
-        return null;
+        return NewsTabFragment.getInstance(newsList.get(position).getChannelID(),
+                                            newsList.get(position).getAlias(),
+                                            newsList.get(position).getAttval(),
+                                            newsList.get(position).getTitle(),
+                                            newsList.get(position).getType());
     }
 
     @Override

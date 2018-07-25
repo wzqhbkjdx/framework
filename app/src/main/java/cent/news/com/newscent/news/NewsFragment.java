@@ -10,10 +10,13 @@ import butterknife.BindView;
 import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.newscent.R;
+import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.channel.ChannelDBBean;
 import cent.news.com.newscent.view.tab.SmartTabLayout;
 
 public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnPageChangeListener {
+
+    private String TAG = this.getClass().getSimpleName();
 
     @BindView(R.id.smart_tab)
     SmartTabLayout smartTab;
@@ -52,6 +55,7 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     }
 
     public void setTab(ArrayList<ChannelDBBean> list) {
+        XLogUtil.getInstance().d(TAG,"tab size: " + list.size());
         newsListAdapter.setTitleList(list);
         smartTab.setViewPager(viewPager);
     }

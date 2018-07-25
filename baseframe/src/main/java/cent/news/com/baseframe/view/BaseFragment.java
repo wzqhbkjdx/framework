@@ -47,6 +47,7 @@ public abstract class BaseFragment<B extends IBaseBiz> extends Fragment implemen
 
     }
 
+
     protected void createData(Bundle savedInstanceState) {
 
     }
