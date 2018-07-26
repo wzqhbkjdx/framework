@@ -1,5 +1,6 @@
 package cent.news.com.newscent.news;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -12,7 +13,6 @@ public class NewsListAdapter extends FragmentStatePagerAdapter {
 
     private ArrayList<ChannelDBBean> newsList = new ArrayList<>();
 
-
     public NewsListAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -23,7 +23,6 @@ public class NewsListAdapter extends FragmentStatePagerAdapter {
     }
 
 
-
     @Override
     public Fragment getItem(int position) {
         return NewsTabFragment.getInstance(newsList.get(position).getChannelID(),
@@ -31,6 +30,12 @@ public class NewsListAdapter extends FragmentStatePagerAdapter {
                                             newsList.get(position).getAttval(),
                                             newsList.get(position).getTitle(),
                                             newsList.get(position).getType());
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return newsList.get(position).getTitle();
     }
 
     @Override
