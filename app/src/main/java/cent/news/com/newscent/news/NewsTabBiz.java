@@ -1,5 +1,7 @@
 package cent.news.com.newscent.news;
 
+import android.os.Bundle;
+
 import com.google.gson.Gson;
 
 import cent.news.com.baseframe.core.BaseBiz;
@@ -15,22 +17,44 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
     private String TAG = this.getClass().getSimpleName();
 
+    private int channelID;
+
+    private String alias;
+
+    private int attval;
+
+    private String title;
+
+    private int type;
+
+    @Override
+    protected void initBiz(Bundle bundle) {
+        super.initBiz(bundle);
+        if(bundle == null) {
+            return;
+        }
+        channelID = bundle.getInt(NewsTabFragment.CHANNEL_ID);
+        alias = bundle.getString(NewsTabFragment.ALIAS);
+        attval = bundle.getInt(NewsTabFragment.ATTVAL);
+        title = bundle.getString(NewsTabFragment.TITLE);
+        type = bundle.getInt(NewsTabFragment.TYPE);
+    }
 
     @Background(BackgroundType.HTTP)
-    public void getNewsList(int action, int channelID, int pageSize, String newsIds, int type, int dt) {
+    public void getNewsList(int action, int pageSize, String newsIds, int type) {
         XLogUtil.getInstance().d(TAG,"getNewsList");
 
         NewsListRequestModel requestModel = new NewsListRequestModel();
 
-        requestModel.action = action; //下拉刷新
+        requestModel.action = action; // 1-down 2-up 3-init
         requestModel.devicenum = "";
         requestModel.channelID = channelID; //推荐频道
         requestModel.latitude = 0.0;
         requestModel.longitude = 0.0;
         requestModel.pageSize = pageSize;
         requestModel.newsids = newsIds; //缓存文章重新获取
-        requestModel.type = type;
-        requestModel.dt = dt;
+        requestModel.type = type; //0-普通 1-视频 2-地方
+        requestModel.dt = 3; //设备类型 2-iphone 3-android
         requestModel.version = "1.0.1";
 
         RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new Gson().toJson(requestModel));

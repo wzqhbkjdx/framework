@@ -31,14 +31,21 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     }
 
 
-
-
-
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
         builder.layoutId(R.layout.fragment_layout_news_tab);
         //builder.layoutStateId(R.id.frame_state);
+        //builder.recyclerviewId(R.id.recycler_view);
+        //builder.layoutHttpErrorId(R.layout.http_error);
+        //builder.layoutEmptyId(R.layout.layout_empty);
         return builder;
+    }
+
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        super.initData(savedInstanceState);
+        biz().getNewsList(3, 10, "1,2,3", 0);
     }
 
     @Override
