@@ -37,7 +37,7 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
         builder.layoutId(R.layout.fragment_layout_news_tab);
-        builder.layoutStateId(R.id.frame_state);
+        //builder.layoutStateId(R.id.frame_state);
         return builder;
     }
 

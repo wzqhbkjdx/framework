@@ -71,9 +71,7 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
         //从数据库中查询出来
         QueryBuilder<ChannelDBBean> query = GreenDAOManager.instance().getChannelDBDao().queryBuilder();
         List<ChannelDBBean> queryResult = query.list();
-        ArrayList<ChannelDBBean> list = new ArrayList<>();
-
-        list.add(queryResult.get(0));
+        ArrayList<ChannelDBBean> list = new ArrayList<>(queryResult);
         ui().setTab(list);
     }
 
