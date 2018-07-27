@@ -26,7 +26,7 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     ViewPager viewPager;
 
 
-    private NewsListAdapter newsListAdapter;
+    private NewsFragmentAdapter newsListAdapter;
 
     private int currentPage = -1;
 
@@ -46,7 +46,7 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     @Override
     protected void initData(Bundle savedInstanceState) {
         //获取新的频道列表
-        newsListAdapter = new NewsListAdapter(getChildFragmentManager());
+        newsListAdapter = new NewsFragmentAdapter(getChildFragmentManager());
         viewPager.setAdapter(newsListAdapter);
         viewPager.addOnPageChangeListener(this);
         smartTab.setViewPager(viewPager);

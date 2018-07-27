@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 import cent.news.com.newscent.news.channel.ChannelDBBean;
 
-public class NewsListAdapter extends FragmentStatePagerAdapter {
+public class NewsFragmentAdapter extends FragmentStatePagerAdapter {
 
     private ArrayList<ChannelDBBean> newsList = new ArrayList<>();
 
-    public NewsListAdapter(FragmentManager fm) {
+    public NewsFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 

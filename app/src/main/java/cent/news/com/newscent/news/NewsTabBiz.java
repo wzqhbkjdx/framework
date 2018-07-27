@@ -63,6 +63,8 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
         NewsListModel model = httpBody(call);
 
+        XLogUtil.getInstance().d(TAG,"news list size: " + model.getResult().getNews().size());
+
         XLogUtil.getInstance().d(TAG,"getNewsList complete");
     }
 

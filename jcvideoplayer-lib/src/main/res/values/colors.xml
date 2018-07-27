@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="driver_color">#D2D2D2</color>
+    <color name="text_blue">#0076ff</color>
+
+    <color name="image_background">#FFD8D8D8</color>
+</resources>
