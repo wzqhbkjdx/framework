@@ -11,4 +11,11 @@
     <string name="http_error">数据加载失败</string>
     <string name="http_error_tip">网络走丢了，努力寻找中...</string>
     <string name="reload">重新加载</string>
+    <string name="load_more">正在加载...</string>
+    <string name="load_more_not_date">已经到底，客官明天再来哟～</string>
+    <string name="load_more_not_http">点击加载更多</string>
+    <string name="discover_tip">为你推荐了%d条资讯</string>
+    <string name="pull">下拉刷新</string>
+    <string name="pull_loading">加载中</string>
+    <string name="pull_update">释放更新</string>
 </resources>

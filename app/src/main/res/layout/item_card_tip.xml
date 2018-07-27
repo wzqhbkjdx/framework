@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_tip"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F4FFFFFF">
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/discover_tip"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/number_13" />
+</RelativeLayout>

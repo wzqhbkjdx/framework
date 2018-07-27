@@ -69,4 +69,20 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
     }
 
 
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
