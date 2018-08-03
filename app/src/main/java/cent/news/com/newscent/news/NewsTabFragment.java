@@ -51,7 +51,7 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         builder.layoutHttpErrorId(R.layout.http_error);
         builder.layoutEmptyId(R.layout.layout_empty);
         builder.layoutBizErrorId(R.layout.interrest_biz_error);
-        builder.recyclerviewAdapter(new NewsListAdatper(this));
+        builder.recyclerviewAdapter(new NewsListAdapter(this));
         builder.recyclerviewLinearManager(new CenterLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         builder.recyclerviewSwipRefreshId(R.id.swipeRefresh, this);
         builder.recyclerviewColorResIds(R.color.orange);
@@ -62,8 +62,7 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        super.initData(savedInstanceState);
-        biz().getNewsList(3, 10, "1,2,3", 0);
+        initTip();
 
         recyclerView().addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -76,7 +75,10 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
+        load();
     }
+
 
     public void initTip() {
         ncFrameLayout.setEnabled(false);
@@ -91,6 +93,13 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         ncFrameLayout.addPtrUIHandler(ncNewsListHeader);
     }
 
+
+    public void load() {
+        if(biz().channelID == 1) {
+            swipeRefreshLayout().setRefreshing(true);
+        }
+        biz().getNewsList(3, 10, "1,2,3", 0);
+    }
 
 
     @Override

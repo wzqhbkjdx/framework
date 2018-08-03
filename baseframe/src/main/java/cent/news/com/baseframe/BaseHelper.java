@@ -76,7 +76,9 @@ public class BaseHelper {
 
     }
 
-
+    protected static <M> M getManage() {
+        return (M) mModulesManage;
+    }
 
 
     public static boolean isLogOpen() {

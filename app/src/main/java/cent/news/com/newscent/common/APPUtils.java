@@ -1,5 +1,8 @@
 package cent.news.com.newscent.common;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.DisplayMetrics;
 
 import cent.news.com.baseframe.BaseHelper;
@@ -36,5 +39,17 @@ public class APPUtils {
         return width;
     }
 
-
+    /**
+     * 判断是否有网
+     *
+     * @return
+     */
+    public static boolean isNetConnect() {
+        ConnectivityManager mConnectivityManager = (ConnectivityManager) BaseHelper.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = mConnectivityManager.getActiveNetworkInfo();
+        if (info == null || !info.isConnectedOrConnecting()) {
+            return false;
+        }
+        return true;
+    }
 }

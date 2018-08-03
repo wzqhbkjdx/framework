@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsCent</string>
+    <string name="app_name">知天下</string>
     <string name="copyright">版权所有</string>
     <string name="close">关闭</string>
     <string name="toolbar_title">标题栏</string>
@@ -18,4 +18,5 @@
     <string name="pull">下拉刷新</string>
     <string name="pull_loading">加载中</string>
     <string name="pull_update">释放更新</string>
+    <string name="please_check_network">网络未连接，请检查网络</string>
 </resources>

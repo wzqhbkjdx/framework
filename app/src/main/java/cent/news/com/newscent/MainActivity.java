@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import cent.news.com.baseframe.BaseHelper;
+import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.view.BaseActivity;
 import cent.news.com.baseframe.view.BaseBuilder;
-import cent.news.com.newscent.display.NCDisplay;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.NewsFragment;
 import cent.news.com.newscent.video.VideoFragment;
@@ -42,8 +42,8 @@ public class MainActivity extends BaseActivity<MainBiz> implements Navigation.On
     private FragmentTabManage fragmentTabManage;
 
 
-    public static void intent() {
-        BaseHelper.display(NCDisplay.class).intent(MainActivity.class);
+    public static final void intent() {
+        BaseHelper.display(BaseIDisplay.class).intent(MainActivity.class);
     }
 
 

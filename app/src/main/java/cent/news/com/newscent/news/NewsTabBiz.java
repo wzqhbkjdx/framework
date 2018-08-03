@@ -17,7 +17,7 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
     private String TAG = this.getClass().getSimpleName();
 
-    private int channelID;
+    public int channelID;
 
     private String alias;
 
@@ -62,6 +62,10 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
         Call<NewsListModel> call = http(NewsHttp.class).getNewsList(body);
 
         NewsListModel model = httpBody(call);
+
+        if(model.getResultCode() == 200) {
+            ui().swipeRefreshLayout().setRefreshing(false);
+        }
 
         XLogUtil.getInstance().d(TAG,"news list size: " + model.getResult().getNews().size());
 

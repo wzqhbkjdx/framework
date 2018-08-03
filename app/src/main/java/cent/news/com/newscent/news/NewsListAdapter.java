@@ -10,11 +10,11 @@ import cent.news.com.newscent.common.LoadMoreHolder;
 import cent.news.com.newscent.common.LoadMoreOnClick;
 import cent.news.com.newscent.common.LoadMoreUtils;
 
-public class NewsListAdatper extends BaseRVAdapter<NewsListModel.ResultBean.NewsBean, BaseHolder> {
+public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.NewsBean, BaseHolder> {
 
     int					width;
 
-    public NewsListAdatper(BaseFragment baseFragment) {
+    public NewsListAdapter(BaseFragment baseFragment) {
         super(baseFragment);
         width = APPUtils.getWindowWidth() / 3 - 40;
     }
