@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
+<PopoEmoticons>
+    <Model File="anguished-face.png" Tag="[难过]"/>
+    <Model File="astonished-face.png" Tag="[奇]"/>
+    <Model File="basketball-and-hoop.png" Tag="[篮球]"/>
+    <Model File="beer-mug.png" Tag="[酒]"/>
+    <Model File="birthday-cake.png" Tag="[生日]"/>
+    <Model File="broken-heart.png" Tag="[分手]"/>
+    <Model File="confounded-face.png" Tag="[疯]"/>
+    <Model File="cooked-rice.png" Tag="[美食]"/>
+    <Model File="crying-face.png" Tag="[哭]"/>
+    <Model File="disappointed-face.png" Tag="[打击]"/>
+    <Model File="dizzy-face.png" Tag="[乱]"/>
+    <Model File="expressionless-face.png" Tag="[哑]"/>
+    <Model File="face-screaming-in-fear.png" Tag="[吓]"/>
+    <Model File="face-throwing-a-kiss.png" Tag="[亲]"/>
+    <Model File="face-with-cold-sweat.png" Tag="[汗]"/>
+    <Model File="face-with-open-mouth-and-cold-sweat.png" Tag="[糟糕]"/>
+    <Model File="face-with-open-mouth.png" Tag="[惊讶]"/>
+    <Model File="face-with-stuck-out-tongue-and-winking-eye.png" Tag="[调皮]"/>
+    <Model File="face-without-mouth.png" Tag="[发呆]"/>
+    <Model File="flushed-face.png" Tag="[羞]"/>
+    <Model File="grimacing-face.png" Tag="[恶搞]"/>
+    <Model File="grinning-face-with-smiling-eyes.png" Tag="[笑]"/>
+    <Model File="heavy-black-heart.png" Tag="[爱]"/>
+    <Model File="high-voltage-sign.png" Tag="[电]"/>
+    <Model File="hocho.png" Tag="[刀]"/>
+    <Model File="hot-beverage.png" Tag="[咖啡]"/>
+    <Model File="kiss-mark.png" Tag="[唇]"/>
+    <Model File="pensive-face.png" Tag="[伤心]"/>
+    <Model File="pig-face.png" Tag="[动物]"/>
+    <Model File="pouting-face.png" Tag="[怒]"/>
+    <Model File="relieved-face.png" Tag="[闲]"/>
+    <Model File="rose.png" Tag="[鲜花]"/>
+    <Model File="skull.png" Tag="[鬼]"/>
+    <Model File="sleeping-face.png" Tag="[睡]"/>
+    <Model File="slightly-smiling-face.png" Tag="[微笑]"/>
+    <Model File="smiling-face-with-heart-shaped-eyes.png" Tag="[美女]"/>
+    <Model File="smiling-face-with-open-mouth-and-smiling-eyes.png" Tag="[高兴]"/>
+    <Model File="smiling-face-with-smiling-eyes.png" Tag="[快乐]"/>
+    <Model File="smiling-face-with-sunglasses.png" Tag="[墨镜]"/>
+    <Model File="smirking-face.png" Tag="[坏]"/>
+    <Model File="tired-face.png" Tag="[累]"/>
+    <Model File="unamused-face.png" Tag="[抠]"/>
+    <Model File="watermelon.png" Tag="[水果]"/>
+</PopoEmoticons>
+

@@ -318,7 +318,7 @@ public abstract class BaseFragment<B extends IBaseBiz> extends Fragment implemen
 
     public SwipeRefreshLayout swipeRefreshLayout() {
         if(baseBuilder != null) {
-            baseBuilder.getSwipeContainer();
+            return baseBuilder.getSwipeContainer();
         }
         return null;
     }

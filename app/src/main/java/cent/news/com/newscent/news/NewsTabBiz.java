@@ -65,11 +65,12 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
         if(model.getResultCode() == 200) {
             ui().swipeRefreshLayout().setRefreshing(false);
+            ui().setListData(model.getResult().getNews());
         }
 
         XLogUtil.getInstance().d(TAG,"news list size: " + model.getResult().getNews().size());
-
         XLogUtil.getInstance().d(TAG,"getNewsList complete");
+
     }
 
 

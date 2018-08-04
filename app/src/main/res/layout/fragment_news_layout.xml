@@ -5,6 +5,19 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:id="@+id/progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="38dp"
+            android:layout_height="38dp" />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -30,8 +43,6 @@
             app:stl_indicatorWidth="30dp"
             app:stl_underlineColor="@color/line"
             app:stl_underlineThickness="0dp" />
-
-
     </LinearLayout>
 
     <View
@@ -44,7 +55,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
 </LinearLayout>
 

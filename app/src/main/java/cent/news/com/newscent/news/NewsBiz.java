@@ -33,7 +33,7 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
 
     //在线程池里执行网络请求
     @Background(BackgroundType.HTTP)
-    public void getTitles() {
+    private void getTitles() {
         XLogUtil.getInstance().d(TAG,"getTitles");
         //因为该接口不需要传递请求参数，所以传了一个空JSON字符串
         RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new JsonObject().toString());
@@ -58,6 +58,8 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
 
             XLogUtil.getInstance().d(TAG,"green dao insert channel " + model.result.channels.size());
 
+            loadTitles();
+
         } else {
             //展示从服务器返回的toast
             // TODO: 2018/7/24
@@ -71,8 +73,14 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
         //从数据库中查询出来
         QueryBuilder<ChannelDBBean> query = GreenDAOManager.instance().getChannelDBDao().queryBuilder();
         List<ChannelDBBean> queryResult = query.list();
-        ArrayList<ChannelDBBean> list = new ArrayList<>(queryResult);
-        ui().setTab(list);
+        if(queryResult.size() > 0) {
+            ArrayList<ChannelDBBean> list = new ArrayList<>(queryResult);
+            ui().setTab(list);
+            ui().hideProgress();
+        } else {
+            getTitles();
+        }
+
     }
 
 

@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
@@ -77,6 +79,11 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         });
 
         load();
+    }
+
+    public void setListData(List<NewsListModel.ResultBean.NewsBean> dataList) {
+        showContent();
+        adapter().setItems(dataList);
     }
 
 

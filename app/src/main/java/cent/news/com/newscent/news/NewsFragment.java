@@ -3,6 +3,7 @@ package cent.news.com.newscent.news;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,9 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     @BindView(R.id.pager)
     ViewPager viewPager;
 
+    @BindView(R.id.progress_layout)
+    RelativeLayout progressLayout;
+
 
     private NewsFragmentAdapter newsListAdapter;
 
@@ -43,6 +47,14 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
         return builder;
     }
 
+    public void hideProgress() {
+        progressLayout.setVisibility(View.GONE);
+    }
+
+    public void showProgress() {
+        progressLayout.setVisibility(View.VISIBLE);
+    }
+
     @Override
     protected void initData(Bundle savedInstanceState) {
         //获取新的频道列表
@@ -50,7 +62,6 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
         viewPager.setAdapter(newsListAdapter);
         viewPager.addOnPageChangeListener(this);
         smartTab.setViewPager(viewPager);
-        biz().getTitles();
         biz().loadTitles();
     }
 

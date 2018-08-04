@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <cent.news.com.newscent.view.CustomFontTextView
+        android:id="@+id/tv_title"
+        style="@style/TextView.Title"
+        android:layout_width="match_parent"
+        android:ellipsize="end"
+        android:maxLines="3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题第一行 标题第二行 标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行"/>
+
+
+    <cent.news.com.newscent.view.CustomFontTextView
+        android:id="@+id/tv_sub_title"
+        style="@style/TextView.SubTitle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="标题第一行 标题第二行 标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
+
+
+</android.support.constraint.ConstraintLayout>

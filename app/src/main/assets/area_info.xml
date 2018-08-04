@@ -1,0 +1,563 @@
+<!--suppress ALL -->
+<root>
+    <province name="北京" id="10001" level="1">
+        <city name="东城区" id="10002" level="2" parent_id="10001"/>
+        <city name="西城区" id="10003" level="2" parent_id="10001"/>
+        <city name="海淀区" id="10006" level="2" parent_id="10001"/>
+        <city name="朝阳区" id="10007" level="2" parent_id="10001"/>
+        <city name="丰台区" id="10008" level="2" parent_id="10001"/>
+        <city name="石景山区" id="10009" level="2" parent_id="10001"/>
+        <city name="通州区" id="10010" level="2" parent_id="10001"/>
+        <city name="顺义区" id="10011" level="2" parent_id="10001"/>
+        <city name="房山区" id="10012" level="2" parent_id="10001"/>
+        <city name="大兴区" id="10013" level="2" parent_id="10001"/>
+        <city name="昌平区" id="10014" level="2" parent_id="10001"/>
+        <city name="怀柔区" id="10015" level="2" parent_id="10001"/>
+        <city name="平谷区" id="10016" level="2" parent_id="10001"/>
+        <city name="门头沟区" id="10017" level="2" parent_id="10001"/>
+        <city name="密云县" id="10018" level="2" parent_id="10001"/>
+        <city name="延庆县" id="10019" level="2" parent_id="10001"/>
+    </province>
+    <province name="天津" id="10020" level="1">
+        <city name="和平区" id="10021" level="2" parent_id="10020"/>
+        <city name="河东区" id="10022" level="2" parent_id="10020"/>
+        <city name="河西区" id="10023" level="2" parent_id="10020"/>
+        <city name="南开区" id="10024" level="2" parent_id="10020"/>
+        <city name="河北区" id="10025" level="2" parent_id="10020"/>
+        <city name="红桥区" id="10026" level="2" parent_id="10020"/>
+        <city name="东丽区" id="10027" level="2" parent_id="10020"/>
+        <city name="西青区" id="10028" level="2" parent_id="10020"/>
+        <city name="津南区" id="10029" level="2" parent_id="10020"/>
+        <city name="北辰区" id="10030" level="2" parent_id="10020"/>
+        <city name="武清区" id="10031" level="2" parent_id="10020"/>
+        <city name="宝坻区" id="10032" level="2" parent_id="10020"/>
+        <city name="滨海新区" id="10033" level="2" parent_id="10020"/>
+        <city name="宁河区" id="10034" level="2" parent_id="10020"/>
+        <city name="静海区" id="10035" level="2" parent_id="10020"/>
+        <city name="蓟县" id="10036" level="2" parent_id="10020"/>
+    </province>
+    <province name="上海" id="10037" level="1">
+        <city name="黄浦区" id="10038" level="2" parent_id="10037"/>
+        <city name="徐汇区" id="10039" level="2" parent_id="10037"/>
+        <city name="长宁区" id="10040" level="2" parent_id="10037"/>
+        <city name="静安区" id="10041" level="2" parent_id="10037"/>
+        <city name="普陀区" id="10042" level="2" parent_id="10037"/>
+        <city name="闸北区" id="10043" level="2" parent_id="10037"/>
+        <city name="虹口区" id="10044" level="2" parent_id="10037"/>
+        <city name="杨浦区" id="10045" level="2" parent_id="10037"/>
+        <city name="闵行区" id="10046" level="2" parent_id="10037"/>
+        <city name="宝山区" id="10047" level="2" parent_id="10037"/>
+        <city name="嘉定区" id="10048" level="2" parent_id="10037"/>
+        <city name="浦东新区" id="10049" level="2" parent_id="10037"/>
+        <city name="金山区" id="10050" level="2" parent_id="10037"/>
+        <city name="松江区" id="10051" level="2" parent_id="10037"/>
+        <city name="青浦区" id="10052" level="2" parent_id="10037"/>
+        <city name="奉贤区" id="10053" level="2" parent_id="10037"/>
+        <city name="崇明县" id="10054" level="2" parent_id="10037"/>
+    </province>
+    <province name="重庆" id="10055" level="1">
+        <city name="万州区" id="10056" level="2" parent_id="10055"/>
+        <city name="涪陵区" id="10057" level="2" parent_id="10055"/>
+        <city name="渝中区" id="10058" level="2" parent_id="10055"/>
+        <city name="大渡口区" id="10059" level="2" parent_id="10055"/>
+        <city name="江北区" id="10060" level="2" parent_id="10055"/>
+        <city name="沙坪坝区" id="10061" level="2" parent_id="10055"/>
+        <city name="九龙坡区" id="10062" level="2" parent_id="10055"/>
+        <city name="南岸区" id="10063" level="2" parent_id="10055"/>
+        <city name="北碚区" id="10064" level="2" parent_id="10055"/>
+        <city name="綦江区" id="10065" level="2" parent_id="10055"/>
+        <city name="大足区" id="10066" level="2" parent_id="10055"/>
+        <city name="渝北区" id="10067" level="2" parent_id="10055"/>
+        <city name="巴南区" id="10068" level="2" parent_id="10055"/>
+        <city name="黔江区" id="10069" level="2" parent_id="10055"/>
+        <city name="长寿区" id="10070" level="2" parent_id="10055"/>
+        <city name="江津区" id="10071" level="2" parent_id="10055"/>
+        <city name="合川区" id="10072" level="2" parent_id="10055"/>
+        <city name="永川区" id="10073" level="2" parent_id="10055"/>
+        <city name="南川区" id="10074" level="2" parent_id="10055"/>
+        <city name="璧山区" id="10075" level="2" parent_id="10055"/>
+        <city name="铜梁区" id="10076" level="2" parent_id="10055"/>
+        <city name="潼南区" id="10077" level="2" parent_id="10055"/>
+        <city name="荣昌区" id="10078" level="2" parent_id="10055"/>
+        <city name="梁平县" id="10079" level="2" parent_id="10055"/>
+        <city name="城口县" id="10080" level="2" parent_id="10055"/>
+        <city name="丰都县" id="10081" level="2" parent_id="10055"/>
+        <city name="垫江县" id="10082" level="2" parent_id="10055"/>
+        <city name="武隆县" id="10083" level="2" parent_id="10055"/>
+        <city name="忠县" id="10084" level="2" parent_id="10055"/>
+        <city name="开县" id="10085" level="2" parent_id="10055"/>
+        <city name="云阳县" id="10086" level="2" parent_id="10055"/>
+        <city name="奉节县" id="10087" level="2" parent_id="10055"/>
+        <city name="巫山县" id="10088" level="2" parent_id="10055"/>
+        <city name="巫溪县" id="10089" level="2" parent_id="10055"/>
+        <city name="石柱土家族自治县" id="10090" level="2" parent_id="10055"/>
+        <city name="秀山土家族苗族自治县" id="10091" level="2" parent_id="10055"/>
+        <city name="酉阳土家族苗族自治县" id="10092" level="2" parent_id="10055"/>
+        <city name="彭水苗族土家族自治县" id="10093" level="2" parent_id="10055"/>
+    </province>
+    <province name="安徽" id="10094" level="1">
+        <city name="合肥" id="10095" level="2" parent_id="10094"/>
+        <city name="安庆" id="10096" level="2" parent_id="10094"/>
+        <city name="蚌埠" id="10097" level="2" parent_id="10094"/>
+        <city name="亳州" id="10098" level="2" parent_id="10094"/>
+        <city name="巢湖" id="10099" level="2" parent_id="10094"/>
+        <city name="池州" id="10100" level="2" parent_id="10094"/>
+        <city name="滁州" id="10101" level="2" parent_id="10094"/>
+        <city name="阜阳" id="10102" level="2" parent_id="10094"/>
+        <city name="淮北" id="10103" level="2" parent_id="10094"/>
+        <city name="淮南" id="10104" level="2" parent_id="10094"/>
+        <city name="黄山" id="10105" level="2" parent_id="10094"/>
+        <city name="黄山景区" id="10106" level="2" parent_id="10094"/>
+        <city name="九华山景区" id="10107" level="2" parent_id="10094"/>
+        <city name="六安" id="10108" level="2" parent_id="10094"/>
+        <city name="马鞍山" id="10109" level="2" parent_id="10094"/>
+        <city name="青阳" id="10110" level="2" parent_id="10094"/>
+        <city name="宿州" id="10111" level="2" parent_id="10094"/>
+        <city name="铜陵" id="10112" level="2" parent_id="10094"/>
+        <city name="芜湖" id="10113" level="2" parent_id="10094"/>
+        <city name="宣城" id="10114" level="2" parent_id="10094"/>
+    </province>
+    <province name="福建" id="10115" level="1">
+        <city name="福州" id="10116" level="2" parent_id="10115"/>
+        <city name="龙岩" id="10117" level="2" parent_id="10115"/>
+        <city name="南平" id="10118" level="2" parent_id="10115"/>
+        <city name="宁德" id="10119" level="2" parent_id="10115"/>
+        <city name="莆田" id="10120" level="2" parent_id="10115"/>
+        <city name="泉州" id="10121" level="2" parent_id="10115"/>
+        <city name="三明" id="10122" level="2" parent_id="10115"/>
+        <city name="厦门" id="10123" level="2" parent_id="10115"/>
+        <city name="永安" id="10124" level="2" parent_id="10115"/>
+        <city name="漳州" id="10125" level="2" parent_id="10115"/>
+    </province>
+    <province name="甘肃" id="10126" level="1">
+        <city name="兰州" id="10127" level="2" parent_id="10126"/>
+        <city name="白银" id="10128" level="2" parent_id="10126"/>
+        <city name="定西" id="10129" level="2" parent_id="10126"/>
+        <city name="甘南" id="10130" level="2" parent_id="10126"/>
+        <city name="嘉峪关" id="10131" level="2" parent_id="10126"/>
+        <city name="酒泉" id="10132" level="2" parent_id="10126"/>
+        <city name="临夏" id="10133" level="2" parent_id="10126"/>
+        <city name="陇南" id="10134" level="2" parent_id="10126"/>
+        <city name="平凉" id="10135" level="2" parent_id="10126"/>
+        <city name="庆阳" id="10136" level="2" parent_id="10126"/>
+        <city name="天水" id="10137" level="2" parent_id="10126"/>
+        <city name="武威" id="10138" level="2" parent_id="10126"/>
+        <city name="张掖" id="10139" level="2" parent_id="10126"/>
+    </province>
+    <province name="广东" id="10140" level="1">
+        <city name="广州" id="10141" level="2" parent_id="10140"/>
+        <city name="潮州" id="10142" level="2" parent_id="10140"/>
+        <city name="从化" id="10143" level="2" parent_id="10140"/>
+        <city name="东莞" id="10144" level="2" parent_id="10140"/>
+        <city name="佛山" id="10145" level="2" parent_id="10140"/>
+        <city name="河源" id="10146" level="2" parent_id="10140"/>
+        <city name="鹤山" id="10147" level="2" parent_id="10140"/>
+        <city name="化州" id="10148" level="2" parent_id="10140"/>
+        <city name="惠州" id="10149" level="2" parent_id="10140"/>
+        <city name="江门" id="10150" level="2" parent_id="10140"/>
+        <city name="揭阳" id="10151" level="2" parent_id="10140"/>
+        <city name="茂名" id="10152" level="2" parent_id="10140"/>
+        <city name="梅州" id="10153" level="2" parent_id="10140"/>
+        <city name="清远" id="10154" level="2" parent_id="10140"/>
+        <city name="汕头" id="10155" level="2" parent_id="10140"/>
+        <city name="汕尾" id="10156" level="2" parent_id="10140"/>
+        <city name="韶关" id="10157" level="2" parent_id="10140"/>
+        <city name="深圳" id="10158" level="2" parent_id="10140"/>
+        <city name="阳江" id="10159" level="2" parent_id="10140"/>
+        <city name="云浮" id="10160" level="2" parent_id="10140"/>
+        <city name="湛江" id="10161" level="2" parent_id="10140"/>
+        <city name="肇庆" id="10162" level="2" parent_id="10140"/>
+        <city name="中山" id="10163" level="2" parent_id="10140"/>
+        <city name="珠海" id="10164" level="2" parent_id="10140"/>
+    </province>
+    <province name="广西" id="10165" level="1">
+        <city name="南宁" id="10166" level="2" parent_id="10165"/>
+        <city name="百色" id="10167" level="2" parent_id="10165"/>
+        <city name="北海" id="10168" level="2" parent_id="10165"/>
+        <city name="北流" id="10169" level="2" parent_id="10165"/>
+        <city name="崇左" id="10170" level="2" parent_id="10165"/>
+        <city name="防城港" id="10171" level="2" parent_id="10165"/>
+        <city name="贵港" id="10172" level="2" parent_id="10165"/>
+        <city name="桂林" id="10173" level="2" parent_id="10165"/>
+        <city name="桂平" id="10174" level="2" parent_id="10165"/>
+        <city name="河池" id="10175" level="2" parent_id="10165"/>
+        <city name="贺州" id="10176" level="2" parent_id="10165"/>
+        <city name="来宾" id="10177" level="2" parent_id="10165"/>
+        <city name="柳州" id="10178" level="2" parent_id="10165"/>
+        <city name="钦州" id="10179" level="2" parent_id="10165"/>
+        <city name="梧州" id="10180" level="2" parent_id="10165"/>
+        <city name="宜州" id="10181" level="2" parent_id="10165"/>
+        <city name="玉林" id="10182" level="2" parent_id="10165"/>
+    </province>
+    <province name="贵州" id="10183" level="1">
+        <city name="贵阳" id="10184" level="2" parent_id="10183"/>
+        <city name="安顺" id="10185" level="2" parent_id="10183"/>
+        <city name="毕节" id="10186" level="2" parent_id="10183"/>
+        <city name="都匀" id="10187" level="2" parent_id="10183"/>
+        <city name="凯里" id="10188" level="2" parent_id="10183"/>
+        <city name="六盘水" id="10189" level="2" parent_id="10183"/>
+        <city name="铜仁" id="10190" level="2" parent_id="10183"/>
+        <city name="兴义" id="10191" level="2" parent_id="10183"/>
+        <city name="遵义" id="10192" level="2" parent_id="10183"/>
+    </province>
+    <province name="河北" id="10193" level="1">
+        <city name="石家庄" id="10194" level="2" parent_id="10193"/>
+        <city name="保定" id="10195" level="2" parent_id="10193"/>
+        <city name="泊头" id="10196" level="2" parent_id="10193"/>
+        <city name="沧州" id="10197" level="2" parent_id="10193"/>
+        <city name="承德" id="10198" level="2" parent_id="10193"/>
+        <city name="邯郸" id="10199" level="2" parent_id="10193"/>
+        <city name="河间" id="10200" level="2" parent_id="10193"/>
+        <city name="衡水" id="10201" level="2" parent_id="10193"/>
+        <city name="廊坊" id="10202" level="2" parent_id="10193"/>
+        <city name="秦皇岛" id="10203" level="2" parent_id="10193"/>
+        <city name="任丘" id="10204" level="2" parent_id="10193"/>
+        <city name="唐山" id="10205" level="2" parent_id="10193"/>
+        <city name="邢台" id="10206" level="2" parent_id="10193"/>
+        <city name="张家口" id="10207" level="2" parent_id="10193"/>
+    </province>
+    <province name="河南" id="10208" level="1">
+        <city name="郑州" id="10209" level="2" parent_id="10208"/>
+        <city name="安阳" id="10210" level="2" parent_id="10208"/>
+        <city name="鹤壁" id="10211" level="2" parent_id="10208"/>
+        <city name="济源" id="10212" level="2" parent_id="10208"/>
+        <city name="焦作" id="10213" level="2" parent_id="10208"/>
+        <city name="开封" id="10214" level="2" parent_id="10208"/>
+        <city name="洛阳" id="10215" level="2" parent_id="10208"/>
+        <city name="漯河" id="10216" level="2" parent_id="10208"/>
+        <city name="南阳" id="10217" level="2" parent_id="10208"/>
+        <city name="平顶山" id="10218" level="2" parent_id="10208"/>
+        <city name="濮阳" id="10219" level="2" parent_id="10208"/>
+        <city name="三门峡" id="10220" level="2" parent_id="10208"/>
+        <city name="商丘" id="10221" level="2" parent_id="10208"/>
+        <city name="新乡" id="10222" level="2" parent_id="10208"/>
+        <city name="信阳" id="10223" level="2" parent_id="10208"/>
+        <city name="许昌" id="10224" level="2" parent_id="10208"/>
+        <city name="周口" id="10225" level="2" parent_id="10208"/>
+        <city name="驻马店" id="10226" level="2" parent_id="10208"/>
+    </province>
+    <province name="海南" id="10227" level="1">
+        <city name="海口" id="10228" level="2" parent_id="10227"/>
+        <city name="儋州" id="10229" level="2" parent_id="10227"/>
+        <city name="东方" id="10230" level="2" parent_id="10227"/>
+        <city name="琼海" id="10231" level="2" parent_id="10227"/>
+        <city name="三亚" id="10232" level="2" parent_id="10227"/>
+        <city name="万宁" id="10233" level="2" parent_id="10227"/>
+        <city name="文昌" id="10234" level="2" parent_id="10227"/>
+        <city name="五指山" id="10235" level="2" parent_id="10227"/>
+    </province>
+    <province name="黑龙江" id="10236" level="1">
+        <city name="哈尔滨" id="10237" level="2" parent_id="10236"/>
+        <city name="大庆" id="10238" level="2" parent_id="10236"/>
+        <city name="大兴安岭" id="10239" level="2" parent_id="10236"/>
+        <city name="鹤岗" id="10240" level="2" parent_id="10236"/>
+        <city name="黑河" id="10241" level="2" parent_id="10236"/>
+        <city name="虎林" id="10242" level="2" parent_id="10236"/>
+        <city name="鸡西" id="10243" level="2" parent_id="10236"/>
+        <city name="佳木斯" id="10244" level="2" parent_id="10236"/>
+        <city name="密山" id="10245" level="2" parent_id="10236"/>
+        <city name="牡丹江" id="10246" level="2" parent_id="10236"/>
+        <city name="宁安" id="10247" level="2" parent_id="10236"/>
+        <city name="七台河" id="10248" level="2" parent_id="10236"/>
+        <city name="齐齐哈尔" id="10249" level="2" parent_id="10236"/>
+        <city name="双鸭山" id="10250" level="2" parent_id="10236"/>
+        <city name="绥化" id="10251" level="2" parent_id="10236"/>
+        <city name="五常" id="10252" level="2" parent_id="10236"/>
+        <city name="伊春" id="10253" level="2" parent_id="10236"/>
+    </province>
+    <province name="湖北" id="10254" level="1">
+        <city name="武汉" id="10255" level="2" parent_id="10254"/>
+        <city name="鄂州" id="10256" level="2" parent_id="10254"/>
+        <city name="恩施" id="10257" level="2" parent_id="10254"/>
+        <city name="黄冈" id="10258" level="2" parent_id="10254"/>
+        <city name="黄石" id="10259" level="2" parent_id="10254"/>
+        <city name="荆门" id="10260" level="2" parent_id="10254"/>
+        <city name="荆州" id="10261" level="2" parent_id="10254"/>
+        <city name="潜江" id="10262" level="2" parent_id="10254"/>
+        <city name="十堰" id="10263" level="2" parent_id="10254"/>
+        <city name="随州" id="10264" level="2" parent_id="10254"/>
+        <city name="天门" id="10265" level="2" parent_id="10254"/>
+        <city name="仙桃" id="10266" level="2" parent_id="10254"/>
+        <city name="咸宁" id="10267" level="2" parent_id="10254"/>
+        <city name="襄樊" id="10268" level="2" parent_id="10254"/>
+        <city name="孝感" id="10269" level="2" parent_id="10254"/>
+        <city name="宜昌" id="10270" level="2" parent_id="10254"/>
+    </province>
+    <province name="湖南" id="10271" level="1">
+        <city name="长沙" id="10272" level="2" parent_id="10271"/>
+        <city name="常德" id="10273" level="2" parent_id="10271"/>
+        <city name="郴州" id="10274" level="2" parent_id="10271"/>
+        <city name="衡阳" id="10275" level="2" parent_id="10271"/>
+        <city name="怀化" id="10276" level="2" parent_id="10271"/>
+        <city name="吉首" id="10277" level="2" parent_id="10271"/>
+        <city name="耒阳" id="10278" level="2" parent_id="10271"/>
+        <city name="冷水江" id="10279" level="2" parent_id="10271"/>
+        <city name="娄底" id="10280" level="2" parent_id="10271"/>
+        <city name="韶山" id="10281" level="2" parent_id="10271"/>
+        <city name="邵阳" id="10282" level="2" parent_id="10271"/>
+        <city name="湘潭" id="10283" level="2" parent_id="10271"/>
+        <city name="湘乡" id="10284" level="2" parent_id="10271"/>
+        <city name="益阳" id="10285" level="2" parent_id="10271"/>
+        <city name="永州" id="10286" level="2" parent_id="10271"/>
+        <city name="岳阳" id="10287" level="2" parent_id="10271"/>
+        <city name="张家界" id="10288" level="2" parent_id="10271"/>
+        <city name="株州" id="10289" level="2" parent_id="10271"/>
+    </province>
+    <province name="吉林" id="10290" level="1">
+        <city name="长春" id="10291" level="2" parent_id="10290"/>
+        <city name="白城" id="10292" level="2" parent_id="10290"/>
+        <city name="白山" id="10293" level="2" parent_id="10290"/>
+        <city name="珲春" id="10294" level="2" parent_id="10290"/>
+        <city name="吉林" id="10295" level="2" parent_id="10290"/>
+        <city name="辽源" id="10296" level="2" parent_id="10290"/>
+        <city name="龙井" id="10297" level="2" parent_id="10290"/>
+        <city name="舒兰" id="10298" level="2" parent_id="10290"/>
+        <city name="四平" id="10299" level="2" parent_id="10290"/>
+        <city name="松原" id="10300" level="2" parent_id="10290"/>
+        <city name="通化" id="10301" level="2" parent_id="10290"/>
+        <city name="延边" id="10302" level="2" parent_id="10290"/>
+    </province>
+    <province name="江苏" id="10303" level="1">
+        <city name="南京" id="10304" level="2" parent_id="10303"/>
+        <city name="常州" id="10305" level="2" parent_id="10303"/>
+        <city name="高邮" id="10306" level="2" parent_id="10303"/>
+        <city name="淮安" id="10307" level="2" parent_id="10303"/>
+        <city name="连云港" id="10308" level="2" parent_id="10303"/>
+        <city name="南通" id="10309" level="2" parent_id="10303"/>
+        <city name="苏州" id="10310" level="2" parent_id="10303"/>
+        <city name="宿迁" id="10311" level="2" parent_id="10303"/>
+        <city name="太仓" id="10312" level="2" parent_id="10303"/>
+        <city name="泰州" id="10313" level="2" parent_id="10303"/>
+        <city name="无锡" id="10314" level="2" parent_id="10303"/>
+        <city name="新沂" id="10315" level="2" parent_id="10303"/>
+        <city name="徐州" id="10316" level="2" parent_id="10303"/>
+        <city name="盐城" id="10317" level="2" parent_id="10303"/>
+        <city name="扬州" id="10318" level="2" parent_id="10303"/>
+        <city name="镇江" id="10319" level="2" parent_id="10303"/>
+    </province>
+    <province name="江西" id="10320" level="1">
+        <city name="南昌" id="10321" level="2" parent_id="10320"/>
+        <city name="抚州" id="10322" level="2" parent_id="10320"/>
+        <city name="赣州" id="10323" level="2" parent_id="10320"/>
+        <city name="吉安" id="10324" level="2" parent_id="10320"/>
+        <city name="景德镇" id="10325" level="2" parent_id="10320"/>
+        <city name="九江" id="10326" level="2" parent_id="10320"/>
+        <city name="萍乡" id="10327" level="2" parent_id="10320"/>
+        <city name="上饶" id="10328" level="2" parent_id="10320"/>
+        <city name="新余" id="10329" level="2" parent_id="10320"/>
+        <city name="宜春" id="10330" level="2" parent_id="10320"/>
+        <city name="鹰潭" id="10331" level="2" parent_id="10320"/>
+    </province>
+    <province name="辽宁" id="10332" level="1">
+        <city name="沈阳" id="10333" level="2" parent_id="10332"/>
+        <city name="鞍山" id="10334" level="2" parent_id="10332"/>
+        <city name="本溪" id="10335" level="2" parent_id="10332"/>
+        <city name="朝阳" id="10336" level="2" parent_id="10332"/>
+        <city name="大连" id="10337" level="2" parent_id="10332"/>
+        <city name="丹东" id="10338" level="2" parent_id="10332"/>
+        <city name="抚顺" id="10339" level="2" parent_id="10332"/>
+        <city name="阜新" id="10340" level="2" parent_id="10332"/>
+        <city name="葫芦岛" id="10341" level="2" parent_id="10332"/>
+        <city name="锦州" id="10342" level="2" parent_id="10332"/>
+        <city name="辽阳" id="10343" level="2" parent_id="10332"/>
+        <city name="盘锦" id="10344" level="2" parent_id="10332"/>
+        <city name="铁岭" id="10345" level="2" parent_id="10332"/>
+        <city name="营口" id="10346" level="2" parent_id="10332"/>
+    </province>
+    <province name="内蒙古" id="10347" level="1">
+        <city name="呼和浩特" id="10348" level="2" parent_id="10347"/>
+        <city name="阿拉善盟" id="10349" level="2" parent_id="10347"/>
+        <city name="巴彦淖尔盟" id="10350" level="2" parent_id="10347"/>
+        <city name="包头" id="10351" level="2" parent_id="10347"/>
+        <city name="赤峰" id="10352" level="2" parent_id="10347"/>
+        <city name="鄂尔多斯" id="10353" level="2" parent_id="10347"/>
+        <city name="呼伦贝尔" id="10354" level="2" parent_id="10347"/>
+        <city name="通辽" id="10355" level="2" parent_id="10347"/>
+        <city name="乌海" id="10356" level="2" parent_id="10347"/>
+        <city name="乌兰察布盟" id="10357" level="2" parent_id="10347"/>
+        <city name="锡林郭勒盟" id="10358" level="2" parent_id="10347"/>
+        <city name="兴安盟" id="10359" level="2" parent_id="10347"/>
+    </province>
+    <province name="宁夏" id="10360" level="1">
+        <city name="银川" id="10361" level="2" parent_id="10360"/>
+        <city name="固原" id="10362" level="2" parent_id="10360"/>
+        <city name="石嘴山" id="10363" level="2" parent_id="10360"/>
+        <city name="吴忠" id="10364" level="2" parent_id="10360"/>
+        <city name="中卫" id="10365" level="2" parent_id="10360"/>
+    </province>
+    <province name="青海" id="10366" level="1">
+        <city name="西宁" id="10367" level="2" parent_id="10366"/>
+        <city name="果洛" id="10368" level="2" parent_id="10366"/>
+        <city name="海北" id="10369" level="2" parent_id="10366"/>
+        <city name="海东" id="10370" level="2" parent_id="10366"/>
+        <city name="海南" id="10371" level="2" parent_id="10366"/>
+        <city name="海西" id="10372" level="2" parent_id="10366"/>
+        <city name="黄南" id="10373" level="2" parent_id="10366"/>
+        <city name="玉树" id="10374" level="2" parent_id="10366"/>
+    </province>
+    <province name="山东" id="10375" level="1">
+        <city name="济南" id="10376" level="2" parent_id="10375"/>
+        <city name="滨州" id="10377" level="2" parent_id="10375"/>
+        <city name="德州" id="10378" level="2" parent_id="10375"/>
+        <city name="东营" id="10379" level="2" parent_id="10375"/>
+        <city name="肥城" id="10380" level="2" parent_id="10375"/>
+        <city name="海阳" id="10381" level="2" parent_id="10375"/>
+        <city name="菏泽" id="10382" level="2" parent_id="10375"/>
+        <city name="济宁" id="10383" level="2" parent_id="10375"/>
+        <city name="莱芜" id="10384" level="2" parent_id="10375"/>
+        <city name="莱阳" id="10385" level="2" parent_id="10375"/>
+        <city name="聊城" id="10386" level="2" parent_id="10375"/>
+        <city name="临沂" id="10387" level="2" parent_id="10375"/>
+        <city name="平度" id="10388" level="2" parent_id="10375"/>
+        <city name="青岛" id="10389" level="2" parent_id="10375"/>
+        <city name="青州" id="10390" level="2" parent_id="10375"/>
+        <city name="日照" id="10391" level="2" parent_id="10375"/>
+        <city name="泰安" id="10392" level="2" parent_id="10375"/>
+        <city name="威海" id="10393" level="2" parent_id="10375"/>
+        <city name="潍坊" id="10394" level="2" parent_id="10375"/>
+        <city name="烟台" id="10395" level="2" parent_id="10375"/>
+        <city name="枣庄" id="10396" level="2" parent_id="10375"/>
+        <city name="章丘" id="10397" level="2" parent_id="10375"/>
+        <city name="淄博" id="10398" level="2" parent_id="10375"/>
+    </province>
+    <province name="山西" id="10399" level="1">
+        <city name="太原" id="10400" level="2" parent_id="10399"/>
+        <city name="长治" id="10401" level="2" parent_id="10399"/>
+        <city name="大同" id="10402" level="2" parent_id="10399"/>
+        <city name="晋城" id="10403" level="2" parent_id="10399"/>
+        <city name="晋中" id="10404" level="2" parent_id="10399"/>
+        <city name="临汾" id="10405" level="2" parent_id="10399"/>
+        <city name="吕梁" id="10406" level="2" parent_id="10399"/>
+        <city name="朔州" id="10407" level="2" parent_id="10399"/>
+        <city name="忻州" id="10408" level="2" parent_id="10399"/>
+        <city name="阳泉" id="10409" level="2" parent_id="10399"/>
+        <city name="运城" id="10410" level="2" parent_id="10399"/>
+    </province>
+    <province name="陕西" id="10411" level="1">
+        <city name="西安" id="10412" level="2" parent_id="10411"/>
+        <city name="安康" id="10413" level="2" parent_id="10411"/>
+        <city name="宝鸡" id="10414" level="2" parent_id="10411"/>
+        <city name="汉中" id="10415" level="2" parent_id="10411"/>
+        <city name="商洛" id="10416" level="2" parent_id="10411"/>
+        <city name="铜川" id="10417" level="2" parent_id="10411"/>
+        <city name="渭南" id="10418" level="2" parent_id="10411"/>
+        <city name="咸阳" id="10419" level="2" parent_id="10411"/>
+        <city name="兴平" id="10420" level="2" parent_id="10411"/>
+        <city name="延安" id="10421" level="2" parent_id="10411"/>
+        <city name="榆林" id="10422" level="2" parent_id="10411"/>
+    </province>
+    <province name="四川" id="10423" level="1">
+        <city name="成都" id="10424" level="2" parent_id="10423"/>
+        <city name="阿坝" id="10425" level="2" parent_id="10423"/>
+        <city name="巴中" id="10426" level="2" parent_id="10423"/>
+        <city name="崇州" id="10427" level="2" parent_id="10423"/>
+        <city name="达州" id="10428" level="2" parent_id="10423"/>
+        <city name="大邑" id="10429" level="2" parent_id="10423"/>
+        <city name="德阳" id="10430" level="2" parent_id="10423"/>
+        <city name="都江堰" id="10431" level="2" parent_id="10423"/>
+        <city name="峨眉山" id="10432" level="2" parent_id="10423"/>
+        <city name="甘孜" id="10433" level="2" parent_id="10423"/>
+        <city name="广安" id="10434" level="2" parent_id="10423"/>
+        <city name="广元" id="10435" level="2" parent_id="10423"/>
+        <city name="江油" id="10436" level="2" parent_id="10423"/>
+        <city name="金堂" id="10437" level="2" parent_id="10423"/>
+        <city name="乐山" id="10438" level="2" parent_id="10423"/>
+        <city name="泸州" id="10439" level="2" parent_id="10423"/>
+        <city name="眉山" id="10440" level="2" parent_id="10423"/>
+        <city name="绵阳" id="10441" level="2" parent_id="10423"/>
+        <city name="内江" id="10442" level="2" parent_id="10423"/>
+        <city name="南充" id="10443" level="2" parent_id="10423"/>
+        <city name="攀枝花" id="10444" level="2" parent_id="10423"/>
+        <city name="遂宁" id="10445" level="2" parent_id="10423"/>
+        <city name="西昌" id="10446" level="2" parent_id="10423"/>
+        <city name="雅安" id="10447" level="2" parent_id="10423"/>
+        <city name="宜宾" id="10448" level="2" parent_id="10423"/>
+        <city name="资阳" id="10449" level="2" parent_id="10423"/>
+        <city name="自贡" id="10450" level="2" parent_id="10423"/>
+    </province>
+    <province name="西藏" id="10451" level="1">
+        <city name="拉萨" id="10452" level="2" parent_id="10451"/>
+        <city name="阿里" id="10453" level="2" parent_id="10451"/>
+        <city name="昌都" id="10454" level="2" parent_id="10451"/>
+        <city name="林芝" id="10455" level="2" parent_id="10451"/>
+        <city name="那曲" id="10456" level="2" parent_id="10451"/>
+        <city name="日喀则" id="10457" level="2" parent_id="10451"/>
+        <city name="山南" id="10458" level="2" parent_id="10451"/>
+    </province>
+    <province name="新疆" id="10459" level="1">
+        <city name="乌鲁木齐" id="10460" level="2" parent_id="10459"/>
+        <city name="阿克苏" id="10461" level="2" parent_id="10459"/>
+        <city name="阿拉尔" id="10462" level="2" parent_id="10459"/>
+        <city name="阿图什" id="10463" level="2" parent_id="10459"/>
+        <city name="博乐" id="10464" level="2" parent_id="10459"/>
+        <city name="昌吉" id="10465" level="2" parent_id="10459"/>
+        <city name="哈密" id="10466" level="2" parent_id="10459"/>
+        <city name="和田" id="10467" level="2" parent_id="10459"/>
+        <city name="喀什" id="10468" level="2" parent_id="10459"/>
+        <city name="克拉玛依" id="10469" level="2" parent_id="10459"/>
+        <city name="库尔勒" id="10470" level="2" parent_id="10459"/>
+        <city name="石河子" id="10471" level="2" parent_id="10459"/>
+        <city name="图木舒克" id="10472" level="2" parent_id="10459"/>
+        <city name="吐鲁番" id="10473" level="2" parent_id="10459"/>
+        <city name="五家渠" id="10474" level="2" parent_id="10459"/>
+        <city name="伊宁" id="10475" level="2" parent_id="10459"/>
+    </province>
+    <province name="云南" id="10476" level="1">
+        <city name="昆明" id="10477" level="2" parent_id="10476"/>
+        <city name="保山" id="10478" level="2" parent_id="10476"/>
+        <city name="楚雄" id="10479" level="2" parent_id="10476"/>
+        <city name="大理" id="10480" level="2" parent_id="10476"/>
+        <city name="德宏" id="10481" level="2" parent_id="10476"/>
+        <city name="迪庆" id="10482" level="2" parent_id="10476"/>
+        <city name="个旧" id="10483" level="2" parent_id="10476"/>
+        <city name="丽江" id="10484" level="2" parent_id="10476"/>
+        <city name="临沧" id="10485" level="2" parent_id="10476"/>
+        <city name="怒江" id="10486" level="2" parent_id="10476"/>
+        <city name="曲靖" id="10487" level="2" parent_id="10476"/>
+        <city name="思茅" id="10488" level="2" parent_id="10476"/>
+        <city name="文山" id="10489" level="2" parent_id="10476"/>
+        <city name="西双版纳" id="10490" level="2" parent_id="10476"/>
+        <city name="玉溪" id="10491" level="2" parent_id="10476"/>
+        <city name="昭通" id="10492" level="2" parent_id="10476"/>
+    </province>
+    <province name="浙江" id="10493" level="1">
+        <city name="杭州" id="10494" level="2" parent_id="10493"/>
+        <city name="北仑" id="10495" level="2" parent_id="10493"/>
+        <city name="慈溪" id="10496" level="2" parent_id="10493"/>
+        <city name="奉化" id="10497" level="2" parent_id="10493"/>
+        <city name="湖州" id="10498" level="2" parent_id="10493"/>
+        <city name="嘉兴" id="10499" level="2" parent_id="10493"/>
+        <city name="金华" id="10500" level="2" parent_id="10493"/>
+        <city name="丽水" id="10501" level="2" parent_id="10493"/>
+        <city name="临海" id="10502" level="2" parent_id="10493"/>
+        <city name="宁波" id="10503" level="2" parent_id="10493"/>
+        <city name="宁海" id="10504" level="2" parent_id="10493"/>
+        <city name="衢州" id="10505" level="2" parent_id="10493"/>
+        <city name="三门" id="10506" level="2" parent_id="10493"/>
+        <city name="绍兴" id="10507" level="2" parent_id="10493"/>
+        <city name="台州" id="10508" level="2" parent_id="10493"/>
+        <city name="天台" id="10509" level="2" parent_id="10493"/>
+        <city name="温岭" id="10510" level="2" parent_id="10493"/>
+        <city name="温州" id="10511" level="2" parent_id="10493"/>
+        <city name="仙居" id="10512" level="2" parent_id="10493"/>
+        <city name="象山" id="10513" level="2" parent_id="10493"/>
+        <city name="义乌" id="10514" level="2" parent_id="10493"/>
+        <city name="余姚" id="10515" level="2" parent_id="10493"/>
+        <city name="舟山" id="10516" level="2" parent_id="10493"/>
+    </province>
+    <province name="香港" id="10517" level="1">
+        <city name="香港" id="10518" level="2" parent_id="10517"/>
+    </province>
+    <province name="台湾" id="10519" level="1">
+        <city name="台北" id="10520" level="2" parent_id="10519"/>
+        <city name="高雄" id="10521" level="2" parent_id="10519"/>
+        <city name="台南" id="10522" level="2" parent_id="10519"/>
+        <city name="台中" id="10523" level="2" parent_id="10519"/>
+    </province>
+    <province name="澳门" id="10524" level="1">
+        <city name="澳门" id="10525" level="2" parent_id="10524"/>
+    </province>
+    <province name="钓鱼岛" id="10526" level="1">
+        <city name="钓鱼岛" id="10527" level="2" parent_id="10526"/>
+    </province>
+</root>
