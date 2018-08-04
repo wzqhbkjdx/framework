@@ -1,11 +1,9 @@
-package cent.news.com.newscent.view;
+package cent.news.com.newscent.view.pulldown;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -19,16 +17,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cent.news.com.newscent.R;
-import cent.news.com.newscent.view.pulldown.IHeaderState;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrUIHandler;
 import in.srain.cube.views.ptr.indicator.PtrIndicator;
 
-public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
+public class NCDefaultHeader extends FrameLayout implements PtrUIHandler {
 
     private final static String											KEY_SharedPreferences	= "cube_ptr_classic_last_update";
 
-    @SuppressLint("SimpleDateFormat") private static SimpleDateFormat   sDataFormat				= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    @SuppressLint("SimpleDateFormat") private static SimpleDateFormat sDataFormat				= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private int															mRotateAniTime			= 150;
 
@@ -37,8 +34,6 @@ public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
     private RotateAnimation												mReverseFlipAnimation;
 
     private TextView mTitleTextView;
-
-    private TextView													tv_tip;
 
     private View mRotateView;
 
@@ -52,25 +47,22 @@ public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
 
     private LastUpdateTimeUpdater										mLastUpdateTimeUpdater	= new LastUpdateTimeUpdater();
 
-    private IHeaderState headerState;
+    private IHeaderState												headerState;
 
-
-
-    public NCNewsListHeader(@NonNull Context context) {
+    public NCDefaultHeader(Context context) {
         super(context);
         initViews(null);
     }
 
-    public NCNewsListHeader(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public NCDefaultHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
         initViews(attrs);
     }
 
-    public NCNewsListHeader(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public NCDefaultHeader(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
         initViews(attrs);
     }
-
 
     protected void initViews(AttributeSet attrs) {
         TypedArray arr = getContext().obtainStyledAttributes(attrs, R.styleable.PtrClassicHeader, 0, 0);
@@ -78,10 +70,9 @@ public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
             mRotateAniTime = arr.getInt(R.styleable.PtrClassicHeader_ptr_rotate_ani_time, mRotateAniTime);
         }
         buildAnimation();
-        View header = LayoutInflater.from(getContext()).inflate(R.layout.pull_hna_header_discover, this);
+        View header = LayoutInflater.from(getContext()).inflate(R.layout.pull_hna_header, this);
 
         mRotateView = header.findViewById(R.id.ptr_classic_header_rotate_view);
-        tv_tip = (TextView) header.findViewById(R.id.tv_tip);
 
         mTitleTextView = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_title);
         mProgressBar = header.findViewById(R.id.ptr_classic_header_rotate_view_progressbar);
@@ -89,21 +80,17 @@ public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
         resetView();
     }
 
-    public TextView getTip() {
-        return tv_tip;
-    }
-
     @Override protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (mLastUpdateTimeUpdater != null) {
             mLastUpdateTimeUpdater.stop();
         }
-        if (headerState != null) {
+        if(headerState != null){
             headerState.onComplete();
         }
     }
 
-    public void setHeaderState(IHeaderState headerState) {
+    public void setHeaderState(IHeaderState headerState){
         this.headerState = headerState;
     }
 
@@ -187,7 +174,7 @@ public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
         mTitleTextView.setText(R.string.pull_loading);
 
         mLastUpdateTimeUpdater.stop();
-        if (headerState != null) {
+        if(headerState != null){
             headerState.onStart();
         }
     }
@@ -206,7 +193,7 @@ public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
             mLastUpdateTime = new Date().getTime();
             sharedPreferences.edit().putLong(mLastUpdateTimeKey, mLastUpdateTime).apply();
         }
-        if (headerState != null) {
+        if(headerState != null){
             headerState.onComplete();
         }
     }
@@ -314,4 +301,7 @@ public class NCNewsListHeader extends FrameLayout implements PtrUIHandler {
             }
         }
     }
+
+
+
 }

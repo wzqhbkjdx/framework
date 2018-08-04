@@ -78,6 +78,7 @@ public class NCDefaultImageView extends FitWidthImageView {
     }
 
     public void load(String url) {
+        //String urlTmp = "https://img.zcool.cn/community/01b34f58eee017a8012049efcfaf50.jpg@1280w_1l_2o_100sh.webp";
         //Glide.with(getContext()).load(url).asBitmap().placeholder(R.drawable.home_img_default).centerCrop().into(this);
         Glide.with(getContext()).load(url).into(this);
     }

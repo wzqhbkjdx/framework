@@ -1,6 +1,7 @@
 package cent.news.com.newscent.news;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,6 +14,7 @@ import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.baseframe.view.common.BaseRefreshListener;
 import cent.news.com.newscent.R;
+import cent.news.com.newscent.helper.NCHelper;
 import cent.news.com.newscent.view.CenterLayoutManager;
 import cent.news.com.newscent.view.NCNewsListHeader;
 
@@ -30,7 +32,9 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
 
     @BindView(R.id.tv_tip) public TextView			tvBizTip;
 
-    TextView										tvTip;
+    private CountDownTimer mCaptchaCountDownTimer;
+
+    private TextView tvTip;
 
     public static NewsTabFragment getInstance(int channelID, String alias, int attval, String title, int type) {
         Bundle args = new Bundle();
@@ -100,12 +104,9 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         ncFrameLayout.addPtrUIHandler(ncNewsListHeader);
     }
 
-
-    public void load() {
-        if(biz().channelID == 1) {
-            swipeRefreshLayout().setRefreshing(true);
-        }
-        biz().getNewsList(3, 10, "1,2,3", 0);
+    int newsId = 1;
+    private void load() {
+        biz().getNewsList(3, 10, String.valueOf(newsId++), 0);
     }
 
 
@@ -116,12 +117,44 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
 
     @Override
     public boolean onScrolledToBottom() {
+
         return false;
     }
 
     @Override
     public void onRefresh() {
+        load();
+    }
 
+    public void showTip(int count) {
+        if (mCaptchaCountDownTimer != null) {
+            return;
+        }
+
+        swipeRefreshLayout().setEnabled(false);
+
+        NCHelper.pull().autoRefresh(ncFrameLayout);
+
+        tvTip.setText(count != 0 ? tvTip.getContext().getString(R.string.discover_tip, count) : tvTip.getContext().getString(R.string.discover_tip_null, count));
+
+        mCaptchaCountDownTimer = new CountDownTimer(3000, 1000) {
+
+            @Override public void onTick(long l) {}
+
+            @Override public void onFinish() {
+                if (ncFrameLayout == null) {
+                    mCaptchaCountDownTimer = null;
+                    return;
+                }
+                // rlTip.setVisibility(View.GONE);
+                // rlTip.setAnimation(AnimationUtils.loadAnimation(getContext(),
+                // R.anim.anim_mask_out));
+                swipeRefreshLayout().setEnabled(true);
+                ncFrameLayout.refreshComplete();
+                mCaptchaCountDownTimer = null;
+            }
+        };
+        mCaptchaCountDownTimer.start();
     }
 }
 

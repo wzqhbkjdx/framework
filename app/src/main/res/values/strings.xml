@@ -14,9 +14,10 @@
     <string name="load_more">正在加载...</string>
     <string name="load_more_not_date">已经到底，客官明天再来哟～</string>
     <string name="load_more_not_http">点击加载更多</string>
-    <string name="discover_tip">为你推荐了%d条资讯</string>
+    <string name="discover_tip">为您推荐了%d条资讯</string>
     <string name="pull">下拉刷新</string>
     <string name="pull_loading">加载中</string>
     <string name="pull_update">释放更新</string>
     <string name="please_check_network">网络未连接，请检查网络</string>
+    <string name="discover_tip_null">全是最新内容啦</string>
 </resources>

@@ -34,6 +34,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:logoSize="39.1dp"
+                android:src="@drawable/home_img_default"
                 tools:src="@mipmap/ic_launcher" />
 
             <LinearLayout

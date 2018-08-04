@@ -6,12 +6,16 @@ import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.modules.BaseModuleManage;
 import cent.news.com.newscent.db.GreenDAOManager;
 import cent.news.com.newscent.view.NCToast;
+import cent.news.com.newscent.view.pulldown.PullManage;
 
 public class NCModuleManage extends BaseModuleManage {
 
     private NCToast			hnaToast;				// 自定义toast
 
     private Typeface			typeface;				// 字体
+
+    private PullManage			pullManage;				// 下拉刷新
+
 
 
     @Override
@@ -40,6 +44,18 @@ public class NCModuleManage extends BaseModuleManage {
             }
         }
         return typeface;
+    }
+
+    public PullManage getPullManage() {
+        if (pullManage == null) {
+            synchronized (PullManage.class) {
+                if (pullManage == null) {
+                    pullManage = new PullManage();
+                }
+            }
+        }
+
+        return pullManage;
     }
 
 }

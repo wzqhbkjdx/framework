@@ -12,6 +12,7 @@ import cent.news.com.baseframe.view.adapter.recyclerView.BaseHolder;
 import cent.news.com.baseframe.view.adapter.recyclerView.BaseRVAdapter;
 import cent.news.com.newscent.R;
 import cent.news.com.newscent.common.APPUtils;
+import cent.news.com.newscent.common.AppDateUtil;
 import cent.news.com.newscent.common.LoadMoreHolder;
 import cent.news.com.newscent.common.LoadMoreOnClick;
 import cent.news.com.newscent.common.LoadMoreUtils;
@@ -120,6 +121,9 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
         @BindView(R.id.tv_update_time)
         TextView tvUpdateTime;	// 更新时间
 
+        @BindView(R.id.tv_name)
+        TextView newsSource;
+
         public OneHolder(View itemView) {
             super(itemView);
         }
@@ -132,6 +136,9 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
             sivImg.getLayoutParams().width = width;
             sivImg.getLayoutParams().height = (int) (width / 1.33);
             sivImg.load(newsBean.getLogoImageUrl());
+            tvUpdateTime.setText(AppDateUtil.DateCompare(
+                    AppDateUtil.changeDateStr2TimeMills(newsBean.getPublishTime()), System.currentTimeMillis()));
+            newsSource.setText(newsBean.getSource());
         }
     }
 

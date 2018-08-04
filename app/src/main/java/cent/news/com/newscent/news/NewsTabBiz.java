@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cent.news.com.baseframe.core.BaseBiz;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.channel.NewsHttp;
@@ -14,6 +17,9 @@ import sky.Background;
 import sky.BackgroundType;
 
 public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
+
+    private List<NewsListModel.ResultBean.NewsBean> adapterList;
+    List<NewsListModel.ResultBean.NewsBean> tmpList;
 
     private String TAG = this.getClass().getSimpleName();
 
@@ -38,6 +44,8 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
         attval = bundle.getInt(NewsTabFragment.ATTVAL);
         title = bundle.getString(NewsTabFragment.TITLE);
         type = bundle.getInt(NewsTabFragment.TYPE);
+        adapterList = new ArrayList<>(0);
+        tmpList = new ArrayList<>(0);
     }
 
     @Background(BackgroundType.HTTP)
@@ -63,13 +71,32 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
         NewsListModel model = httpBody(call);
 
-        if(model.getResultCode() == 200) {
-            ui().swipeRefreshLayout().setRefreshing(false);
-            ui().setListData(model.getResult().getNews());
-        }
+        ui().swipeRefreshLayout().setRefreshing(false);
 
-        XLogUtil.getInstance().d(TAG,"news list size: " + model.getResult().getNews().size());
-        XLogUtil.getInstance().d(TAG,"getNewsList complete");
+        if(model.getResultCode() == 200) {
+            if(adapterList == null) {
+                adapterList = new ArrayList<>(0);
+            }
+
+            if(tmpList == null) {
+                tmpList = new ArrayList<>(0);
+            }
+
+            if(model.getResult().getNews().size() > 0) {
+                tmpList.addAll(adapterList);
+                adapterList.clear();
+                adapterList.addAll(model.getResult().getNews());
+                adapterList.addAll(tmpList);
+                tmpList.clear();
+                ui().showTip(model.getResult().getNews().size());
+            } else {
+                ui().showTip(0);
+            }
+
+            ui().setListData(adapterList);
+        } else {
+
+        }
 
     }
 
