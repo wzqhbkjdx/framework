@@ -14,6 +14,7 @@ import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.baseframe.view.common.BaseRefreshListener;
 import cent.news.com.newscent.R;
+import cent.news.com.newscent.common.LoadMoreState;
 import cent.news.com.newscent.helper.NCHelper;
 import cent.news.com.newscent.view.CenterLayoutManager;
 import cent.news.com.newscent.view.NCNewsListHeader;
@@ -104,9 +105,8 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         ncFrameLayout.addPtrUIHandler(ncNewsListHeader);
     }
 
-    int newsId = 1;
     private void load() {
-        biz().getNewsList(3, 10, String.valueOf(newsId++), 0);
+        biz().getNewsList(3, 10, "1,2,3,4,5,6,7,8,9,10", 0);
     }
 
 
@@ -117,13 +117,16 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
 
     @Override
     public boolean onScrolledToBottom() {
-
+        setLoadMoreState(LoadMoreState.LOADING);
+        biz().loadMoreData(3, 10, "1,2,3,4,5,6,7,8,9,10", 0);
         return false;
     }
 
+    int newsId = 1;
+
     @Override
     public void onRefresh() {
-        load();
+        biz().getNewsList(1, 10, String.valueOf(newsId++), 0);
     }
 
     public void showTip(int count) {
@@ -155,6 +158,13 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
             }
         };
         mCaptchaCountDownTimer.start();
+    }
+
+    public void setLoadMoreState(int state) {
+        int position = adapter().getItemCount() - 1;
+        NewsListAdapter discoverTabAdapter = adapter();
+        discoverTabAdapter.setState(state);
+        discoverTabAdapter.notifyItemChanged(position);
     }
 }
 

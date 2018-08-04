@@ -37,7 +37,7 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
         builder.layoutId(R.layout.fragment_news_layout);
-        builder.tintFitsSystem(false);
+        builder.tintFitsSystem(true);
 
         //设置返回为null的界面
 

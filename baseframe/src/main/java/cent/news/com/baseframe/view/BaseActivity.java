@@ -246,6 +246,22 @@ public abstract class BaseActivity<B extends IBaseBiz> extends AppCompatActivity
     }
 
     @Override
+    public void finish() {
+        super.finish();
+        if(finishIn != -999 && finishOut != -999) {
+            overridePendingTransition(finishIn, finishOut);
+        }
+    }
+
+    private int finishIn = -999;
+    private int finishOut = -999;
+
+    protected void setFinishAnim(int finishIn, int finishOut) {
+        this.finishIn = finishIn;
+        this.finishOut = finishOut;
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if(!isFinish) {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cent.news.com.baseframe.core.BaseBiz;
+import cent.news.com.newscent.common.LoadMoreState;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.channel.NewsHttp;
 import okhttp3.MediaType;
@@ -100,7 +101,47 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
     }
 
+    @Background(BackgroundType.HTTP)
+    public void loadMoreData(int action, int pageSize, String newsIds, int type) {
+        XLogUtil.getInstance().d(TAG,"loadMoreData");
 
+        NewsListRequestModel requestModel = new NewsListRequestModel();
+
+        requestModel.action = action; // 1-down 2-up 3-init
+        requestModel.devicenum = "";
+        requestModel.channelID = channelID; //推荐频道
+        requestModel.latitude = 0.0;
+        requestModel.longitude = 0.0;
+        requestModel.pageSize = pageSize;
+        requestModel.newsids = newsIds; //缓存文章重新获取
+        requestModel.type = type; //0-普通 1-视频 2-地方
+        requestModel.dt = 3; //设备类型 2-iphone 3-android
+        requestModel.version = "1.0.1";
+
+        RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new Gson().toJson(requestModel));
+
+        Call<NewsListModel> call = http(NewsHttp.class).getNewsList(body);
+
+        NewsListModel model = httpBody(call);
+
+        ui().swipeRefreshLayout().setRefreshing(false);
+
+        if(model.getResultCode() == 200) {
+            if(adapterList == null) {
+                adapterList = new ArrayList<>(0);
+            }
+
+            if(model.getResult().getNews().size() > 0) {
+                adapterList.addAll(model.getResult().getNews());
+                ui().setListData(adapterList);
+            } else {
+                ui().setLoadMoreState(LoadMoreState.NOT_DATA);
+            }
+
+        } else {
+
+        }
+    }
 
 
 

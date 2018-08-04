@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity<MainBiz> implements Navigation.On
         builder.layoutId(R.layout.activity_main);
         builder.tintIs(true);
         builder.tintColor(R.color.transparent);
-        builder.tintFitsSystem(false);
+        builder.tintFitsSystem(true);
         return builder;
     }
 

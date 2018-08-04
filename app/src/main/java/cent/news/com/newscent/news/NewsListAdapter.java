@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.baseframe.view.adapter.recyclerView.BaseHolder;
 import cent.news.com.baseframe.view.adapter.recyclerView.BaseRVAdapter;
@@ -17,6 +18,7 @@ import cent.news.com.newscent.common.LoadMoreHolder;
 import cent.news.com.newscent.common.LoadMoreOnClick;
 import cent.news.com.newscent.common.LoadMoreUtils;
 import cent.news.com.newscent.view.NCDefaultImageView;
+import cent.news.com.newscent.webview.WebViewActivity;
 
 public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.NewsBean, BaseHolder> {
 
@@ -53,7 +55,6 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
     public BaseHolder newLoadMoreHolder(ViewGroup viewGroup, int type) {
         final LoadMoreHolder loadMoreHolder = LoadMoreUtils.getHolder(viewGroup);
         loadMoreHolder.setLoadMoreOnClick(new LoadMoreOnClick() {
-
             @Override public void onNotHttp() {
                 //NewsTabFragment tabFragment = fragment();
                 //tabFragment.biz().setAutoLoadNext(false, -1);
@@ -140,9 +141,19 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
                     AppDateUtil.changeDateStr2TimeMills(newsBean.getPublishTime()), System.currentTimeMillis()));
             newsSource.setText(newsBean.getSource());
         }
+
+        @OnClick(R.id.constrain_item) public void onItem(View view) {
+            NewsListModel.ResultBean.NewsBean newsBean = getItem(getAdapterPosition());
+            if (newsBean == null) {
+                return;
+            }
+            gotoWeb(newsBean, getAdapterPosition(), NewsListAdapter.this, 1);
+        }
     }
 
-
+    public static void gotoWeb(NewsListModel.ResultBean.NewsBean newsBean, int position, BaseRVAdapter adapter, int state) {
+        WebViewActivity.intent(newsBean.getLinkUrl());
+    }
 }
 
 
