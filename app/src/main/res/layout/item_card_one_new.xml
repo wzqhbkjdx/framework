@@ -51,6 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:ellipsize="end"
+                    android:textSize="15sp"
                     android:maxLines="2"
                     tools:text="标题第一行 标题第二行 标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行标题第三行" />
 

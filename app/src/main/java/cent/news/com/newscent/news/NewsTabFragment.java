@@ -106,7 +106,7 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     }
 
     private void load() {
-        biz().getNewsList(3, 10, "1,2,3,4,5,6,7,8,9,10", 0);
+        biz().getNewsList(3, 10);
     }
 
 
@@ -118,15 +118,14 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     @Override
     public boolean onScrolledToBottom() {
         setLoadMoreState(LoadMoreState.LOADING);
-        biz().loadMoreData(3, 10, "1,2,3,4,5,6,7,8,9,10", 0);
+        biz().loadMoreData(3, 10);
         return false;
     }
 
-    int newsId = 1;
 
     @Override
     public void onRefresh() {
-        biz().getNewsList(1, 10, String.valueOf(newsId++), 0);
+        biz().getNewsList(1, 10);
     }
 
     public void showTip(int count) {

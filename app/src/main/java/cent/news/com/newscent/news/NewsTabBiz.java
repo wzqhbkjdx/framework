@@ -50,21 +50,23 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
     }
 
     @Background(BackgroundType.HTTP)
-    public void getNewsList(int action, int pageSize, String newsIds, int type) {
+    public void getNewsList(int action, int pageSize) {
         XLogUtil.getInstance().d(TAG,"getNewsList");
 
         NewsListRequestModel requestModel = new NewsListRequestModel();
 
         requestModel.action = action; // 1-down 2-up 3-init
-        requestModel.devicenum = "";
+        requestModel.devicenum = "866790037218095";
         requestModel.channelID = channelID; //推荐频道
-        requestModel.latitude = 0.0;
-        requestModel.longitude = 0.0;
+        requestModel.latitude = 0;
+        requestModel.longitude = 0;
         requestModel.pageSize = pageSize;
-        requestModel.newsids = newsIds; //缓存文章重新获取
-        requestModel.type = type; //0-普通 1-视频 2-地方
+        //requestModel.newsids = newsIds; //缓存文章重新获取
+        requestModel.newsID = 0;
+        requestModel.type = 0; //0-普通 1-视频 2-地方
         requestModel.dt = 3; //设备类型 2-iphone 3-android
-        requestModel.version = "1.0.1";
+        //requestModel.version = "1.0.1";
+        requestModel.secret = "{\"account\":\"inews\",\"key\":\"eca37b1f6066d2e28755178b016f0b57\"}";
 
         RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new Gson().toJson(requestModel));
 
@@ -102,21 +104,20 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
     }
 
     @Background(BackgroundType.HTTP)
-    public void loadMoreData(int action, int pageSize, String newsIds, int type) {
+    public void loadMoreData(int action, int pageSize) {
         XLogUtil.getInstance().d(TAG,"loadMoreData");
 
         NewsListRequestModel requestModel = new NewsListRequestModel();
 
         requestModel.action = action; // 1-down 2-up 3-init
-        requestModel.devicenum = "";
+        requestModel.devicenum = "866790037218095";
         requestModel.channelID = channelID; //推荐频道
-        requestModel.latitude = 0.0;
-        requestModel.longitude = 0.0;
+        requestModel.latitude = 0;
+        requestModel.longitude = 0;
         requestModel.pageSize = pageSize;
-        requestModel.newsids = newsIds; //缓存文章重新获取
-        requestModel.type = type; //0-普通 1-视频 2-地方
+        requestModel.type = 0; //0-普通 1-视频 2-地方
         requestModel.dt = 3; //设备类型 2-iphone 3-android
-        requestModel.version = "1.0.1";
+        requestModel.secret = "{\"account\":\"inews\",\"key\":\"eca37b1f6066d2e28755178b016f0b57\"}";
 
         RequestBody body = RequestBody.create(MediaType.parse(NewsHttp.JSON_TYPE), new Gson().toJson(requestModel));
 

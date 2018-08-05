@@ -7,7 +7,8 @@
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="45dp"/>
 
     <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/loading_layout"
@@ -27,62 +28,9 @@
             app:cpv_thickness="1.5dp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/about_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_bg"
-        android:visibility="gone">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
-            tools:ignore="ContentDescription"/>
+    <include layout="@layout/include_article_bottom"
+        />
 
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="@string/app_name"
-            android:textColor="@color/font_dark"
-            android:textSize="@dimen/number_14" />
 
-        <TextView
-            android:id="@+id/tv_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/font_dark"
-            android:textSize="@dimen/number_14" />
-
-        <TextView
-            android:id="@+id/tv3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            android:text="@string/copyright"
-            android:textColor="@color/font_medium"
-            android:textSize="@dimen/number_11" />
-
-        <TextView
-            android:id="@+id/tv4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/font_medium"
-            android:textSize="@dimen/number_11" />
-
-    </RelativeLayout>
 </RelativeLayout>

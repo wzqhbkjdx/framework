@@ -152,7 +152,7 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
     }
 
     public static void gotoWeb(NewsListModel.ResultBean.NewsBean newsBean, int position, BaseRVAdapter adapter, int state) {
-        WebViewActivity.intent(newsBean.getLinkUrl());
+        WebViewActivity.intent(newsBean.getLinkUrl(), newsBean.getTitle());
     }
 }
 

@@ -20,8 +20,8 @@ public class NewsListRequestModel {
     @SerializedName("pageSize") @Expose
     public int pageSize;
 
-    @SerializedName("newsids") @Expose
-    public String newsids;
+    //@SerializedName("newsids") @Expose
+    //public String newsids;
 
     @SerializedName("action") @Expose
     public int action;
@@ -32,9 +32,13 @@ public class NewsListRequestModel {
     @SerializedName("dt") @Expose
     public int dt;
 
-    @SerializedName("version") @Expose
-    public String version;
+    //@SerializedName("version") @Expose
+    //public String version;
 
+    @SerializedName("secret") @Expose
+    public String secret;
 
+    @SerializedName("newsID") @Expose
+    public int newsID;
 
 }

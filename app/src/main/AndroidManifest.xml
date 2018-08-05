@@ -135,7 +135,8 @@
 
         <activity android:name=".webview.WebViewActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
 
 
     </application>

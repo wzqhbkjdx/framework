@@ -3,6 +3,7 @@ package cent.news.com.newscent.news;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class NewsListModel {
@@ -82,7 +83,7 @@ public class NewsListModel {
         }
 
 
-        public static class NewsBean {
+        public static class NewsBean implements Serializable {
             /**
              * id : 1
              * title : 长生生物 6 个跌停，如何警惕医药风口背后的风险？
