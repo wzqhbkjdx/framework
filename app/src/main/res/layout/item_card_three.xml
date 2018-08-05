@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constrain_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:foreground="?selectableItemBackground"
+    android:orientation="vertical"
+    android:paddingTop="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/ll_imgs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <cent.news.com.newscent.view.NCDefaultImageView
+                android:id="@+id/siv_img1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:g_scale="1"
+                app:h_radius="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:logoSize="31.9dp"
+                app:scale="1.33"
+                tools:src="@mipmap/ic_launcher" />
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+
+            <cent.news.com.newscent.view.NCDefaultImageView
+                android:id="@+id/siv_img2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:g_scale="1"
+                app:h_radius="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:logoSize="31.9dp"
+                app:scale="1.33"
+                tools:src="@mipmap/ic_launcher" />
+
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="1dp"
+                android:background="@color/white" />
+
+            <cent.news.com.newscent.view.NCDefaultImageView
+                android:id="@+id/siv_img3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                app:g_scale="1"
+                app:h_radius="8dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:logoSize="31.9dp"
+                app:scale="1.33"
+                tools:src="@mipmap/ic_launcher" />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="8dp">
+
+            <include layout="@layout/include_title_subtitle" />
+        </FrameLayout>
+
+        <include layout="@layout/include_user" />
+
+        <include layout="@layout/find_inclue_line" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -92,8 +92,12 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
                 adapterList.addAll(tmpList);
                 tmpList.clear();
                 ui().showTip(model.getResult().getNews().size());
+            } else if(adapterList == null || adapterList.size() <= 0) {
+                //ui().showBizError();
+                ui().showEmptyManully();
             } else {
                 ui().showTip(0);
+
             }
 
             ui().setListData(adapterList);

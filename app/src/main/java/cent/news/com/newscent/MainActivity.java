@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -12,12 +13,14 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.view.BaseActivity;
 import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.NewsFragment;
+import cent.news.com.newscent.search.SearchActivity;
 import cent.news.com.newscent.video.VideoFragment;
 import cent.news.com.newscent.view.FragmentTabManage;
 import cent.news.com.newscent.view.Navigation;
@@ -58,6 +61,7 @@ public class MainActivity extends BaseActivity<MainBiz> implements Navigation.On
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        searchContent.setFocusable(false);
         initTab();
     }
 
@@ -173,6 +177,15 @@ public class MainActivity extends BaseActivity<MainBiz> implements Navigation.On
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         fragmentTabManage.onAttachedToWindow();
+    }
+
+    @OnClick({R.id.search_content})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.search_content:
+                SearchActivity.intent();
+                break;
+        }
     }
 }
 

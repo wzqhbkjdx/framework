@@ -97,7 +97,7 @@ public final class BaseBuilder {
     }
 
     public void layoutStateId(@IdRes int layoutStateId) {
-        this.layoutId = layoutStateId;
+        this.layoutStateId = layoutStateId;
     }
 
     /**

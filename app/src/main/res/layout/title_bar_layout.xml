@@ -31,6 +31,7 @@
         android:padding="2dp">
 
         <EditText
+            android:editable="false"
             android:id="@+id/search_content"
             android:layout_width="0dp"
             android:layout_height="25dp"
@@ -38,7 +39,7 @@
             android:layout_weight="75"
             android:background="@null"
             android:gravity="center_vertical"
-            android:hint="輸入搜索內容"
+            android:hint="搜素感兴趣的内容"
             android:imeOptions="actionSearch"
             android:singleLine="true"
             android:textColor="#FFA3A3A3"

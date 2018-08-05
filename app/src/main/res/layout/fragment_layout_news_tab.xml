@@ -7,7 +7,7 @@
     android:background="@color/color_bg">
 
     <FrameLayout
-        android:id="@id/flState"
+        android:id="@+id/flState"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,6 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </cent.news.com.newscent.news.NCFrameLayout>
+
+        <include layout="@layout/layout_empty"/>
     </FrameLayout>
 
 </android.support.v4.widget.SwipeRefreshLayout>

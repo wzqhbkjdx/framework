@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_bg"
+    android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/color_bg"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".view.search.SearchActivity"
+        tools:layout_constraintBottom_creator="1" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cons_default"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="搜索指定内容"
+            android:textColor="@color/font_black_6"
+            android:textSize="@dimen/number_15"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_source"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="27dp"
+            android:gravity="center"
+            android:text="内容源"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/number_17"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+        <View
+            android:id="@+id/v_line_1"
+            android:layout_width="1dp"
+            android:layout_height="14dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/font_black_1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_source"
+            app:layout_constraintRight_toLeftOf="@+id/tv_source"
+            app:layout_constraintTop_toTopOf="@+id/tv_source" />
+
+        <View
+            android:id="@+id/v_line_2"
+            android:layout_width="1dp"
+            android:layout_height="14dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:background="@color/font_black_1"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_source"
+            app:layout_constraintLeft_toRightOf="@+id/tv_source"
+            app:layout_constraintTop_toTopOf="@+id/tv_source" />
+
+
+        <TextView
+            android:id="@+id/tv_subscription"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center"
+            android:text="标签"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/number_17"
+            app:layout_constraintBottom_toBottomOf="@+id/v_line_1"
+            app:layout_constraintRight_toLeftOf="@+id/v_line_1"
+            app:layout_constraintTop_toTopOf="@+id/v_line_1" />
+
+        <TextView
+            android:id="@+id/tv_article"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:gravity="center"
+            android:text="文章"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/number_17"
+            app:layout_constraintBottom_toBottomOf="@+id/v_line_2"
+            app:layout_constraintLeft_toRightOf="@+id/v_line_2"
+            app:layout_constraintTop_toTopOf="@+id/v_line_2" />
+
+
+        <TextView
+            android:id="@+id/tv_passenger"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="机票"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/number_17"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_source" />
+
+
+        <View
+            android:id="@+id/v_line_3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/font_black_1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_passenger"
+            app:layout_constraintRight_toLeftOf="@+id/tv_passenger"
+            app:layout_constraintTop_toTopOf="@+id/tv_passenger" />
+
+
+        <TextView
+            android:id="@+id/tv_commodity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="商品"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/number_17"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/v_line_3"
+            app:layout_constraintRight_toLeftOf="@+id/v_line_3"
+            app:layout_constraintTop_toTopOf="@+id/v_line_3" />
+
+
+        <View
+            android:id="@+id/v_line_4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/font_black_1"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_passenger"
+            app:layout_constraintLeft_toRightOf="@+id/tv_passenger"
+            app:layout_constraintTop_toTopOf="@+id/tv_passenger" />
+
+
+        <TextView
+            android:id="@+id/tv_hotel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="酒店"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/number_17"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/v_line_4"
+            app:layout_constraintLeft_toRightOf="@+id/v_line_4"
+            app:layout_constraintTop_toTopOf="@+id/v_line_4" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cons_recommend"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <cent.news.com.newscent.view.TagGroup
+            android:id="@+id/tag_group"
+            style="@style/TagGroup"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_search_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

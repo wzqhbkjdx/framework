@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/AppBarOverlay"
+        android:layout_alignParentTop="true"
+        android:fitsSystemWindows="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="80dp"
+        tools:ignore="ObsoleteLayoutParam">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:layout_centerVertical="true"
+                android:id="@+id/rl_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:background="?selectableItemBackgroundBorderless"
+                android:paddingLeft="8dp"
+                android:paddingRight="16dp"
+                tools:ignore="RtlHardcoded">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/ic_arrow_back"
+                    tools:ignore="ContentDescription"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:background="@drawable/se_bg_shape"
+                android:id="@+id/ll_search"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="15dp"
+                android:layout_toRightOf="@+id/rl_title_back"
+
+                android:orientation="horizontal"
+                tools:ignore="RtlHardcoded">
+
+                <RelativeLayout
+                    android:visibility="visible"
+                    android:id="@+id/rl_title_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    tools:ignore="RtlHardcoded">
+
+                    <ImageView
+                        android:id="@+id/iv_search"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerInParent="true"
+                        android:src="@mipmap/icon_search"
+                        tools:ignore="ContentDescription"/>
+
+                </RelativeLayout>
+
+                <cent.news.com.newscent.view.SearchEditText
+                    android:id="@+id/edit_search"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/hint_search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textNoSuggestions"
+                    android:lines="1"
+                    android:textColor="@color/color_222222"
+                    android:textSize="@dimen/number_15"
+                    app:edit_clean_icon="@mipmap/ic_clean"
+                    android:textCursorDrawable="@drawable/edit_cursor_color"
+                    tools:ignore="NestedWeights,RtlHaric_clean.pngdcoded"/>
+
+            </LinearLayout>
+
+            <ProgressBar
+
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:visibility="gone"/>
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+</merge>

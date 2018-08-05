@@ -20,4 +20,5 @@
     <string name="pull_update">释放更新</string>
     <string name="please_check_network">网络未连接，请检查网络</string>
     <string name="discover_tip_null">全是最新内容啦</string>
+    <string name="hint_search">搜索...</string>
 </resources>

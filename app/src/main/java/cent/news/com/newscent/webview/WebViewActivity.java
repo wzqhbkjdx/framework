@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.view.BaseActivity;
@@ -128,6 +129,14 @@ public class WebViewActivity extends BaseActivity<WebViewBiz> {
 
         this.mUrl = url;
 
+    }
+
+    @OnClick({R.id.rl_title_back}) public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.rl_title_back:
+                finish();
+                break;
+        }
     }
 
 }

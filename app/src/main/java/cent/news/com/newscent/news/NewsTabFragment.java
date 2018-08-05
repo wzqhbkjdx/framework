@@ -2,9 +2,11 @@ package cent.news.com.newscent.news;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -14,6 +16,7 @@ import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.baseframe.view.common.BaseRefreshListener;
 import cent.news.com.newscent.R;
+import cent.news.com.newscent.common.APPUtils;
 import cent.news.com.newscent.common.LoadMoreState;
 import cent.news.com.newscent.helper.NCHelper;
 import cent.news.com.newscent.view.CenterLayoutManager;
@@ -27,11 +30,19 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     public static String TITLE = "title";
     public static String TYPE = "type";
 
+    private String TAG = this.getClass().getSimpleName();
+
     @BindView(R.id.ncFrame) public NCFrameLayout ncFrameLayout;
 
     @BindView(R.id.tv_error_tip) public TextView tvErrorTip;
 
     @BindView(R.id.tv_tip) public TextView			tvBizTip;
+
+    @BindView(R.id.flState)
+    FrameLayout contentFrame;
+
+    @BindView(R.id.empty_layout)
+    ConstraintLayout emptyLayout;
 
     private CountDownTimer mCaptchaCountDownTimer;
 
@@ -53,7 +64,7 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
         builder.layoutId(R.layout.fragment_layout_news_tab);
-        //builder.layoutStateId(R.id.flState);
+        builder.layoutStateId(R.id.flState);
         builder.recyclerviewId(R.id.recycler_view);
         builder.layoutHttpErrorId(R.layout.http_error);
         builder.layoutEmptyId(R.layout.layout_empty);
@@ -64,6 +75,10 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         builder.recyclerviewColorResIds(R.color.orange);
         builder.tintFitsSystem(false);
         return builder;
+    }
+
+    public void showEmptyManully() {
+        emptyLayout.setVisibility(View.VISIBLE);
     }
 
 
@@ -82,6 +97,11 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
+        if(!APPUtils.isNetConnect()) {
+            showHttpError();
+            return;
+        }
 
         load();
     }

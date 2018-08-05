@@ -97,13 +97,15 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
                 baseHolder = new OneHolder(view);
                 break;
 
-            case TYPE_THREE_IMAGES:
-
+            case TYPE_THREE_IMAGES: //三图
+                //view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_card_three, viewGroup, false);
+                //skyHolder = new ThreeHolder(view);
                 break;
         }
 
         return baseHolder;
     }
+
 
     class OneHolder extends BaseHolder<NewsListModel.ResultBean.NewsBean> {
 
@@ -150,6 +152,8 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
             gotoWeb(newsBean, getAdapterPosition(), NewsListAdapter.this, 1);
         }
     }
+
+
 
     public static void gotoWeb(NewsListModel.ResultBean.NewsBean newsBean, int position, BaseRVAdapter adapter, int state) {
         WebViewActivity.intent(newsBean.getLinkUrl(), newsBean.getTitle());
