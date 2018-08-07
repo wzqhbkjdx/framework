@@ -82,7 +82,7 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
         NewsListModel model = httpBody(call);
 
-        ui().swipeRefreshLayout().setRefreshing(false);
+        ui().showRefreshing(false);
 
         if(model.getResultCode() == 200) {
             if(adapterList == null) {

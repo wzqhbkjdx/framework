@@ -49,9 +49,6 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     @BindView(R.id.http_error)
     ConstraintLayout httpError;
 
-    @BindView(R.id.reload_btn)
-    TextView reload;
-
     private CountDownTimer mCaptchaCountDownTimer;
 
     private TextView tvTip;
@@ -158,6 +155,8 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
             showHttpError(false);
         }
 
+        showRefreshing(true);
+
         biz().getNewsList(3, 10);
     }
 
@@ -191,6 +190,16 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
 
         biz().getNewsList(1, 10);
     }
+
+
+    public void showRefreshing(boolean show) {
+        if(show) {
+            swipeRefreshLayout().setRefreshing(true);
+        } else {
+            swipeRefreshLayout().setRefreshing(false);
+        }
+    }
+
 
     public void showTip(int count) {
         if (mCaptchaCountDownTimer != null) {
