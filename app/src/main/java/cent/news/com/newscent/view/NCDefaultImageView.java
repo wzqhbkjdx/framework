@@ -7,6 +7,8 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.request.RequestOptions;
 
 import cent.news.com.newscent.R;
 
@@ -49,7 +51,7 @@ public class NCDefaultImageView extends FitWidthImageView {
         h_radius_bottom_left = a.getDimension(R.styleable.HNADefaultImageView_h_radius_bottom_left, 0);
         h_radius_bottom_right = a.getDimension(R.styleable.HNADefaultImageView_h_radius_bottom_right, 0);
         a.recycle();
-        mutateBackground(true);
+        //mutateBackground(true);
     }
 
     @Override protected void onFinishInflate() {
@@ -80,7 +82,12 @@ public class NCDefaultImageView extends FitWidthImageView {
     public void load(String url) {
         //String urlTmp = "https://img.zcool.cn/community/01b34f58eee017a8012049efcfaf50.jpg@1280w_1l_2o_100sh.webp";
         //Glide.with(getContext()).load(url).asBitmap().placeholder(R.drawable.home_img_default).centerCrop().into(this);
-        Glide.with(getContext()).load(url).into(this);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.home_img_default)
+                .priority(Priority.HIGH);
+
+        Glide.with(getContext()).load(url).apply(options).into(this);
     }
 
     public void loadBackgroundWhite(String url) {

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.BaseFragment;
 import cent.news.com.baseframe.view.common.BaseRefreshListener;
@@ -19,6 +20,7 @@ import cent.news.com.newscent.R;
 import cent.news.com.newscent.common.APPUtils;
 import cent.news.com.newscent.common.LoadMoreState;
 import cent.news.com.newscent.helper.NCHelper;
+import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.view.CenterLayoutManager;
 import cent.news.com.newscent.view.NCNewsListHeader;
 
@@ -43,6 +45,12 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
 
     @BindView(R.id.empty_layout)
     ConstraintLayout emptyLayout;
+
+    @BindView(R.id.http_error)
+    ConstraintLayout httpError;
+
+    @BindView(R.id.reload_btn)
+    TextView reload;
 
     private CountDownTimer mCaptchaCountDownTimer;
 
@@ -73,12 +81,24 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         builder.recyclerviewLinearManager(new CenterLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         builder.recyclerviewSwipRefreshId(R.id.swipeRefresh, this);
         builder.recyclerviewColorResIds(R.color.orange);
-        builder.tintFitsSystem(false);
+        builder.tintFitsSystem(true);
         return builder;
     }
 
-    public void showEmptyManully() {
-        emptyLayout.setVisibility(View.VISIBLE);
+    public void showEmptyManully(boolean showEmpty) {
+        if(showEmpty) {
+            emptyLayout.setVisibility(View.VISIBLE);
+        } else {
+            emptyLayout.setVisibility(View.GONE);
+        }
+    }
+
+    public void showHttpError(boolean showError) {
+        if(showError) {
+            httpError.setVisibility(View.VISIBLE);
+        } else {
+            httpError.setVisibility(View.GONE);
+        }
     }
 
 
@@ -126,6 +146,18 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
     }
 
     private void load() {
+        if(!APPUtils.isNetConnect()) {
+            swipeRefreshLayout().setRefreshing(false);
+            showTipCustom("请检查网络");
+        }
+
+        if(!APPUtils.isNetConnect() && !biz().adapterListExist()) {
+            showHttpError(true);
+            swipeRefreshLayout().setRefreshing(false);
+        } else {
+            showHttpError(false);
+        }
+
         biz().getNewsList(3, 10);
     }
 
@@ -145,6 +177,18 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
 
     @Override
     public void onRefresh() {
+        if(!APPUtils.isNetConnect()) {
+            swipeRefreshLayout().setRefreshing(false);
+            showTipCustom("请检查网络");
+        }
+
+        if(!APPUtils.isNetConnect() && !biz().adapterListExist()) {
+            showHttpError(true);
+            swipeRefreshLayout().setRefreshing(false);
+        } else {
+            showHttpError(false);
+        }
+
         biz().getNewsList(1, 10);
     }
 
@@ -179,11 +223,56 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         mCaptchaCountDownTimer.start();
     }
 
+    public void showTipCustom(String text) {
+        if (mCaptchaCountDownTimer != null) {
+            return;
+        }
+
+        swipeRefreshLayout().setEnabled(false);
+
+        NCHelper.pull().autoRefresh(ncFrameLayout);
+
+        tvTip.setText(text);
+
+        mCaptchaCountDownTimer = new CountDownTimer(3000, 1000) {
+
+            @Override public void onTick(long l) {}
+
+            @Override public void onFinish() {
+                if (ncFrameLayout == null) {
+                    mCaptchaCountDownTimer = null;
+                    return;
+                }
+                // rlTip.setVisibility(View.GONE);
+                // rlTip.setAnimation(AnimationUtils.loadAnimation(getContext(),
+                // R.anim.anim_mask_out));
+                swipeRefreshLayout().setEnabled(true);
+                ncFrameLayout.refreshComplete();
+                mCaptchaCountDownTimer = null;
+            }
+        };
+        mCaptchaCountDownTimer.start();
+    }
+
     public void setLoadMoreState(int state) {
         int position = adapter().getItemCount() - 1;
         NewsListAdapter discoverTabAdapter = adapter();
         discoverTabAdapter.setState(state);
         discoverTabAdapter.notifyItemChanged(position);
+    }
+
+    @OnClick({R.id.reload_btn})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.reload_btn:
+                XLogUtil.getInstance().d("bob_test", "reload click");
+                swipeRefreshLayout().setRefreshing(true);
+                load();
+                break;
+
+                default:
+                    break;
+        }
     }
 }
 

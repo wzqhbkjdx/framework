@@ -1,11 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <TextView
-        android:text="video"
+    <RelativeLayout
+        android:id="@+id/progress_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+        <ProgressBar
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="38dp"
+            android:layout_height="38dp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <cent.news.com.newscent.view.tab.SmartTabLayout
+            android:id="@+id/smart_tab"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/include_title"
+            android:layout_toLeftOf="@+id/top_layout"
+            android:layout_weight="80"
+            android:background="@color/common_bg"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            app:stl_customTabTextLayoutId="@layout/custom_tab_discover"
+            app:stl_customTabTextViewId="@+id/custom_text"
+            app:stl_dividerColor="@android:color/transparent"
+            app:stl_indicatorColor="@color/orange"
+            app:stl_indicatorCornerRadius="0.5dp"
+            app:stl_indicatorInterpolation="smart"
+            app:stl_indicatorThickness="2dp"
+            app:stl_indicatorWidth="30dp"
+            app:stl_underlineColor="@color/line"
+            app:stl_underlineThickness="0dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</LinearLayout>
+
+

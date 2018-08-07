@@ -34,6 +34,14 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
 
     private int type;
 
+    public boolean adapterListExist() {
+        if(adapterList != null && adapterList.size() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     protected void initBiz(Bundle bundle) {
         super.initBiz(bundle);
@@ -92,12 +100,13 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
                 adapterList.addAll(tmpList);
                 tmpList.clear();
                 ui().showTip(model.getResult().getNews().size());
+                ui().showEmptyManully(false);
+                ui().showHttpError(false);
             } else if(adapterList == null || adapterList.size() <= 0) {
                 //ui().showBizError();
-                ui().showEmptyManully();
+                ui().showEmptyManully(true);
             } else {
                 ui().showTip(0);
-
             }
 
             ui().setListData(adapterList);
@@ -139,6 +148,11 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
             if(model.getResult().getNews().size() > 0) {
                 adapterList.addAll(model.getResult().getNews());
                 ui().setListData(adapterList);
+                ui().showEmptyManully(false);
+                ui().showHttpError(false);
+            } else if(adapterList == null || adapterList.size() <= 0) {
+                //ui().showBizError();
+                ui().showEmptyManully(true);
             } else {
                 ui().setLoadMoreState(LoadMoreState.NOT_DATA);
             }

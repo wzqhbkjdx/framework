@@ -11,6 +11,7 @@ import java.util.List;
 
 import cent.news.com.baseframe.core.BaseBiz;
 import cent.news.com.newscent.db.GreenDAOManager;
+import cent.news.com.newscent.db.graeendao.ChannelDBBeanDao;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.channel.ChannelDBBean;
 import cent.news.com.newscent.news.channel.ChannelModel;
@@ -72,7 +73,8 @@ public class NewsBiz extends BaseBiz<NewsFragment> {
     public void loadTitles() {
         //从数据库中查询出来
         QueryBuilder<ChannelDBBean> query = GreenDAOManager.instance().getChannelDBDao().queryBuilder();
-        List<ChannelDBBean> queryResult = query.list();
+        //type == 0 是新闻，type == 1 是视频
+        List<ChannelDBBean> queryResult = query.where(ChannelDBBeanDao.Properties.Type.eq(0)).list();
         if(queryResult.size() > 0) {
             ArrayList<ChannelDBBean> list = new ArrayList<>(queryResult);
             ui().setTab(list);

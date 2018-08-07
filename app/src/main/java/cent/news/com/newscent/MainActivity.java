@@ -18,9 +18,11 @@ import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.view.BaseActivity;
 import cent.news.com.baseframe.view.BaseBuilder;
+import cent.news.com.newscent.cents.CentsFragment;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.NewsFragment;
 import cent.news.com.newscent.search.SearchActivity;
+import cent.news.com.newscent.user.UserFragment;
 import cent.news.com.newscent.video.VideoFragment;
 import cent.news.com.newscent.view.FragmentTabManage;
 import cent.news.com.newscent.view.Navigation;
@@ -70,8 +72,8 @@ public class MainActivity extends BaseActivity<MainBiz> implements Navigation.On
         fragmentTabManage = new FragmentTabManage(this, getSupportFragmentManager());
         fragmentTabManage.addTab(getResources().getString(R.string.tab_home), NewsFragment.class, null, 0);
         fragmentTabManage.addTab(getResources().getString(R.string.tab_video), VideoFragment.class, null, 1);
-        fragmentTabManage.addTab(getResources().getString(R.string.tab_cents), VideoFragment.class, null, 2);
-        fragmentTabManage.addTab(getResources().getString(R.string.tab_my), VideoFragment.class, null, 3);
+        fragmentTabManage.addTab(getResources().getString(R.string.tab_cents), CentsFragment.class, null, 2);
+        fragmentTabManage.addTab(getResources().getString(R.string.tab_my), UserFragment.class, null, 3);
 
         // Tab 管理器
         AHBottomNavigationItem hi = new AHBottomNavigationItem(R.string.tab_home, R.mipmap.tab1_off, android.R.color.transparent);

@@ -8,6 +8,10 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import cent.news.com.newscent.R;
 
+/**
+ * extends RoundedImageView
+ */
+
 public class ScaleImageView extends RoundedImageView {
 
     float scale;

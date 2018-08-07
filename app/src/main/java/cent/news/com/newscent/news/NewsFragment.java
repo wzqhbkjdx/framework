@@ -22,7 +22,6 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
     @BindView(R.id.smart_tab)
     SmartTabLayout smartTab;
 
-
     @BindView(R.id.pager)
     ViewPager viewPager;
 
@@ -42,7 +41,6 @@ public class NewsFragment extends BaseFragment<NewsBiz> implements ViewPager.OnP
         //设置返回为null的界面
 
         //设置loading的界面
-
 
         return builder;
     }
