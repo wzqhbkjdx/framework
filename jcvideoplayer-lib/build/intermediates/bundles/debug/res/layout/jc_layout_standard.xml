@@ -139,6 +139,7 @@
         android:src="@drawable/jc_click_play_selector" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/video_time"
         android:padding="5dp"
         android:textSize="12sp"

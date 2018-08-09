@@ -4,11 +4,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/webview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="45dp"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/videoPlayer"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                android:visibility="visible"/>
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="45dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 
     <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/loading_layout"
@@ -29,8 +53,7 @@
     </RelativeLayout>
 
 
-    <include layout="@layout/include_article_bottom"
-        />
+    <include layout="@layout/include_article_bottom" />
 
 
 </RelativeLayout>

@@ -12,6 +12,8 @@ import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import cent.news.com.baseframe.BaseHelper;
@@ -19,12 +21,20 @@ import cent.news.com.baseframe.display.BaseIDisplay;
 import cent.news.com.baseframe.view.BaseActivity;
 import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.newscent.R;
+import cent.news.com.newscent.common.ImageLoadUtil;
+import cent.news.com.newscent.helper.NCHelper;
+import cent.news.com.newscent.helper.utils.XLogUtil;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 public class WebViewActivity extends BaseActivity<WebViewBiz> {
 
     public static final String CONTENT_URL = "content_url";
 
     public static final String CONTENT_TITLE = "content_title";
+
+    public static final String PLAY_URL = "play_url";
+
+    public static final String IMAGE_COVER_URL = "image_cover_url";
 
     private String TAG = this.getClass().getSimpleName();
 
@@ -44,6 +54,21 @@ public class WebViewActivity extends BaseActivity<WebViewBiz> {
 
     @BindView(R.id.rl_title_back)
     RelativeLayout back;
+
+    @BindView(R.id.videoPlayer)
+    JCVideoPlayerStandard videoPlayer;
+
+    private String mUrl = "";
+
+    public static void intent(String webUrl, String playUrl, String title, String imageCoverUrl) {
+        Bundle bundle = new Bundle();
+        bundle.putString(CONTENT_URL, webUrl);
+        bundle.putString(CONTENT_TITLE, title);
+        bundle.putString(PLAY_URL, playUrl);
+        bundle.putString(IMAGE_COVER_URL, imageCoverUrl);
+        BaseHelper.display(BaseIDisplay.class).intentAnimation(WebViewActivity.class,
+                R.anim.push_left_in, R.anim.stay_not_move, bundle);
+    }
 
 
     public static void intent(String url, String title) {
@@ -73,13 +98,31 @@ public class WebViewActivity extends BaseActivity<WebViewBiz> {
 
         mLoadingLayout.setVisibility(View.VISIBLE);
         closeText.setVisibility(View.GONE);
+    }
+
+    public void hideVideoPlayer() {
+        videoPlayer.setVisibility(View.GONE);
+    }
+
+    public void initVideo(String playUrl, String imageCoverUrl, String title) {
+        XLogUtil.getInstance().d(TAG, "playUrl: " + playUrl);
+        XLogUtil.getInstance().d(TAG, "title: " + title);
+        XLogUtil.getInstance().d(TAG, "imageCoverUrl: " + imageCoverUrl);
+
+        videoPlayer.setVisibility(View.VISIBLE);
+
+        if(!StringUtils.isEmpty(playUrl)) {
+            videoPlayer.setUp(playUrl, JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,
+                    title);
+        }
+
+        ImageLoadUtil.displayWithCropCircle(NCHelper.getInstance(), imageCoverUrl,
+                videoPlayer.thumbImageView, -1);
 
     }
 
-    private String mUrl = "";
 
     public void initWebView(final String url, String title) {
-
         if(title != null) {
             mTitle.setText(title);
         }

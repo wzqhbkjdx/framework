@@ -250,11 +250,11 @@ public class NewsListAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
             title.setText(newsBean.getTitle());
 
             sivImg1.getLayoutParams().width = width;
-            sivImg1.getLayoutParams().height = (int) (width / 1.33);
+            sivImg1.getLayoutParams().height = (int) (width / 1);
             sivImg2.getLayoutParams().width = width;
-            sivImg2.getLayoutParams().height = (int) (width / 1.33);
+            sivImg2.getLayoutParams().height = (int) (width / 1);
             sivImg3.getLayoutParams().width = width;
-            sivImg3.getLayoutParams().height = (int) (width / 1.33);
+            sivImg3.getLayoutParams().height = (int) (width / 1);
 
             for(int i = 0; i < newsBean.getImages().size(); i++) {
                 if(i == 0) {

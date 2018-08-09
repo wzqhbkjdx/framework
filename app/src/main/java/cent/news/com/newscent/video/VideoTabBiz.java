@@ -102,11 +102,11 @@ public class VideoTabBiz extends BaseBiz<VideoTabFragment> {
                 adapterList.addAll(tmpList);
                 tmpList.clear();
                 ui().showTip(model.getResult().getNews().size());
-                ui().showEmptyManully(false);
+                ui().showEmptyLayout(false);
                 ui().showHttpError(false);
             } else if(adapterList == null || adapterList.size() <= 0) {
                 //ui().showBizError();
-                ui().showEmptyManully(true);
+                ui().showEmptyLayout(true);
             } else {
                 ui().showTip(0);
             }
@@ -151,11 +151,11 @@ public class VideoTabBiz extends BaseBiz<VideoTabFragment> {
             if(model.getResult().getNews().size() > 0) {
                 adapterList.addAll(model.getResult().getNews());
                 ui().setListData(adapterList);
-                ui().showEmptyManully(false);
+                ui().showEmptyLayout(false);
                 ui().showHttpError(false);
             } else if(adapterList == null || adapterList.size() <= 0) {
                 //ui().showBizError();
-                ui().showEmptyManully(true);
+                ui().showEmptyLayout(true);
             } else {
                 ui().setLoadMoreState(LoadMoreState.NOT_DATA);
             }

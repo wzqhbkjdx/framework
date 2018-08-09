@@ -1,10 +1,14 @@
 package cent.news.com.newscent.video;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -20,10 +24,10 @@ import cent.news.com.newscent.common.APPUtils;
 import cent.news.com.newscent.common.LoadMoreState;
 import cent.news.com.newscent.helper.NCHelper;
 import cent.news.com.newscent.news.NCFrameLayout;
-import cent.news.com.newscent.news.NewsListAdapter;
 import cent.news.com.newscent.news.NewsListModel;
 import cent.news.com.newscent.view.CenterLayoutManager;
 import cent.news.com.newscent.view.NCNewsListHeader;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 public class VideoTabFragment extends BaseFragment<VideoTabBiz> implements BaseRefreshListener {
 
@@ -84,7 +88,38 @@ public class VideoTabFragment extends BaseFragment<VideoTabBiz> implements BaseR
     }
 
 
-    public void showEmptyManully(boolean showEmpty) {
+    private void configureRecyclerView4PauseVideo() {
+        final GestureDetector detector = initGestureDetector(NCHelper.getInstance());
+
+        recyclerView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                detector.onTouchEvent(event);
+                return false;
+            }
+        });
+
+        recyclerView().addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+                if (layoutManager instanceof LinearLayoutManager) {
+                    LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+                    //获取最后一个可见view的位置
+                    int lastItemPosition = linearManager.findLastVisibleItemPosition();
+                    //获取第一个可见view的位置
+                    int firstItemPosition = linearManager.findFirstVisibleItemPosition();
+                    if(adapter() instanceof VideoTabAdapter) {
+                        ((VideoTabAdapter)adapter()).stopVideoPlay(firstItemPosition, lastItemPosition);
+                    }
+                }
+            }
+        });
+    }
+
+
+    public void showEmptyLayout(boolean showEmpty) {
         if(showEmpty) {
             emptyLayout.setVisibility(View.VISIBLE);
         } else {
@@ -123,6 +158,8 @@ public class VideoTabFragment extends BaseFragment<VideoTabBiz> implements BaseR
         }
 
         load();
+
+        configureRecyclerView4PauseVideo();
     }
 
     public void setListData(List<NewsListModel.ResultBean.NewsBean> dataList) {
@@ -208,6 +245,13 @@ public class VideoTabFragment extends BaseFragment<VideoTabBiz> implements BaseR
         mCaptchaCountDownTimer.start();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        //停止视频播放
+        JCVideoPlayer.releaseAllVideos();
+    }
+
     public void showTipCustom(String text) {
         if (mCaptchaCountDownTimer != null) {
             return;
@@ -276,5 +320,46 @@ public class VideoTabFragment extends BaseFragment<VideoTabBiz> implements BaseR
         }
 
         biz().getVideoList(1, 10);
+    }
+
+    private boolean isFastScrolling = false;
+    private GestureDetector initGestureDetector(Context context) {
+        return new GestureDetector(context, new GestureDetector.OnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                return false;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent e) {
+
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                if(Math.abs(velocityY) > 4000) {
+                    isFastScrolling = true;
+                } else {
+                    isFastScrolling = false;
+                }
+
+                return false;
+            }
+        });
     }
 }

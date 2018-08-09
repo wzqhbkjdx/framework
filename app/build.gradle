@@ -31,10 +31,10 @@ android {
             keyPassword "123456"
         }
         release {
-            storeFile file("keystore/hna_hi.jks")
-            storePassword "123456"
-            keyAlias "hi"
-            keyPassword "123456"
+            storeFile file("/Users/bym/newscent_keystore")
+            storePassword "newscent"
+            keyAlias "key"
+            keyPassword "newscent"
         }
     }
 

@@ -7,14 +7,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 
-import cent.news.com.newscent.R;
-
 public class ImageLoadUtil {
 
-    public static void displayWithCropCircle(Context context, String url, final ImageView imageView) {
+    public static void displayWithCropCircle(Context context, String url, final ImageView imageView, int placeHolder) {
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.home_img_default)
+                .placeholder(placeHolder)
                 .priority(Priority.HIGH);
 
         Glide.with(context).load(url).apply(options).into(imageView);

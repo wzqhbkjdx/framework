@@ -20,7 +20,7 @@
             android:layout_marginRight="10dp"
             android:id="@+id/VideoPlayLayout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="240dp"
             android:layout_marginTop="10dp" />
 
         <FrameLayout

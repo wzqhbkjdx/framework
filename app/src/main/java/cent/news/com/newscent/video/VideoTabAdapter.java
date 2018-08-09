@@ -20,6 +20,7 @@ import cent.news.com.newscent.common.LoadMoreUtils;
 import cent.news.com.newscent.helper.NCHelper;
 import cent.news.com.newscent.news.NewsListModel;
 import cent.news.com.newscent.webview.WebViewActivity;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
 
 public class VideoTabAdapter extends BaseRVAdapter<NewsListModel.ResultBean.NewsBean, BaseHolder> {
@@ -27,6 +28,18 @@ public class VideoTabAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
     private String TAG = this.getClass().getSimpleName();
 
     private static final int TYPE_VIDEO = 7;
+
+    private int videoPosition;
+
+    private boolean videoIsClicked;
+
+    public int getVideoPosition() {
+        return videoPosition;
+    }
+
+    public boolean isVideoIsClicked() {
+        return videoIsClicked;
+    }
 
     @Override
     public int getCustomViewType(int position) {
@@ -96,15 +109,26 @@ public class VideoTabAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
         }
 
         @Override
-        public void bindData(NewsListModel.ResultBean.NewsBean newsBean, int position) {
+        public void bindData(NewsListModel.ResultBean.NewsBean newsBean, final int position) {
             videoPlayer.setUp(newsBean.getPlayUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,
                     newsBean.getTitle());
-            ImageLoadUtil.displayWithCropCircle(NCHelper.getInstance(), newsBean.getLogoImageUrl(), videoPlayer.thumbImageView);
+
+            ImageLoadUtil.displayWithCropCircle(NCHelper.getInstance(), newsBean.getLogoImageUrl(),
+                    videoPlayer.thumbImageView, -1);
+
             subTitle.setVisibility(View.GONE);
             source.setText(newsBean.getSource());
 
             updateTime.setText(AppDateUtil.DateCompare(
                     AppDateUtil.changeDateStr2TimeMills(newsBean.getPublishTime()), System.currentTimeMillis()));
+
+            videoPlayer.setOnTouchVideoListener(new JCVideoPlayer.onTouchVideoListener() {
+                @Override
+                public void onTouch() {
+                    videoPosition = position;
+                    videoIsClicked = true;
+                }
+            });
         }
 
         @OnClick(R.id.constrain_item) public void onItem(View view) {
@@ -117,7 +141,16 @@ public class VideoTabAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
     }
 
     public static void gotoWeb(NewsListModel.ResultBean.NewsBean newsBean, int position, BaseRVAdapter adapter, int state) {
-        WebViewActivity.intent(newsBean.getLinkUrl(), newsBean.getTitle());
+        WebViewActivity.intent(newsBean.getLinkUrl(), newsBean.getPlayUrl(), newsBean.getTitle(), newsBean.getLogoImageUrl());
+    }
+
+    public void stopVideoPlay(int firstVisibleItemPos, int lastVisibleItemPos) {
+        if(videoIsClicked) {
+            if(videoPosition < firstVisibleItemPos - 1 || videoPosition > lastVisibleItemPos - 1) {
+                JCVideoPlayer.releaseAllVideos();
+            }
+        }
+
     }
 
 }
