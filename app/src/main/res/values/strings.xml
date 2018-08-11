@@ -9,7 +9,7 @@
     <string name="tab_cents">积分</string>
     <string name="tab_my">我的</string>
     <string name="http_error">数据加载失败</string>
-    <string name="http_error_tip">网络走丢了，努力寻找中...</string>
+    <string name="http_error_tip">请检查网络后再试试</string>
     <string name="reload">重新加载</string>
     <string name="load_more">正在加载...</string>
     <string name="load_more_not_date">已经到底，客官明天再来哟～</string>

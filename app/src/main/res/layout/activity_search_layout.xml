@@ -12,7 +12,7 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/color_bg"
@@ -30,6 +30,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:background="@color/white"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -198,7 +199,7 @@
             style="@style/TagGroup"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -219,6 +220,10 @@
         </android.support.v7.widget.RecyclerView>
 
     </android.support.constraint.ConstraintLayout>
+
+    <!--<include layout="@layout/layout_search_none"/>-->
+
+    <!--<include layout="@layout/http_error"/>-->
 
 
 </android.support.constraint.ConstraintLayout>

@@ -100,11 +100,11 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
                 adapterList.addAll(tmpList);
                 tmpList.clear();
                 ui().showTip(model.getResult().getNews().size());
-                ui().showEmptyManully(false);
+                ui().showEmpty(false);
                 ui().showHttpError(false);
             } else if(adapterList == null || adapterList.size() <= 0) {
                 //ui().showBizError();
-                ui().showEmptyManully(true);
+                ui().showEmpty(true);
             } else {
                 ui().showTip(0);
             }
@@ -148,11 +148,11 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
             if(model.getResult().getNews().size() > 0) {
                 adapterList.addAll(model.getResult().getNews());
                 ui().setListData(adapterList);
-                ui().showEmptyManully(false);
+                ui().showEmpty(false);
                 ui().showHttpError(false);
             } else if(adapterList == null || adapterList.size() <= 0) {
                 //ui().showBizError();
-                ui().showEmptyManully(true);
+                ui().showEmpty(true);
             } else {
                 ui().setLoadMoreState(LoadMoreState.NOT_DATA);
             }

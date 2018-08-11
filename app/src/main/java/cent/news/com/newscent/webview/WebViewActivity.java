@@ -177,7 +177,7 @@ public class WebViewActivity extends BaseActivity<WebViewBiz> {
     @OnClick({R.id.rl_title_back}) public void onClick(View view) {
         switch(view.getId()) {
             case R.id.rl_title_back:
-                finish();
+                onKeyBack();
                 break;
         }
     }

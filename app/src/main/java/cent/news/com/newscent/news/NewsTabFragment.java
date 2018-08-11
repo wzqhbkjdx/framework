@@ -82,7 +82,7 @@ public class NewsTabFragment extends BaseFragment<NewsTabBiz> implements BaseRef
         return builder;
     }
 
-    public void showEmptyManully(boolean showEmpty) {
+    public void showEmpty(boolean showEmpty) {
         if(showEmpty) {
             emptyLayout.setVisibility(View.VISIBLE);
         } else {
