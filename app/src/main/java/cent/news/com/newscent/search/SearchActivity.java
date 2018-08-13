@@ -10,6 +10,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import cent.news.com.baseframe.BaseHelper;
 import cent.news.com.baseframe.display.BaseIDisplay;
@@ -19,6 +21,7 @@ import cent.news.com.baseframe.view.BaseBuilder;
 import cent.news.com.baseframe.view.common.BaseFooterListener;
 import cent.news.com.newscent.R;
 import cent.news.com.newscent.helper.utils.XLogUtil;
+import cent.news.com.newscent.news.NewsListModel;
 import cent.news.com.newscent.view.SearchEditText;
 import cent.news.com.newscent.view.TagGroup;
 
@@ -61,7 +64,6 @@ public class SearchActivity extends BaseActivity<SearchBiz> implements BaseFoote
     @Override
     protected void initData(Bundle savedInstanceState) {
         searchEditText.setOnEditorActionListener(this);
-
     }
 
     public void showProgressBar(boolean show) {
@@ -77,6 +79,11 @@ public class SearchActivity extends BaseActivity<SearchBiz> implements BaseFoote
         return false;
     }
 
+    public void setListData(List<NewsListModel.ResultBean.NewsBean> dataList) {
+        showContent();
+        adapter().setItems(dataList);
+    }
+
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
 
@@ -88,7 +95,7 @@ public class SearchActivity extends BaseActivity<SearchBiz> implements BaseFoote
             llBackground.setFocusable(true);
             llBackground.setFocusableInTouchMode(true);
             //搜索
-            //biz().search(editSearch.getText().toString());
+            biz().search(1, 10, searchEditText.getText().toString());
             showProgressBar(true);
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -111,7 +118,7 @@ public class SearchActivity extends BaseActivity<SearchBiz> implements BaseFoote
             llBackground.setFocusable(true);
             llBackground.setFocusableInTouchMode(true);
             //开始搜索
-            //biz().search(editSearch.getText().toString());
+            biz().search(1, 10, searchEditText.getText().toString());
             showProgressBar(true);
             return true;
         }

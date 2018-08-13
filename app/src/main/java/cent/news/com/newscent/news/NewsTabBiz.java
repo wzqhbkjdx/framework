@@ -102,6 +102,7 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
                 ui().showTip(model.getResult().getNews().size());
                 ui().showEmpty(false);
                 ui().showHttpError(false);
+                ui().setListData(adapterList);
             } else if(adapterList == null || adapterList.size() <= 0) {
                 //ui().showBizError();
                 ui().showEmpty(true);
@@ -109,7 +110,6 @@ public class NewsTabBiz extends BaseBiz<NewsTabFragment> {
                 ui().showTip(0);
             }
 
-            ui().setListData(adapterList);
         } else {
 
         }
