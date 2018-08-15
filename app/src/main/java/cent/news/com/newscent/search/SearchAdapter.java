@@ -14,9 +14,11 @@ import cent.news.com.baseframe.view.adapter.recyclerView.BaseRVAdapter;
 import cent.news.com.newscent.R;
 import cent.news.com.newscent.common.APPUtils;
 import cent.news.com.newscent.common.AppDateUtil;
+import cent.news.com.newscent.common.ImageLoadUtil;
 import cent.news.com.newscent.common.LoadMoreHolder;
 import cent.news.com.newscent.common.LoadMoreOnClick;
 import cent.news.com.newscent.common.LoadMoreUtils;
+import cent.news.com.newscent.helper.NCHelper;
 import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.NewsListModel;
 import cent.news.com.newscent.view.NCDefaultImageView;
@@ -81,14 +83,13 @@ public class SearchAdapter extends BaseRVAdapter<NewsListModel.ResultBean.NewsBe
         View view;
         switch (type) {
             case TYPE_VIDEO:
-            case TYPE_MAX_IMAGE: //单图-大图
-                //view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_big_card, viewGroup, false);
-                //baseHolder = new BigHolder(view);
-                //break;
-
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_card_video_small, viewGroup, false);
+                baseHolder = new VideoHolder(view);
+                break;
                 //case TYPE_REFRESH_HERE_BEFORE:
                 //    break;
 
+            case TYPE_MAX_IMAGE: //单图-大图
             case TYPE_TEXT: //纯文本
             case TYPE_SMALL_IMAGE: //单图-小图
                 view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_card_one_new, viewGroup, false);
@@ -286,6 +287,57 @@ public class SearchAdapter extends BaseRVAdapter<NewsListModel.ResultBean.NewsBe
     }
 
 
+    class VideoHolder extends BaseHolder<NewsListModel.ResultBean.NewsBean> {
+        @BindView(R.id.constrain_item)
+        LinearLayout itemLayout;
+
+        @BindView(R.id.siv_img)
+        NCDefaultImageView videoImage;
+
+        @BindView(R.id.tv_title)
+        TextView title;
+
+        @BindView(R.id.tv_sub_title)
+        TextView subTitle;
+
+        @BindView(R.id.tv_name)
+        TextView source;
+
+        @BindView(R.id.tv_update_time)
+        TextView updateTime;
+
+        public VideoHolder(View itemView) {
+            super(itemView);
+        }
+
+        @Override
+        public void bindData(NewsListModel.ResultBean.NewsBean newsBean, int position) {
+            ImageLoadUtil.displayWithCropPlaceHolder(NCHelper.getInstance(), newsBean.getLogoImageUrl(),
+                    videoImage, -1);
+
+            title.setText(newsBean.getTitle());
+
+            subTitle.setVisibility(View.GONE);
+            source.setText(newsBean.getSource());
+
+            updateTime.setText(AppDateUtil.DateCompare(
+                    AppDateUtil.changeDateStr2TimeMills(newsBean.getPublishTime()), System.currentTimeMillis()));
+
+        }
+
+        @OnClick(R.id.constrain_item) public void onItem(View view) {
+            NewsListModel.ResultBean.NewsBean newsBean = getItem(getAdapterPosition());
+            if (newsBean == null) {
+                return;
+            }
+            gotoVideoWeb(newsBean, getAdapterPosition(), SearchAdapter.this, 1);
+        }
+
+    }
+
+    public static void gotoVideoWeb(NewsListModel.ResultBean.NewsBean newsBean, int position, BaseRVAdapter adapter, int state) {
+        WebViewActivity.intent(newsBean.getLinkUrl(), newsBean.getPlayUrl(), newsBean.getTitle(), newsBean.getLogoImageUrl());
+    }
 
     public static void gotoWeb(NewsListModel.ResultBean.NewsBean newsBean, int position, BaseRVAdapter adapter, int state) {
         WebViewActivity.intent(newsBean.getLinkUrl(), newsBean.getTitle());

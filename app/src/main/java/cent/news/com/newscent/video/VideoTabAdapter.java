@@ -113,7 +113,7 @@ public class VideoTabAdapter extends BaseRVAdapter<NewsListModel.ResultBean.News
             videoPlayer.setUp(newsBean.getPlayUrl(), JCVideoPlayerStandard.SCREEN_LAYOUT_NORMAL,
                     newsBean.getTitle());
 
-            ImageLoadUtil.displayWithCropCircle(NCHelper.getInstance(), newsBean.getLogoImageUrl(),
+            ImageLoadUtil.displayWithCropPlaceHolder(NCHelper.getInstance(), newsBean.getLogoImageUrl(),
                     videoPlayer.thumbImageView, -1);
 
             subTitle.setVisibility(View.GONE);

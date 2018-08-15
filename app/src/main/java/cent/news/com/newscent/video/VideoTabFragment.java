@@ -6,7 +6,6 @@ import android.os.CountDownTimer;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +22,7 @@ import cent.news.com.newscent.R;
 import cent.news.com.newscent.common.APPUtils;
 import cent.news.com.newscent.common.LoadMoreState;
 import cent.news.com.newscent.helper.NCHelper;
+import cent.news.com.newscent.helper.utils.XLogUtil;
 import cent.news.com.newscent.news.NCFrameLayout;
 import cent.news.com.newscent.news.NewsListModel;
 import cent.news.com.newscent.view.CenterLayoutManager;
@@ -73,7 +73,6 @@ public class VideoTabFragment extends BaseFragment<VideoTabBiz> implements BaseR
     @Override
     protected BaseBuilder build(BaseBuilder builder) {
         builder.layoutId(R.layout.fragment_video_tab_layout);
-        builder.layoutId(R.layout.fragment_layout_news_tab);
         builder.layoutStateId(R.id.flState);
         builder.recyclerviewId(R.id.recycler_view);
         builder.layoutHttpErrorId(R.layout.http_error);
@@ -289,6 +288,7 @@ public class VideoTabFragment extends BaseFragment<VideoTabBiz> implements BaseR
      */
     @Override
     public boolean onScrolledToBottom() {
+        XLogUtil.getInstance().d(TAG, "onScrolledToBottom");
         setLoadMoreState(LoadMoreState.LOADING);
         biz().loadMoreData(3, 10);
         return false;

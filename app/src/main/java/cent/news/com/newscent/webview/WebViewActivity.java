@@ -116,7 +116,7 @@ public class WebViewActivity extends BaseActivity<WebViewBiz> {
                     title);
         }
 
-        ImageLoadUtil.displayWithCropCircle(NCHelper.getInstance(), imageCoverUrl,
+        ImageLoadUtil.displayWithCropPlaceHolder(NCHelper.getInstance(), imageCoverUrl,
                 videoPlayer.thumbImageView, -1);
 
     }
